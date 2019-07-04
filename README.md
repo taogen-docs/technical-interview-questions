@@ -1,7 +1,7 @@
 # code-questions
 code questions collection.
 
-### Code Question of Java-based
+### Code Questions of Java-based
 
 Menu
 
