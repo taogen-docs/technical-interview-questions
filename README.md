@@ -509,6 +509,16 @@ public class Main
 }
 ```
 
+Result
+
+```
+Thread-0hold lock1...
+Thread-1hold lock2...
+(deadlock status...)
+```
+
+
+
 ### VIII. Others
 
 #### Design Patterns
