@@ -76,8 +76,11 @@ public void main(String[] args)
 Result
 
 ```
-i +++ j => (i++) + j, Because priority ++ > + 
+Result:
 i: 2, j: 2, k: 3
+
+Reason:
+Priority ++ > + ,  so i +++ j  same to  (i++) + j, 
 ```
 
 
@@ -113,13 +116,12 @@ public static int test()
 Result
 
 ```
-/*
 Result:
 3
+
 Reason:
 - if occur exception, the try block return statement will not be executed. the catch have return statement will be executed. else try executed, catch not executed.
 - Anyway, if finally block have return statement， it will be executed and cover either try or catch block return statement.
-*/
 ```
 
 Question: Nested Exception Run Sequence
@@ -154,7 +156,6 @@ finally
 Result
 
 ```
-/* 
 Result:
 try...
 finally...
@@ -165,7 +166,6 @@ Reason:
 `try` - `try` execute until the last executable line.
 `catch` - It can execute outside `catch` block if inside `catch` can't catch the exception.
 `finally` - all `finally` block must execute from inside to outside.
- */
 ```
 
 
@@ -190,17 +190,20 @@ String b4 = new String("hello");
 // type1
 System.out.println(a1 == a2); 
 System.out.println();
+
 // type2
 System.out.println(a1 == b1); 
 System.out.println(a1 == b2);
 System.out.println(a1 == b3);
 System.out.println(a1 == b4);
 System.out.println();
+
 // type3
 System.out.println(b1 == b2); 
 System.out.println(b1 == b3);
 System.out.println(b3 == b4);
 System.out.println();
+
 // type4
 System.out.println(b1.equals(a1));
 System.out.println(b1.equals(a2));
@@ -212,16 +215,17 @@ System.out.println();
 Result
 
 ```
+Result:
 System.out.println(a1 == a2);     // type1, true
 System.out.println(a1 == b*);     // type2, false
 System.out.println(b* == b*);     // type3, false
 System.out.println(b*.equals(*)); // type4, true
-/*
+
+Reason:
 "xxxxxx"      // It is a string literal. Store in String static pool, no repeat string in there.
 "xx" + "xxx"  // It is a string literal too. Store in String static pool.
 new String("xxx")          // it is a string object, store in heap.
 new String("xxx") + "xxx"  // it is a new String Object, store in heap.
-*/
 ```
 
 
@@ -248,12 +252,13 @@ System.out.println(b1 == b3);
 Result
 
 ```
-
+Result: 
 System.out.println(a1 == a2); // 1. true
 System.out.println(a1 == a3); // 2. true
 System.out.println(b1 == b2); // 3. false
 System.out.println(b1 == b3); // 4. true
 
+Reason:
 // 1. less than max_default_int_cache = 127, There are two int cache contrast.
 // 2. same to 1.
 // 3. greater than max_default_int_cache = 127, There are two object contrast. 
@@ -295,8 +300,7 @@ public class Main
 Result
 
 ```
-/* 
-result:
+Result:
 System.out.println(obj instanceof B); // 1. true
 System.out.println(obj instanceof C); // 2. false
 System.out.println(obj instanceof D); // 3. true
@@ -310,7 +314,6 @@ Reason:
 A obj = new D(); The object is D, the obj instance of D it ture, so #3 is true. D has inheritance relation with A, B, so #1, #4 is true. It has't relation with C, so #2 is false.
 5, 6
 A instanceof B. if A has direct or indirect Inheritance relation. The #5, #6 is ture.
-*/
 ```
 
 Question: Function Calling in Polymorphism
@@ -365,7 +368,7 @@ public class Test {
 Result
 
 ```java
-result：
+Result：
 1--A and A
 2--A and A
 3--A and D
@@ -430,13 +433,18 @@ public class Main
 Result
 
 ```
+Result:
 Parent Constructor...
 
 Son print...
 
-name=null   // When son print() execute by Polymorphism, but instance variales are not initialize and the Son contructor not execute. 
+name=null   
 
 Son Constructor...
+
+Reason:
+Why name=null ?
+When son print() execute by Polymorphism, but instance variales are not initialize and the Son contructor not execute. 
 ```
 
 
