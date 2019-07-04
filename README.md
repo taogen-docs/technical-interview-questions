@@ -60,9 +60,7 @@ Menu
 
 ### III. Expressions
 
-#### Operators Priority
-
-Question
+Question: Operators Priority
 
 ```java
 public void main(String[] args)
