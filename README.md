@@ -473,11 +473,11 @@ public class Main
             {
                 synchronized(lock1)
                 {
-                    System.out.println(Thread.currentThread().getName() + "hold lock1...");
+                    System.out.println(Thread.currentThread().getName() + " hold lock1...");
                     sleep();
                     synchronized(lock2)
                     {
-                        System.out.println(Thread.currentThread().getName() + "hold lock2...");
+                        System.out.println(Thread.currentThread().getName() + " hold lock2...");
                         sleep();
                     }
                 }
@@ -486,11 +486,11 @@ public class Main
         new Thread(() -> {
             synchronized(lock2)
             {
-                System.out.println(Thread.currentThread().getName() + "hold lock2...");
+                System.out.println(Thread.currentThread().getName() + " hold lock2...");
                 sleep();
                 synchronized(lock1)
                 {
-                    System.out.println(Thread.currentThread().getName() + "hold lock1...");
+                    System.out.println(Thread.currentThread().getName() + " hold lock1...");
                 }
             }
         }).start();
@@ -510,8 +510,8 @@ public class Main
 Result
 
 ```
-Thread-0hold lock1...
-Thread-1hold lock2...
+Thread-0 hold lock1...
+Thread-1 hold lock2...
 (deadlock status...)
 ```
 
