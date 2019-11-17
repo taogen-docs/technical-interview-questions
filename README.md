@@ -73,13 +73,18 @@ public static void main(String[] args)
 
 Result
 
-```
+
+<details>
+  <summary>Click to expand!</summary>
+  
+```java
 Result:
 i: 2, j: 2, k: 3
 
 Reason:
 Priority ++ > + ,  so i +++ j  same to  (i++) + j, 
 ```
+</details>
 
 
 
@@ -113,7 +118,10 @@ public static int test()
 
 Result
 
-```
+<details>
+  <summary>Click to expand!</summary>
+  
+```java
 Result:
 3
 
@@ -121,6 +129,9 @@ Reason:
 - if occur exception, the try block return statement will not be executed. the catch have return statement will be executed. else try executed, catch not executed.
 - Anyway, if finally block have return statement， it will be executed and cover either try or catch block return statement.
 ```
+</details>
+
+
 
 Question: Nested Exception Run Sequence
 
@@ -153,6 +164,9 @@ finally
 
 Result
 
+<details>
+	<summary>Click to expand!</summary>
+
 ```
 Result:
 try...
@@ -165,6 +179,8 @@ Reason:
 `catch` - It can execute outside `catch` block if inside `catch` can't catch the exception.
 `finally` - all `finally` block must execute from inside to outside.
 ```
+</details>
+
 
 
 
@@ -212,6 +228,9 @@ System.out.println();
 
 Result
 
+<details>
+	<summary>Click to expand!</summary>
+	
 ```
 Result:
 System.out.println(a1 == a2);     // type1, true
@@ -225,6 +244,8 @@ Reason:
 new String("xxx")          // it is a string object, store in heap.
 new String("xxx") + "xxx"  // it is a new String Object, store in heap.
 ```
+</details>
+
 
 
 
@@ -249,6 +270,9 @@ System.out.println(b1 == b3);
 
 Result
 
+<details>
+	<summary>Click to expand!</summary>
+	
 ```
 Result: 
 System.out.println(a1 == a2); // 1. true
@@ -264,6 +288,9 @@ Reason:
 // Integer => Byte, Short, Long, the output result will be same. All cache of Byte, Short, Integer, Long max_default_cache = 127. They are between -128~127. Only Integer cache max value can set over 127. 
 // private static class IntegerCache, ByteCache, LongCache
 ```
+</details>
+
+
 
 
 
@@ -297,6 +324,9 @@ public class Main
 
 Result
 
+<details>
+	<summary>Click to expand!</summary>
+	
 ```
 Result:
 System.out.println(obj instanceof B); // 1. true
@@ -313,6 +343,9 @@ A obj = new D(); The object is D, the obj instance of D it ture, so #3 is true. 
 5, 6
 A instanceof B. if A has direct or indirect Inheritance relation. The #5, #6 is ture.
 ```
+</details>
+
+
 
 Question: Function Calling in Polymorphism
 
@@ -365,6 +398,9 @@ public class Test {
 
 Result
 
+<details>
+	<summary>Click to expand!</summary>
+	
 ```java
 Result：
 1--A and A
@@ -385,6 +421,9 @@ Super type and super Object - a1：(1)Only find in super. (2)Only call in super
 Super type and son Object - a2: (1)only find in super. (2)First call in son. But if not exist in son, then call super.
 Son type and son object - b: (1)First find in son, then find in super. (2)Find just call.
 ```
+</details>
+
+
 
 Question: Object Instantiating in Polymorphism
 
@@ -430,6 +469,9 @@ public class Main
 
 Result
 
+<details>
+	<summary>Click to expand!</summary>
+	
 ```
 Result:
 Parent Constructor...
@@ -444,6 +486,9 @@ Reason:
 Why name=null ?
 When son print() execute by Polymorphism, but instance variales are not initialize and the Son contructor not execute. 
 ```
+</details>
+
+
 
 
 
@@ -509,11 +554,17 @@ public class Main
 
 Result
 
+<details>
+	<summary>Click to expand!</summary>
+	
 ```
 Thread-0 hold lock1...
 Thread-1 hold lock2...
 (deadlock status...)
 ```
+</details>
+
+
 
 
 
