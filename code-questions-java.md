@@ -2,7 +2,7 @@
 
 Menu
 
-- I. Variable and Basic Types
+- <a id="varAndTypeMenu" href="varAndTypeTitle">I. Variable and Basic Types</a>
   - Primitive Build-in Types
   - Type Conversions
   - Literals
@@ -47,7 +47,7 @@ Menu
 
 ### Main
 
-### I. Variable and Basic Types
+<h3 id="varAndTypeTitle">I. Variable and Basic Types</h3>
 
 
 
