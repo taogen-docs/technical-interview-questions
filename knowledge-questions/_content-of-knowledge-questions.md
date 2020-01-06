@@ -1,6 +1,6 @@
 # Content of Knowledge Questions
 
-## I. Domains
+## I. Technique Domains
 
 CS Foundations
 
@@ -25,7 +25,7 @@ Java
 - Java Basic
 - Java Web
 
-## II. Knowledges
+## II. Content Chapters
 
 CS Foundations
 
@@ -58,6 +58,9 @@ Java
   - Network Programming
 - Java Web
 
+## III. Knowledge Points
+
+## IV. Questions
 
 
 ## Resources From
@@ -65,7 +68,7 @@ Java
 - Search 阿里，蚂蚁金服，腾讯，百度，京东，网易，美团，字节跳动，新浪，华为，小米，拼多多，滴滴，ThoughtWorks 等 Java 面试经验/面经。
 - Search Google，Amazon，Facebook 面试经验/面经
 - Search Top technical interview questions
-- Resources Websites: Google，V2EX，牛客（讨论区），知乎，一亩三分地，Medium。
+- Resources Websites: Google，V2EX，牛客（讨论区），掘金，微信公众号，知乎，一亩三分地，Medium。
 - Books，Documents
 
 
