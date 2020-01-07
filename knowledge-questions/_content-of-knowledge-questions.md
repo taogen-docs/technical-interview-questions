@@ -50,17 +50,36 @@ Software Development
 
 Java
 
-- Java Basic
-  - Container
-  - IO
-  - JVM
-  - Concurrency
-  - Network Programming
+- Java SE
+  - Section 1: Fundamental
+    - Variable and Primitive Type
+    - String and Arrays
+    - Expressions (Operations)
+    - Statements (Control Flow)
+  - Section 2: Core
+    - Objects and Classes
+    - Inheritance
+    - Interface and Inner Classes
+    - Exceptions, Assertions, and Logging
+    - Container (Collections)
+    - Input and Output (IO)
+    - Concurrency
+  - Section 3: Advanced Topics
+    - Generic Programming
+    - Lambda Expressions and Streams
+    - Network Programming
+    - XML
+    - Database Programming
+    - API: Date and Time, Regular Expression
+    - Internationalization
+    - //Swing and Graphics
+    - Native Methods
+  - Section 4: JVM
 - Java Web
 
-## III. Knowledge Points
+## III. Knowledge Points and Questions
 
-## IV. Questions
+- [Java SE Knowledge Points and Questions](java-se-knowlege-points-and-questions.md)
 
 
 ## Resources From
