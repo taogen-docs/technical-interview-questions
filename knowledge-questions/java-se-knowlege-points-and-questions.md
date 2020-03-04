@@ -3,7 +3,7 @@
 ### Content
 
 - Section 1: Fundamental
-  - Variable and Primitive Type
+  - Variable and Primitive Data Type
   - String and Arrays
   - Expressions (Operations)
   - Statements (Control Flow)
@@ -37,4 +37,24 @@
   - //Swing and Graphics
   - Native Methods
 - Section 4: JVM
+
+## Main
+
+## Section One
+
+## Variable and Primitive Data Type
+
+
+
+## String and Arrays
+
+
+
+## Expressions (Operations)
+
+
+
+## Statements (Control Flow)
+
+
 
