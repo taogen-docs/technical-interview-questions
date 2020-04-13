@@ -79,7 +79,7 @@ Result:
 i: 2, j: 2, k: 3
 
 Reason:
-Priority ++ > + ,  so i +++ j  same to  (i++) + j, 
+Priority ++ > + ,  so i +++ j  is same with  (i++) + j, 
 ```
 </details>
 
@@ -89,7 +89,7 @@ Priority ++ > + ,  so i +++ j  same to  (i++) + j,
 
 #### Exception
 
-Question: return in exception statement 
+Question: return statement in exception handling
 
 ```java
 public static int test()
