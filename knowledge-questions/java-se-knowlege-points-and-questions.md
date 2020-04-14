@@ -10,6 +10,7 @@
   - Statements (Control Flow)
 - Part II: Core
   - Objects and Classes (Objects, Classes, Wrapper Classes)
+  - Key Words
   - Inheritance (Inheritance, Polymorphism)
   - Interface and Inner Classes
   - Exceptions, Assertions, and Logging
@@ -37,13 +38,17 @@
 
 ## Introduction to Java
 
-### [P] JDK, JRE, and JVM
+### JDK, JRE, and JVM
 
 Q: [Explain JDK, JRE and JVM?](https://www.edureka.co/blog/interview-questions/java-interview-questions/#Jdk-Jre-and-Jvm)
 
 A: ...
 
-### [P] Java Features
+### Java Core Features
+
+### Java Version and new Features
+
+
 
 ## Variable and Primitive Data Type
 
@@ -51,7 +56,9 @@ A: ...
 
 ## String and Arrays
 
+### String
 
+Q: Why String is immutable or final in java?
 
 ## Expressions (Operations)
 
@@ -63,19 +70,61 @@ A: ...
 
 ## Part II: Core
 
+## Objects and Classes (Objects, Classes, Wrapper Classes)
+
+## Key Words
+
+> final, abstract, static
+>
+> public, protected, private
+
+### final
+
+Q: What is final meaning?
+
+A: 
+
+- the `final` keyword for variables it is meaning the variable can't reassignment. 
+- final for method
+- final for class 
+
+
+
+## Inheritance (Inheritance, Polymorphism)
+
+## Interface and Inner Classes
+
+## Exceptions, Assertions, and Logging
+
+## Reflection, Static Proxy, Dynamic Proxy
+
+## Generic Programming
+
+## Lambda Expressions and Streams
+
+## Input and Output (IO)
+
 ## Container
 
-### [P] Difference. 
+### Container Hierarchy
+
+### Difference. 
+
+> Lists, Sets, Maps, String/StringBuilder/StringBuffer
 
 Q: Difference between Implementation classes of same data structure? 
 
-### [P] Applicability. 
+### Applicability. 
 
 Q: How to choice data structure for different usage scenario?
 
-### [P] Implementation Details
+### Implementation Details
 
+`hashcode()`
 
+### Iterator
+
+Q: Fail fast and fail safe iterators
 
 ---
 
@@ -83,8 +132,34 @@ Q: How to choice data structure for different usage scenario?
 
 ## Concurrency
 
+> Thread Safe
+>
+> volatile
+>
+> synchronized
+>
+> lock
+>
+> ThreadLocal
+>
+> Thread Pool
+>
+> ConcurrentHashMap
+
+
+
+
+
+
+
 ## Network Programming
 
 ## JVM
 
+> Memory Model, Class Load Mechanism, GC Mechanism
+>
+> How to location OOM, How to location infinite dead loop
+
 ## Design Patterns
+
+Singleton
