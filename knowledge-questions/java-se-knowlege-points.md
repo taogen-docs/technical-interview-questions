@@ -10,9 +10,9 @@
   - Statements (Control Flow)
 - Part II: Core
   - Objects and Classes (Objects, Classes, Wrapper Classes)
-  - Key Words
   - Inheritance (Inheritance, Polymorphism)
   - Interface and Inner Classes
+  - Keywords
   - Exceptions, Assertions, and Logging
   - Reflection, Static Proxy, Dynamic Proxy
   - Generic Programming
@@ -40,13 +40,29 @@
 
 ## Introduction to Java
 
-- JDK, JRE, and JVM
-- Java Core Features
-- Java Version and new Features
+JDK, JRE, and JVM
+
+Java Core Features
+
+Java Version and new Features
+
+## Variable and Primitive Data Type
+
+## String and Arrays
+
+## Expressions (Operations)
+
+## Statements (Control Flow)
 
 ## Part II: Core
 
 ## Objects and Classes (Objects, Classes, Wrapper Classes)
+
+Object-Oriented
+
+## Inheritance (Inheritance, Polymorphism)
+
+## Interface and Inner Classes
 
 ## Key Words
 
@@ -54,13 +70,27 @@
 >
 > public, protected, private
 
+## Exceptions, Assertions, and Logging
+
+## Reflection, Static Proxy, Dynamic Proxy
+
+## Generic Programming
+
+## Lambda Expressions and Streams
+
+## Input and Output (IO)
+
 ## Container
 
-- Container Hierarchy
-- Difference. 
-- Applicability. 
-- Implementation Details
-- Iterator
+Container Hierarchy
+
+Difference. 
+
+Applicability. 
+
+Implementation Details
+
+Iterator
 
 ## Part III: Advanced
 
@@ -90,4 +120,4 @@
 
 ## Design Patterns
 
-- Singleton
+Singleton
