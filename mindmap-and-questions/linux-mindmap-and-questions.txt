@@ -64,7 +64,20 @@
 *** Managing Software
 *** Managing User Accounts
 
-**** TODO
+**** User Accounts
+
+***** $ useradd <username>, $ passwd <username> \n \
+ $ useradd -g <group_name> <username>, $ useradd -G <group1> <group2> ... <username>
+***** /etc/passwd sara:x:1002:1007:Sara Green:/home/sara:/bin/tcsh \n <username>:<password>:<userId>:<groupId>:<userInfo>:<homeDirectory>:<shellType>
+***** $ usermod <option> <value> <username>
+***** $ userdel <username>, $ userdel -r <username>
+
+**** User Group
+
+***** /etc/group sales:x:1302:joe,bill,sally,sara \n \
+<group_name>:x:<group_id>:<group_users>
+***** $ groupadd <group_name>, $ groupadd -g <group_id> <group_name>
+***** $ groupmod <option> <value> <group_name>, $ groupmod -n jacks jokers
 
 *** Managing Disks and Filesystems
 
@@ -73,7 +86,16 @@
 *** Networking
 *** Services
 
-**** TODO
+**** Using initialization systems (init) to manage each daemon process as a service
+**** init systems abilities: identify runlevels, establish dependencies, set default runlevel, manage service(start, stop, pause, restart, reload)
+**** systemd: the latest versions of Fedora and RHEL use the systemd init system. \n \
+service unit types: service, target, ... \n \
+System unit configuration files directories: /lib/systemd/system, /etc/systemd/system \n \
+List service: $ systemctl list-units | grep .service, $ systemctl list-unit-files --type=service
+**** Unit cofiguration file: Description=xxx, After=xxx, ExecStart=xxx, WantedBy=xxx
+**** $ systemctl list-unit-files --type=service | grep -v disabled, $ systemctl status <service_name> \n \
+$ systemctl <start/stop/restart/reload> <service_name> \n \
+$ systemctl <enable/disable> <service_name>
 
 *** Configuring Servers (Web, FTP, NFS etc.)
 *** Troubleshooting Linux
@@ -85,7 +107,9 @@
 **** Auditing Network Services
 **** Working with firewalls
 
-***** TODO
+***** On Linux system, the firewall is a host-based, network-layer, software firewall managed by the iptables utility.
+***** $ ufw allow 80/tcp, $ ufw allow from 64.63.62.61 \n \
+$ ufw deny 3306, $ ufw deny from 23.24.25.0/24
 
 '''''''''''''''''''''''''''''''''''''''''''
 ' References:
