@@ -4,7 +4,7 @@
 
 - Java SE 
   - Java SE Interview Questions
-  - JVM Interview Questions
+  - JVM Tuning Interview Questions
 - Java Data Access
   - JDBC Interview Questions
   - MyBatis Interview Questions
@@ -15,6 +15,7 @@
 - Data Storage
   - Redis Interview Questions
   - MySQL interview Questions
+  - MySQL Optimization Interview Questions
 - CS Fundamentals
   - Data Structures and Algorithms Interview Questions
   - Operating Systems Interview Questions
