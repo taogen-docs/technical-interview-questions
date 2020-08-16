@@ -8,9 +8,11 @@
 
 *** Shell Features
 
-**** Choosing your shell. \n Default shell is shown in $ grep <username> /etc/passwd \
-\n Type shell name to entry other shell: ksh, tcsh, csh, sh, dash...\
-\n Type $ exit to return to bash shell.
+**** Choosing your shell. \n \
+Default shell is shown in $ grep <username> /etc/passwd \n \
+Type shell name to entry other shell: ksh, tcsh, csh, sh, dash... \n \
+Type $ exit to return to bash shell.
+
 **** Running commands \n $ date, $ pwd, $ hostname, $ ls, $ id, $ whoami
 **** Recalling command using command history
 **** Connecting and expanding commands
@@ -24,11 +26,12 @@
 **** File-matching metacharaters:\n *, ?, [] \n $ ls g*t, $ ls test?.txt, $ ls [a-g]*
 **** File-redirection:\n `<`: directs file content to the command. $ less < bigfile \n `>`: directs standard output to a file. $ ls > test.txt.\n `2>`: directs standard error to file. \n `&>`: directs both standard output and error. \n `>>`: directs output append to a file.
 **** Brace expansion characters: {} \n $ touch test{1,2,3,4,5}
-**** File permissions and Ownership: \
-\n 1) chmod numbers, r=4, w=2, x=1 \n $ chmod 755 <filename>, \n $ chmod -R 755 <dir_path> # set entire directory permission \
-\n 2) chmod letters, user(u), group(g), other(0), all users(a), read(r), write(w), execute(x) \n $ chmod u+rw <filename> \
-\n 3) Setting default file permission with umask: \n Show umask value: $ umask \n ignore first number, if value is 002, your permission is 775 \n To temporarily change your umask value: $ umask <umask_value>, $ umask 002 \n To permanently change umask value, add a umask command to the .bashrc fi le in your home directory. \
-\n 4) Changing file ownership: \n $ chown <username> <filename>, $ chown <username>:<group_name> <filename> \n $ chown -R <filename>
+**** File permissions and Ownership: \n \
+1) chmod numbers, r=4, w=2, x=1 \n $ chmod 755 <filename>, \n $ chmod -R 755 <dir_path> # set entire directory permission \n \
+2) chmod letters, user(u), group(g), other(0), all users(a), read(r), write(w), execute(x) \n $ chmod u+rw <filename> \n \
+3) Setting default file permission with umask: \n Show umask value: $ umask \n ignore first number, if value is 002, your permission is 775 \n To temporarily change your umask value: $ umask <umask_value>, $ umask 002 \n To permanently change umask value, add a umask command to the .bashrc fi le in your home directory. \n \
+4) Changing file ownership: \n $ chown <username> <filename>, $ chown <username>:<group_name> <filename> \n $ chown -R <filename>
+
 **** Create, rename, remove.\n $ mkdir <dir_name>, $ touch <file_name> \n $ mv <filepath> <new_filepath> \n $ remove <filename> $ remove -rf <dir_path>
 **** Move, Copy. \n $ move <filepath> <target_path> \n $ copy <filepath> <target_path>
 
