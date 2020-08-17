@@ -2,13 +2,13 @@
 
 **Content**
 
-- [Introduction to MyBatis](#Introduction to MyBatis)
+- Introduction to MyBatis
   - [What is MyBatis?](#What is MyBatis)
   - [MyBatis' Advantages and Disadvantages?](#MyBatis' Advantages and Disadvantages)
   - [MyBatis' Applicability?](#MyBatis' Applicability)
   - [MyBatis vs Hibernate?](#MyBatis vs Hibernate)
-- [Building SqlSessionFactory from XML or Java](#Building SqlSessionFactory from XML or Java)
-- [Mapped SQL Statements by XML or Annotations](#Mapped SQL Statements by XML or Annotations)
+- Building SqlSessionFactory from XML or Java
+- Mapped SQL Statements by XML or Annotations
   - [What differences between #{} and ${}?](#What differences between #{} and ${})
   - [Like SQL Statements?](#Like SQL Statements?)
   - [How Mapper Interface Bind XML Mapping File?](#[How Mapper Interface Bind XML Mapping File?)
@@ -19,15 +19,16 @@
   - [How to Write One-to-One, One-to-Many Query?](#How to Write One-to-One, One-to-Many Query?)
   - [How Maper Interface Bind SQL Annotations?](#How Maper Interface Bind SQL Annotations?)
   - [Mapper Implementation Ways?](#Mapper Implementation Ways)
-- [MyBatis APIs](#MyBatis APIs) (SqlSessionFactory, SqlSession, SQL Builder, Scope and Lifecycle)
-- [Dynamic SQL](#Dynamic SQL)
+  - [How to get auto-generate primary key when insert an entity?](#How to get auto-generate primary key when insert an entity?)
+- MyBatis APIs (SqlSessionFactory, SqlSession, SQL Builder, Scope and Lifecycle)
+- Dynamic SQL
   - [What is Dynamic SQL?](#What is Dynamic SQL?)
   - [How Dynamic SQL works?](#How Dynamic SQL works?)
-- [Stored Procedure Support](#Stored Procedure Support)
-- [Advanced Topics](#Advanced Topics)
+- Stored Procedure Support
+- Advanced Topics
   - [How MyBatis Lazy Load works?](#How MyBatis Lazy Load works?)
   - [What is MyBatis One-Level Cache and Second-Level Cache?](#What is MyBatis One-Level Cache and Second-Level Cache?)
-- [Plugins](#Plugins)
+- Plugins
   - [What are Paging Plugins?](#What are Paging Plugins? ) 
   - [How MyBatis Plugin works?](#How MyBatis Plugin works?)
   - [How to Write a MyBatis Plugin?](#How to Write a MyBatis Plugin?)
@@ -65,6 +66,8 @@
 ### How Maper Interface Bind SQL Annotations?
 
 ### Mapper Implementation Ways?
+
+### How to get auto-generate primary key when insert an entity?
 
 ## MyBatis APIs
 
