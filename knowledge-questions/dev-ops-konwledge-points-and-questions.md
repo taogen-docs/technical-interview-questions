@@ -1,1 +1,0 @@
-# DevOps Knowledge Points and Questions
