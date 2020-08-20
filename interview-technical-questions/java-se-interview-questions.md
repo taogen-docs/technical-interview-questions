@@ -29,6 +29,7 @@
       - [x] [Object-Oriented vs Procedure-Oriented?](#Object-Oriented vs Procedure-Oriented?)
       - [x] [What are object-oriented programming major features?](#What are object-oriented programming major features?)
       - [x] [Principles of object-oriented design?](#Principles of object-oriented design?)
+      - [x] [Relationships between classes: Generalization vs realization vs composition vs aggregation vs association vs dependency?](#Relationships between classes: Generalization vs realization vs composition vs aggregation vs association vs dependency?)
     - Methods
       - [x] [Pass by value vs. pass by reference?](#Pass by value vs. pass by reference?)
     - Keywords
@@ -44,11 +45,10 @@
   - <a name="inheritance-and-polymorphism-c" href="#inheritance-and-polymorphism-t">Inheritance and Polymorphism</a>
     - [x] [What is Polymorphism?](#What is Polymorphism?)
     - [ ] Method overriding vs method overloading?
-    - [ ] Inheritance vs composition
   - <a name="interface-c" href="#interface-t">Interface, Lambada, and Inner Classes</a>
-    - [ ] [Why use nested classes?](#Why use nested classes?)
+    - [x] [Why use nested classes?](#Why use nested classes?)
   - <a name="exceptions-c" href="#exceptions-t">Exceptions, Assertions, and Logging</a>
-    - [ ] Common Exception class names?
+    - [x] [Common Exception class names?](#Common Exception class names?)
     - [ ] How to handle exception? Right ways of handling exception.
     - [ ] Return statements in try-catch-finally?
   - <a name="generic-c" href="#generic-t">Generic Programming</a>
@@ -64,6 +64,10 @@
   - <a name="io-c" href="#io-t">Input and Output</a>
   - <a name="collections-c" href="#collections-t">Collections and Streams</a>
     - Collection API and Their Difference
+    - Contrast List: Array vs ArrayList vs LinkedList vs Vector vs CopyOnWriteArrayList
+    - Stack and Queue: Queue vs Deque vs BlockingDeque vs BlockingQueue 
+      - Stack vs ArrayDeque vs ConcurrentLinkedDeque vs LinkedBlockingDeque
+    - Set and Map
     - Collection Applicability
       - (How to choice data structure for different usage scenario?)
     - Implementation Principles
@@ -351,6 +355,169 @@ The DIP requires that high level modules should not depend on low level modules,
 
 For example, Making an `EBookReader` class to use `PDFBook` class is a violation of DIP because it requires to change the `EBookReader `class to read other types of e-books. A better design is to let `EBookReader ` use an interface `EBook` and let `PDFBook` and other types of e-book classes implement `EBook`. Now adding or changing e-book classes will not require any change to `EBookReader `class.
 
+### Relationships between classes: Generalization vs realization vs composition vs aggregation vs association vs dependency?
+
+- Generalization
+
+Generalization is a relationship of inheritance, is a relationship of "general and special".
+
+Representation:
+
+```
+generalization
+A ——————▷ B
+A is a special B
+```
+
+Examples:
+
+```
+Animal ◁—————— Cat
+       ◁—————— Dog
+```
+
+- Realization
+
+Realization is a relationship of implementation, is a relationship of "interface and class". Classes implements interfaces.
+
+Representation:
+
+```
+realization
+A ------▷ B
+A implements B
+```
+
+Examples
+
+```
+Servie ◁------ Service Implementation
+```
+
+```
+Print ◁------ Printer
+```
+
+- Composition
+
+Composition is a relationship of "part and entity", and part can't be independent exists.
+
+Composition is again a specialized form of Aggregation and we can call this as a “death” relationship. It is a strong type of Aggregation. Child object does not have their lifecycle and if parent object deletes all child object will also be deleted. Let’s take again an example of a relationship between House and rooms. House can contain multiple rooms there is no independent life of room and any room can not belongs to two different houses if we delete the house room will automatically delete.
+
+Representation:
+
+```
+composition
+A ——————◆ B
+A is part of B, and A isn't independent.
+```
+
+Examples: 
+
+```
+Person ◆—————— Hand
+       ◆—————— Leg
+       ◆—————— Head
+```
+
+```
+Folder ◆—————— File
+```
+
+- Aggregation
+
+Aggregation is a relationship of "part and entity", and part can be independent exists.
+
+An aggregation is a specialized form of Association where all object has their own lifecycle but there is ownership and child object can not belong to another parent object. Let’s take an example of Department and teacher. A single teacher can not belong to multiple departments, but if we delete the department teacher object will not destroy. 
+
+Representation:
+
+```
+aggregation
+A ——————◇ B
+A is part of B, and A is independent.
+```
+
+Examples:
+
+```
+Department ◇—————— Teacher
+```
+
+```
+Car ◇—————— Engine
+    ◇—————— Wheel
+```
+
+```
+Library ◇—————— Book
+```
+
+- Association
+
+Association is a relationship of "have".
+
+If two classes in a model need to communicate with each other, there must be a link between them, and that can be represented by an association (connector).
+
+Association is a relationship where all object have their own lifecycle and there is no owner. Let’s take the example of Teacher and Student. Multiple students can associate with a single teacher and a single student can associate with multiple teachers but there is no ownership between the objects and both have their own lifecycle. These relationships can be one to one, one to many, many to one and many to many.
+
+```
+association
+A ——————> B
+A has B
+
+A <——————> B
+or
+A —————— B
+A has B, B has A
+```
+
+```
+        1..*
+Student <———————————— Instructor
+        teaches
+```
+
+```
+        1     n
+Student ——————> Course
+```
+
+- Dependency
+
+Dependency is a relationship of "use".
+
+```
+dependency
+A ------> B
+A use B
+```
+
+Examples:
+
+```
+             <<use>>
+Web Shopping ------> Payment
+```
+
+```
+       <<use>>
+Person ------> Computer
+```
+
+```
+       <<use>>
+Animal ------> Air
+       ------> Water
+```
+
+```
+            <<use>>
+BeanFactory ------> Bean
+```
+
+
+
 ### *Methods*
 
 ### Pass by value vs. pass by reference?
@@ -550,9 +717,91 @@ Compelling reasons for using nested classes include the following:
 <h2><a name="exceptions-t" href="#exceptions-c">Exceptions, Assertions, and Logging</a></h2>
 <br>
 
+### Common Exception class names?
 
+Hierarchy of Exception classes
 
+```
+java.lang.Throwable
+|----Error
+|----Exception
+|--------RuntimeException
+```
 
+Checked Exceptions
+
+- IOException
+
+  ```
+  try {
+      new FileReader(new File("/invalid/file/location"));
+  } catch (FileNotFoundException e) {
+      LOGGER.info("FileNotFoundException caught!");
+  }
+  ```
+
+- ParseException
+
+  ```
+  try {
+      new SimpleDateFormat("MM, dd, yyyy").parse("invalid-date");
+  } catch (ParseException e) {
+      LOGGER.error("ParseException caught!");
+  }
+  ```
+
+- InterruptedException
+
+  ```
+  try {
+  	Thread.sleep(1000);
+  } catch (InterruptedException e) {
+  	LOGGER.error("InterruptedException caught!");
+  }
+  ```
+
+- SQLExcpetion
+
+Runtime Exceptions
+
+- NullPointerException
+
+  ```
+  String strObj = null;
+  strObj.equals("Hello World");
+  ```
+
+- IndexOutOfBoundsException
+
+  ```
+  int[] nums = new int[] {1, 2, 3};
+  int numFromNegativeIndex = nums[-1];
+  int numFromGreaterIndex = nums[4];
+  ```
+
+- NumberFormatException
+
+  ```
+  String str = "100ABCD";
+  int x = Integer.parseInt(str);
+  ```
+
+- ArithmeticException
+
+  ```
+  int illegalOperation = 30/0;
+  ```
+
+- ClassCastException
+
+  ```
+  Animal animal = new Lion();
+  Dog tommy = (Dog) animal;
+  ```
+
+  
+
+--
 
 <br>
 <h2><a name="generic-t" href="#generic-c">Generic Programming</a></h2>
@@ -652,6 +901,7 @@ Object-Oriented Programming
 - [Functional vs Object-Oriented vs Procedural Programming](https://medium.com/@LiliOuakninFelsen/functional-vs-object-oriented-vs-procedural-programming-a3d4585557f3)
 - [What are four basic principles of Object Oriented Programming?](https://medium.com/@cancerian0684/what-are-four-basic-principles-of-object-oriented-programming-645af8b43727)
 - [Principles of Object-Oriented Design](http://www.cs.utsa.edu/~cs3443/notes/designPrinciples/designPrinciples.html)
+- [UML各种图总结](https://www.cnblogs.com/jiangds/p/6596595.html)
 
 Object
 
