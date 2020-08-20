@@ -62,8 +62,10 @@
     - [x] [Using primitive data types or wrapper classes to declare a variable?](#Using primitive data types or wrapper classes to declare a variable?)
 - IV. Advanced
   - <a name="io-c" href="#io-t">Input and Output</a>
+    - [x] [What are I/O Streams? What are IO stream types?](#What are I/O Streams? What are IO stream types?)
+    - [x] [BIO vs NIO vs AIO?](#BIO vs NIO vs AIO?)
   - <a name="collections-c" href="#collections-t">Collections and Streams</a>
-    - Collection API and Their Difference
+    - [ ] [Talk about Collection API?](#Talk about Collection API?)
     - Contrast List: Array vs ArrayList vs LinkedList vs Vector vs CopyOnWriteArrayList
     - Stack and Queue: Queue vs Deque vs BlockingDeque vs BlockingQueue 
       - Stack vs ArrayDeque vs ConcurrentLinkedDeque vs LinkedBlockingDeque
@@ -71,6 +73,7 @@
     - Collection Applicability
       - (How to choice data structure for different usage scenario?)
     - Implementation Principles
+      - [How HashMap works?](#How HashMap works?) (HashMap implementation?)
     - Iterator
       - (Fail fast and fail safe iterators)
   - <a name="concurrency-c" href="#concurrency-t">Concurrency</a>
@@ -842,15 +845,154 @@ Wrapper classes. Because they have not concrete default values. When variables h
 <h2><a name="io-t" href="#io-c">Input and Output</a></h2>
 <br>
 
+### What are I/O Streams? What are IO stream types?
 
+A stream is a way of sequentially accessing a file. 
+
+Input streams and Output streams.
+
+- Input streams read data from source.
+
+- Output streams write data to destination.
+
+Byte streams and character streams
+
+- A byte stream access the file byte by byte. A byte stream is suitable for any kind of file, however not quite appropriate for text files. For example, if the file is using a unicode encoding and a character is represented with two bytes, the byte stream will treat these separately and you will need to do the conversion yourself. Generally, a byte stream is suitable for processing raw data like binary files.
+
+- A character stream will read a file character by character. A character stream needs to be given the file's encoding in order to work properly. Generally, a character stream is useful when we want to process text files. These text files can be processed character by character.
+
+### BIO vs NIO vs AIO?
+
+BIO vs NIO vs AIO
+
+- BIO: Blocking IO is traditional IO. It's synchronous and blocking IO. 
+
+- NIO: New IO is synchronous and non-blocking IO. It uses channels to communicate. In single thread can handle multiple I/O operations. It implemented multiplexing. It has higher performance than BIO.
+
+- AIO: AIO (also called NIO.2) is asynchronous and non-blocking IO. It based event and callback mechanisms.
+
+BIO, NIO, AIO applicable scenario
+
+- The BIO mode is suitable for a small and fixed number of connections. This method has high requirements on server resources. Concurrency is limited to applications. The only choice before JDK1.4, but the program is intuitive and easy to understand.
+- The NIO mode is suitable for architectures with a large number of connections and short connections (light operation), such as a chat server. Concurrency is limited to applications, and programming is complicated, and JDK 1.4 supports it.
+- The AIO method is used in an architecture with a large number of connections and a long connection (re-operation), such as an album server, which fully invokes the OS to participate in concurrent operations, and the programming is complicated, and JDK7 supports it.
+
+In general, the I/O model can be divided into: synchronous blocking, synchronous non-blocking, asynchronous blocking, asynchronous non-blocking IO.
+
+- synchronous: The user process needs to ask the IO operation status from time to time.
+- asynchronous: After the kernel completes the IO operation, it will notify the application.
+- blocking: Only after the IO operation is actually completed can the user process run.
+- non-blocking: The user process can return to do other things after initiating an IO operation.
 
 <br>
 <h2><a name="collections-t" href="#collections-c">Collections and Streams</a></h2>
 <br>
 
+### Talk about Collection API?
+
+Interfaces of Collection API
+
+```
+Collection
+|----List
+|----Queue
+|--------Deque
+|------------BlockingDeque
+|--------BlockingQueue
+|------------TransferQueue
+|----Set
+|--------AbstractSet
+|--------SortedSet
+|------------NavigableSet
+Map
+|----AbstractMap
+|----SortedMap
+|--------NavigableMap
+|----ConcurrentMap
+|------------ConcurrentNavigableMap
+```
+
+Classes of Collection API
+
+List
+
+- Basic List
+  - ArrayList
+  - LinkedList
+- Thread-safe List
+  - Vector
+- Concurrent List
+  - CopyOnWriteArrayList
+
+Stack/Queue
+
+- Basic Stack/Queue
+  - Stack
+  - ArrayDeque
+  - PriorityQueue
+- Blocking Queue (wait for the queue to become non-empty or available, design for producer-consumer queues)
+  - ArrayBlockingQueue
+  - LinkedBlocingQueue
+  - PriorityBlockingQueue
+  - DelayQueue
+  - SynchronousQueue
+  - LinkedBlockingDeque
+  - LinkedTransferQueue
+- Concurrent Stack/Queue
+  - ConcurrentLinkedQeque
+  - ConcurrentLinkedDeque
+
+Set
+
+- Basic Set
+  - HashSet
+  - LinkedHashSet
+  - TreeSet
+- Concurrent Set
+  - CopyOnWriteArraySet
+  - ConcurrentSkipListSet
+
+Map
+
+- Basic Map
+  - HashMap
+  - LinkedHashMap
+  - EnumMap
+  - IdentityHashMap
+  - WeakHashMap
+  - TreeMap
+- Thread-safe Map
+  - Hashtable
+- Concurrent Map
+  - ConcurrentHashMap
+  - ConcurrentSkipListMap
+
+TreeXxx (TreeSet, TreeMap)
+
+ConcurrentXxx (ConcurrentLinkedQeque, ConcurrentHashMap)
+
+- 
+
+CopyOnWriteArrayXxx (CopyOnWriteArrayList, CopyOnWriteArraySet)
+
+- All write operations (like add, addAll, set, remove) are synchronized and using a copy array to write, and then update object filed `transient volatile Object[] array`.
+- All read operations (like get, contains, forEach, iterator, size) are not synchronized and directly using the `transient volatile Object[] array` to read.
+- Summary
+  - The all operations are thread-safe. 
+  - Write operations are very expensive, and they need both synchronized lock and a copy array. But read operations have no lock and are very efficient and fast. So you should only use this read when you are doing upwards of 90+% reads.
+
+ConcurrentSkipListXxx (ConcurrentSkipListSet, ConcurrentSkipListMap)
+
+- 
+
+
+
+### How HashMap works?
+
 
 
 <br>
+
 <h2><a name="concurrency-t" href="#concurrency-c">Concurrency</a></h2>
 <br>
 
@@ -907,3 +1049,7 @@ Object
 
 - [Guide to hashCode() in Java](https://www.baeldung.com/java-hashcode)
 - [Java equals() and hashCode()](https://www.journaldev.com/21095/java-equals-hashcode)
+
+IO Streams
+
+- [The difference between BIO and NIO, AIO](https://www.programmersought.com/article/10551850908/)
