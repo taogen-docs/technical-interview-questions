@@ -66,6 +66,8 @@
     - [x] [BIO vs NIO vs AIO?](#BIO vs NIO vs AIO?)
   - <a name="collections-c" href="#collections-t">Collections and Streams</a>
     - [ ] [Talk about Collection API?](#Talk about Collection API?)
+    - [ ] [HashMap vs Hashtable?](#HashMap vs Hashtable?)
+    - [ ] [Why HashMap allows null key but Hashtable does not?](#Why HashMap allows null key but Hashtable does not?)
     - Contrast List: Array vs ArrayList vs LinkedList vs Vector vs CopyOnWriteArrayList
     - Stack and Queue: Queue vs Deque vs BlockingDeque vs BlockingQueue 
       - Stack vs ArrayDeque vs ConcurrentLinkedDeque vs LinkedBlockingDeque
@@ -74,6 +76,7 @@
       - (How to choice data structure for different usage scenario?)
     - Implementation Principles
       - [How HashMap works?](#How HashMap works?) (HashMap implementation?)
+      - How Concurrent Collection Classes Work?
     - Iterator
       - (Fail fast and fail safe iterators)
   - <a name="concurrency-c" href="#concurrency-t">Concurrency</a>
@@ -969,9 +972,14 @@ Map
 
 TreeXxx (TreeSet, TreeMap)
 
+- Sorted by key with natural ordering or by a comparator object.
+- O(n) time cost for the basic operations (`add`, `remove` and `contains`).
+
 ConcurrentXxx (ConcurrentLinkedQeque, ConcurrentHashMap)
 
-- 
+- They have more concurrency.
+- write operations (put, putAll, remove)
+- read operations (get, size, contains, containsKey, forEach, keySet, keys, values) generally do not block.
 
 CopyOnWriteArrayXxx (CopyOnWriteArrayList, CopyOnWriteArraySet)
 
@@ -983,13 +991,41 @@ CopyOnWriteArrayXxx (CopyOnWriteArrayList, CopyOnWriteArraySet)
 
 ConcurrentSkipListXxx (ConcurrentSkipListSet, ConcurrentSkipListMap)
 
-- 
+- ...
+
+### HashMap vs Hashtable?
+
+The `HashMap` class is roughly equivalent to `Hashtable`, except that it is unsynchronized and permits nulls.
+
+### Why HashMap allows null key but Hashtable does not?
+
+Because hash-function-based Map need to use key object hashCode() method to get its hashCode and find the value from map by it key's hashCode. But if key is null, you can't get the key hashCode. So essentially any key of a map is can't be null.
+
+But in HashMap, it allows null as a key, because HashMap convert the null to a special value "0" as a key.
+
+```java
+public class HashMap{
+    ...
+	static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+    ...
+}
+```
 
 
 
 ### How HashMap works?
 
+HashMap is store key-value entry data structure. It is based hash function to locate the key-value entry in map.
 
+A HashMap is a LinkedList array. To get entry or put a entry:
+
+- Firstly, to find the index of the array by its key's hashCode. Any element is LinkedList in the array, because multiple keys may have some hashCode, and these entries that have the same key will store in a LinkedList.
+- Then, find really entry by comparing the specified key with every keys in the LinkedList.
+
+Since Java 1.8, the HashMap has some improvement. When elements number of the LinkedList over 8, the LinkedList will convert to Red-Black Tree, and the time cost of to find really entry that have the same key's hashCode is from O(n) to O(logn) 
 
 <br>
 
