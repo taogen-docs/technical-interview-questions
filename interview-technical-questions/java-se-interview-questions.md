@@ -65,9 +65,11 @@
     - [x] [What are I/O Streams? What are IO stream types?](#What are I/O Streams? What are IO stream types?)
     - [x] [BIO vs NIO vs AIO?](#BIO vs NIO vs AIO?)
   - <a name="collections-c" href="#collections-t">Collections and Streams</a>
-    - [ ] [Talk about Collection API?](#Talk about Collection API?)
-    - [ ] [HashMap vs Hashtable?](#HashMap vs Hashtable?)
-    - [ ] [Why HashMap allows null key but Hashtable does not?](#Why HashMap allows null key but Hashtable does not?)
+    - [x] [Talk about Collection API?](#Talk about Collection API?)
+    - [x] [HashMap vs Hashtable?](#HashMap vs Hashtable?)
+    - [x] [Why HashMap allows null key but Hashtable does not?](#Why HashMap allows null key but Hashtable does not?)
+    - [x] [Array vs ArrayList?](#Array vs ArrayList?)
+    - [x] [How HashMap works?](#How HashMap works?) (HashMap implementation?)
     - Contrast List: Array vs ArrayList vs LinkedList vs Vector vs CopyOnWriteArrayList
     - Stack and Queue: Queue vs Deque vs BlockingDeque vs BlockingQueue 
       - Stack vs ArrayDeque vs ConcurrentLinkedDeque vs LinkedBlockingDeque
@@ -75,11 +77,14 @@
     - Collection Applicability
       - (How to choice data structure for different usage scenario?)
     - Implementation Principles
-      - [How HashMap works?](#How HashMap works?) (HashMap implementation?)
       - How Concurrent Collection Classes Work?
     - Iterator
       - (Fail fast and fail safe iterators)
   - <a name="concurrency-c" href="#concurrency-t">Concurrency</a>
+    - [Process vs Thread?](#Process vs Thread?)
+    - [Creating Thread classes ways?](#Creating Thread classes ways?)
+    - [Creating Thread ways?](#Creating Thread ways?)
+    - [What are Thread status?](#What are Thread status?)
   - <a name="network-c" href="#network-t">Network Programming</a>
   - <a name="java-security-c" href="#java-security-t">Java Security</a>
   - <a name="jmx-c" href="#jmx-t">JMX, JNDI, JAXP, RMI</a>
@@ -1014,7 +1019,13 @@ public class HashMap{
 }
 ```
 
+### Array vs ArrayList?
 
+Array is fixed length, ArrayList is variable length.
+
+Array stores primitive type data and objects, ArrayList only store objects.
+
+Array methods number is less than ArrayList. Array is built-in, it has no class file.
 
 ### How HashMap works?
 
@@ -1032,9 +1043,61 @@ Since Java 1.8, the HashMap has some improvement. When elements number of the Li
 <h2><a name="concurrency-t" href="#concurrency-c">Concurrency</a></h2>
 <br>
 
+### Process vs Thread?
+
+|               | Process                                                      | Thread                                                       |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Definition    | a basic unit of program running and resources assignment. A process at least contains one thread. | a basic unit of execution.                                   |
+| Memory        | has independent memory space.                                | threads use process resources. has independent and share space. |
+| Communication | Inter-process communication (like TCP)                       | directly communicate with other threads of its process.      |
+| Control       | Process is controlled by OS                                  | Threads are controlled by process.                           |
+
+### Creating Thread classes ways?
+
+Thread classes mean this class code can run in a new thread.
+
+- extends Thread
+- implements Runnable
+- implements Callable. (construct a FutureTask object with a callable object, futureTask submit to a thread pool object)
+
+### Creating Thread ways?
+
+- Call Thread object start() method.
+- Create thread pool object such as `ThreadPoolExecutor`. Generally using the utility class `Executors` to create a thread pool.
+
+Hierarchy of Thread
+
+```
+I-Runnable
+|----Thread
+```
+
+Hierarchy of Executor
+
+```
+(I)Executor
+|----(I)ExecutorService
+|--------(I)ScheduledExecutorService
+|--------(A)AbstractExecutorService
+|------------ForkJoinPool
+|------------ThreadPoolExecutor
+|----------------ScheduledThreadPoolExecutor
+Executors
+```
+
+### What are Thread status?
+
+- New. A thread that has not yet started.
+- Runnable. A thread executing in the Java virtual machine.
+- Blocked. A thread that is blocked waiting for a monitor lock.
+- Waiting. A thread that is waiting indefinitely for another thread to perform a particular action.
+- Timed waiting. A thread that is waiting for another thread to perform an action for up to a specified waiting time.
+- Terminated. A thread that has exited.
+
 
 
 <br>
+
 <h2><a name="network-t" href="#network-c">Network Programming</a></h2>
 <br>
 
