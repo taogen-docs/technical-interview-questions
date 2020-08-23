@@ -3,6 +3,37 @@
 ### Content
 
 - I. Introduction
+  - Java Platform
+  - Java Features
+  - Java History
+- II. Basics
+  - Variables and Types
+  - Operators and Expressions
+  - String and Array
+- III. Core
+  - Classes and Objects
+  - Inheritance and Polymorphism
+  - Interface, Lambada, and Inner Classes
+  - Exceptions, Assertions, and Logging
+  - Generic Programming
+  - Annotations
+  - Reflection and Proxy
+  - Enumeration Types and Wrapper Types
+- IV. Advanced
+  - Input and Output
+  - Collections and Streams
+  - Concurrency
+  - Network Programming
+  - Java Security
+  - JMX, JNDI, JAXP, RMI
+  - Native Methods
+- V. Utility
+
+
+
+### Details
+
+- I. Introduction
   - <a name="java-platform-c" href="#java-platform-t">Java Platform</a>
     - [x] [Explain JDK, JRE and JVM?](#Explain JDK, JRE and JVM?)
   - <a name="java-features-c" href="#java-features-t">Java Features</a>
@@ -81,10 +112,26 @@
     - Iterator
       - (Fail fast and fail safe iterators)
   - <a name="concurrency-c" href="#concurrency-t">Concurrency</a>
-    - [Process vs Thread?](#Process vs Thread?)
-    - [Creating Thread classes ways?](#Creating Thread classes ways?)
-    - [Creating Thread ways?](#Creating Thread ways?)
-    - [What are Thread status?](#What are Thread status?)
+    - Processes and Threads
+      - [x] [Process vs Thread?](#Process vs Thread?)
+      - [x] [What is daemon thread?](#What is daemon thread?)
+    - Thread Objects
+      - [x] [Creating Thread classes ways?](#Creating Thread classes ways?)
+      - [x] [Creating Thread ways?](#Creating Thread ways?)
+      - [x] [What are Thread status?](#What are Thread status?)
+      - [x] [sleep() vs wait()?](#sleep() vs wait()?)
+    - Synchronization and Thread-Safe
+      - [x] [How thread-safe works?](#How thread-safe works?)
+      - [ ] [How synchronized works or exclusive lock works?](#How synchronized works or exclusive lock works?)
+    - Liveness Problems
+      - [x] [Deadlock vs starvation vs livelock?](#Deadlock vs starvation vs livelock?) 
+      - [x] [How to avoid deadlock?](#How to avoid deadlock?)
+    - High Concurrency
+      - [ ] ][synchronized vs ReentrantLock?](#synchronized vs ReentrantLock?)
+      - [ ] [Volatile variables vs atomic variables vs immutable objects?](#Volatile variables vs atomic variables vs immutable objects?)
+    - Concurrency Others
+      - [x] [What is ThreadLocal?](#What is ThreadLocal?)
+      - [x] [When should I use a ThreadLocal variable?](#When should I use a ThreadLocal variable?)
   - <a name="network-c" href="#network-t">Network Programming</a>
   - <a name="java-security-c" href="#java-security-t">Java Security</a>
   - <a name="jmx-c" href="#jmx-t">JMX, JNDI, JAXP, RMI</a>
@@ -1043,6 +1090,8 @@ Since Java 1.8, the HashMap has some improvement. When elements number of the Li
 <h2><a name="concurrency-t" href="#concurrency-c">Concurrency</a></h2>
 <br>
 
+### *Processes and Threads*
+
 ### Process vs Thread?
 
 |               | Process                                                      | Thread                                                       |
@@ -1051,6 +1100,18 @@ Since Java 1.8, the HashMap has some improvement. When elements number of the Li
 | Memory        | has independent memory space.                                | threads use process resources. has independent and share space. |
 | Communication | Inter-process communication (like TCP)                       | directly communicate with other threads of its process.      |
 | Control       | Process is controlled by OS                                  | Threads are controlled by process.                           |
+
+### What is daemon thread?
+
+Daemon thread is a low priority thread (in context of JVM) that runs in background to perform tasks such as garbage collection (gc) etc., they do not prevent the JVM from exiting (even if the daemon thread itself is running) when all the user threads (non-daemon threads) finish their execution. JVM terminates itself when all user threads (non-daemon threads) finish their execution, JVM does not care whether Daemon thread is running or not, if JVM finds running daemon thread (upon completion of user threads), it terminates the thread and after that shutdown itself.
+
+Properties of Daemon threads:
+
+- A newly created thread inherits the daemon status of its parent. That’s the reason all threads created inside main method (child threads of main thread) are non-daemon by default, because main thread is non-daemon. However you can make a user thread to Daemon by using **setDaemon() method** of thread class.
+- Methods of Thread class that are related to Daemon threads: `void setDaemon(boolean status)`, `boolean isDaemon()`.
+- setDaemon() method can only be called before starting the thread.
+
+### *Thread Objects*
 
 ### Creating Thread classes ways?
 
@@ -1063,7 +1124,7 @@ Thread classes mean this class code can run in a new thread.
 ### Creating Thread ways?
 
 - Call Thread object start() method.
-- Create thread pool object such as `ThreadPoolExecutor`. Generally using the utility class `Executors` to create a thread pool.
+- Create thread pool object such as `ThreadPoolExecutor` object. Generally using the utility class `Executors` to create a thread pool e.g. `Executors.newSingleThreadExecutor()`.
 
 Hierarchy of Thread
 
@@ -1094,7 +1155,97 @@ Executors
 - Timed waiting. A thread that is waiting for another thread to perform an action for up to a specified waiting time.
 - Terminated. A thread that has exited.
 
+![Thread status](java-se-thread-status.jpg)
 
+### sleep() vs wait()?
+
+**sleep()** is a method which is used to pause the process for few seconds or the time we want to.
+
+**wait()** method, thread goes in waiting state and it won’t come back automatically until we call the `notify()` or `notifyAll()`.
+
+The major difference is that `wait()` releases the lock or monitor while `sleep()` doesn’t releases the lock or monitor while waiting. `wait()` is used for inter-thread communication while `sleep()` is used to introduce pause on execution, generally.
+
+|              | sleep()                           | wait()                                                       |
+| ------------ | --------------------------------- | ------------------------------------------------------------ |
+| Definition   | just pause process for some times | pause process, enter "waiting status", wait for notification |
+| Lock         | doesn't release lock              | release lock                                                 |
+| Precondition | no limit                          | only call it in a synchronized block                         |
+
+### *Synchronization and Thread-Safe*
+
+### How thread-safe works?
+
+Thread-safe problems are: 
+
+- Thread Interference: Errors are introduced when multiple threads access shared data.
+- Memory Consistency Errors: Errors that result form inconsistent views of shared memory. Memory consistency errors occur when different threads have inconsistent views of what should be the same data. When other thread update value of a variable, your current thread still read old value of the variable.
+
+Solving thread interference:
+
+- Exclusive locks
+  - Implicit locks. Synchronized blocks or methods.
+  - Explicit locks. ReentrantLock.
+
+Solving memory consistency errors: 
+
+- create happens-before relationships between multiple threads
+  - Monitor lock
+  - Volatile variable 
+
+### How synchronized works or exclusive lock works?
+
+
+
+### *Liveness Problems*
+
+### Deadlock vs starvation vs livelock? 
+
+- Deadlock: Deadlock describes a situation where two or more threads are blocked forever, waiting for each other.
+- Starvation describes a situation where a thread is unable to gain regular access to shared resources and is unable to make progress.
+- Livelock is a situation threads simply too busy responding to each other and unable to make further progress.
+
+### How to avoid deadlock?
+
+Although it is not completely possible to avoid deadlock condition, but we can follow certain measures or pointers to avoid them:
+
+- **Avoid Nested Locks** – You must avoid giving locks to multiple threads, this is the main reason for a deadlock condition. It normally happens when you give locks to multiple threads.
+- **Avoid Unnecessary Locks** – The locks should be given to the important threads. Giving locks to the unnecessary threads that cause the deadlock condition.
+- **Using Thread Join** – A deadlock usually happens when one thread is waiting for the other to finish. In this case, we can use Thread.join with a maximum time that a thread will take.
+
+### *High Concurrency*
+
+### synchronized vs ReentrantLock?
+
+
+
+### Volatile variables vs atomic variables vs immutable objects?
+
+
+
+### *Concurrency Others*
+
+### What is ThreadLocal?
+
+java.lang.ThreadLocal class provides thread-local variables where each thread accesses its own, independent copy of the variable. 
+
+ThreadLocal object only store single object.
+
+To create a ThreadLocal variable:
+
+```
+private ThreadLocal<T> myThrLocalVariable = new ThreadLocal<T>();
+```
+
+ThreadLocal methods:
+
+- T get()
+- void set(T value)
+
+### When should I use a ThreadLocal variable?
+
+One of the common use is when we have a object that is not thread-safe and not want to synchronize on the object, we may use ThreadLocal to have each thread its own instance of the object.
+
+The well known example for ThreadLocal is SimpleDateFormat which is not thread-safe and we may use ThreadLocal to have every thread its own instance of SimpleDateFormat class.
 
 <br>
 
@@ -1152,3 +1303,11 @@ Object
 IO Streams
 
 - [The difference between BIO and NIO, AIO](https://www.programmersought.com/article/10551850908/)
+
+Concurrency
+
+- [Difference between sleep() and wait() in Java](https://howtodoinjava.com/java/multi-threading/sleep-vs-wait/)
+- [How To Handle Deadlock In Java?](https://www.edureka.co/blog/deadlock-in-java/)
+- [Java ThreadLocal](https://www.javapedia.net/Java-ThreadLocal)
+
+--END--
