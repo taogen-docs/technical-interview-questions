@@ -75,7 +75,7 @@
       - [x] [equals() vs ==?](#equals() vs ==?)
   - <a name="inheritance-and-polymorphism-c" href="#inheritance-and-polymorphism-t">Inheritance and Polymorphism</a>
     - [x] [What is Polymorphism?](#What is Polymorphism?)
-    - [ ] Method overriding vs method overloading?
+    - [x] [Method overriding vs method overloading?](#Method overriding vs method overloading?)
   - <a name="interface-c" href="#interface-t">Interface, Lambada, and Inner Classes</a>
     - [x] [Why use nested classes?](#Why use nested classes?)
   - <a name="exceptions-c" href="#exceptions-t">Exceptions, Assertions, and Logging</a>
@@ -85,8 +85,8 @@
   - <a name="generic-c" href="#generic-t">Generic Programming</a>
   - <a name="annotations-c" href="#annotations-t">Annotations</a>
   - <a name="reflection-c" href="#reflection-t">Reflection and Proxy</a>
-    - [ ] What is reflection
-    - [ ] Static proxy vs dynamic proxy?
+    - [x] [What is reflection?](#What is reflection?)
+    - [ ] [Proxy Applicability?](#Proxy Applicability?)
   - <a name="enum-c" href="#enum-t">Enumeration Types and Wrapper Types</a>
     - [ ] What are wrapper classes? Why do we need it?
     - [ ] What are boxing, unboxing, and autoboxing? What are wrapper classes caches?
@@ -95,6 +95,7 @@
   - <a name="io-c" href="#io-t">Input and Output</a>
     - [x] [What are I/O Streams? What are IO stream types?](#What are I/O Streams? What are IO stream types?)
     - [x] [BIO vs NIO vs AIO?](#BIO vs NIO vs AIO?)
+    - [ ] [What is serialization?](#What is serialization?)
   - <a name="collections-c" href="#collections-t">Collections and Streams</a>
     - [x] [Talk about Collection API?](#Talk about Collection API?)
     - [x] [HashMap vs Hashtable?](#HashMap vs Hashtable?)
@@ -127,8 +128,8 @@
       - [x] [Deadlock vs starvation vs livelock?](#Deadlock vs starvation vs livelock?) 
       - [x] [How to avoid deadlock?](#How to avoid deadlock?)
     - High Concurrency
-      - [ ] ][synchronized vs ReentrantLock?](#synchronized vs ReentrantLock?)
-      - [ ] [Volatile variables vs atomic variables vs immutable objects?](#Volatile variables vs atomic variables vs immutable objects?)
+      - [x] [synchronized vs ReentrantLock?](#synchronized vs ReentrantLock?)
+      - [x] [Volatile variables vs atomic variables vs immutable objects?](#Volatile variables vs atomic variables vs immutable objects?)
     - Concurrency Others
       - [x] [What is ThreadLocal?](#What is ThreadLocal?)
       - [x] [When should I use a ThreadLocal variable?](#When should I use a ThreadLocal variable?)
@@ -758,7 +759,23 @@ Polymorphism is briefly described as “one interface, many implementations”. 
 
 Compile time polymorphism is method overloading whereas Runtime time polymorphism is done using inheritance and interface.
 
+### Method overriding vs method overloading?
+
+Method overloading
+
+- In Method Overloading, Methods of the same class shares the same name but each method must have a different number of parameters or parameters having different types and order. The methods must have a different signature.
+- Method Overloading is to “add” or “extend” more to the method’s behavior.
+- It is a compile-time polymorphism.
+
+Method Overriding
+
+- In Method Overriding, the subclass has the same method with the same name and exactly the same number and type of parameters and same return type as a superclass. The methods must have the same signature and same return type.
+- Method Overriding is to “Change” existing behavior of the method.
+- It is a run time polymorphism.
+- It always requires inheritance in Method Overriding.
+
 <br>
+
 <h2><a name="interface-t" href="#interface-c">Interface, Lambada, and Inner Classes</a></h2>
 <br>
 
@@ -770,8 +787,8 @@ Compelling reasons for using nested classes include the following:
 - **It increases encapsulation**: Consider two top-level classes, A and B, where B needs access to members of A that would otherwise be declared `private`. By hiding class B within class A, A's members can be declared private and B can access them. In addition, B itself can be hidden from the outside world.
 - **It can lead to more readable and maintainable code**: Nesting small classes within top-level classes places the code closer to where it is used.
 
-
 <br>
+
 <h2><a name="exceptions-t" href="#exceptions-c">Exceptions, Assertions, and Logging</a></h2>
 <br>
 
@@ -881,10 +898,22 @@ Runtime Exceptions
 <h2><a name="reflection-t" href="#reflection-c">Reflection and Proxy</a></h2>
 <br>
 
+### What is reflection?
 
+Reflection is an API which is used 
 
+- examine or modify the behavior of methods, classes, interfaces at runtime. 
+- It is also possible to instantiate new objects, invoke methods and get/set field values using reflection.
+
+### Proxy Applicability?
+
+- Spring AOP
+- Add transaction
+- Add permission
+- Add logging
 
 <br>
+
 <h2><a name="enum-t" href="#enum-c">Enumeration Types and Wrapper Types</a></h2>
 <br>
 
@@ -939,7 +968,47 @@ In general, the I/O model can be divided into: synchronous blocking, synchronous
 - blocking: Only after the IO operation is actually completed can the user process run.
 - non-blocking: The user process can return to do other things after initiating an IO operation.
 
+### What is serialization?
+
+Serialization is a mechanism of converting the state of an object into a byte stream. Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory. This mechanism is used to persist the object.
+
+The byte stream created is platform independent. So, the object serialized on one platform can be deserialized on a different platform.
+
+To make a Java object serializable we implement the **java.io.Serializable** interface.
+
+The ObjectOutputStream class contains **writeObject()** method for serializing an Object.
+
+The ObjectInputStream class contains **readObject()** method for deserializing an object.
+
+Advantages of Serialization
+
+1. To save/persist state of an object.
+2. To travel an object across a network.
+
+Note
+
+1. If a parent class has implemented Serializable interface then child class doesn’t need to implement it but vice-versa is not true.
+2. Only non-static data members are saved via Serialization process.
+3. Static data members and transient data members are not saved via Serialization process. So, if you don’t want to save value of a non-static data member then make it transient.
+4. Constructor of object is never called when an object is deserialized.
+5. Associated objects must be implementing Serializable interface.
+
+SerialVersionUID
+
+- The Serialization runtime associates a version number with each Serializable class called a SerialVersionUID, which is used during Deserialization to verify that sender and reciever of a serialized object have loaded classes for that object which are compatible with respect to serialization. If the reciever has loaded a class for the object that has different UID than that of corresponding sender’s class, the Deserialization will result in an **InvalidClassException**. A Serializable class can declare its own UID explicitly by declaring a field name.
+
+- It must be static, final and of type long.
+
+- If a serializable class doesn’t explicitly declare a serialVersionUID, then the serialization runtime will calculate a default one for that class based on various aspects of class, as described in Java Object Serialization Specification. However it is strongly recommended that all serializable classes explicitly declare serialVersionUID value, since its computation is highly sensitive to class details that may vary depending on compiler implementations, any change in class or using different id may affect the serialized data.
+
+- It is also recommended to use private modifier for UID since it is not useful as inherited member.
+
+- ```
+  private static final long serialversionUID = 1L;
+  ```
+
 <br>
+
 <h2><a name="collections-t" href="#collections-c">Collections and Streams</a></h2>
 <br>
 
@@ -1216,11 +1285,35 @@ Although it is not completely possible to avoid deadlock condition, but we can f
 
 ### synchronized vs ReentrantLock?
 
+ReentrantLock is a reentrant mutual exclusion Lock with the same basic behavior and semantics as the implicit monitor lock accessed using synchronized methods and statements, but with extended capabilities.
 
+the **main difference between synchronized and ReentrantLock** is the ability to trying for lock interruptibly, and with a timeout. The thread[ ](http://javarevisited.blogspot.com/2012/01/difference-thread-vs-runnable-interface.html)doesn’t need to block infinitely, which was the case with synchronized.
+
+- **Fairness** with ReentrantLock(boolean fair) and avoid startvation. You can make ReentrantLock fair by specifying fairness property while creating an instance of ReentrantLock. When set true, under contention, locks favor granting access to the longest-waiting thread.  1)Programs using fair locks accessed by many threads may display lower overall throughput (i.e., are slower; often much slower) than those using the default setting, but have smaller variances in times to obtain locks and guarantee lack of starvation. 2)Note however, that fairness of locks does not guarantee fairness of thread scheduling. Thus, one of many threads using a fair lock may obtain it multiple times in succession while other active threads are not progressing and not currently holding the lock. 3)Also note that the untimed tryLock() method does not honor the fairness setting. 
+- **Attempt to acquire a lock** with tryLock() and avoid deadlock. Lock objects work very much like the implicit locks used by synchronized code. The biggest advantage of `Lock` objects over implicit locks is their ability to back out of an attempt to acquire a lock. The `tryLock` method backs out if the lock is not available immediately or before a timeout expires. We can use Lock objects to solve the deadlock problem. First we use `Lock.tryLock()` method to acquire all locks we needed, if fail to acquire, then unlock all acquired locks, else we can acquire all locks and without deadlock problem.
+- **Lock interruptibly** with lockInterruptibly(). Acquires the lock unless the current thread is interrupted.
+- **Non-block Structured Locking.** 1)Synchronized keyword forces all lock acquisitions and releases to occur in a block-structured way which means when multiple locks are acquired they must be released in the opposite order, and all locks must be released in the same scope in which they were acquired. 2)ReentrantLock provides more flexibility, it allows a lock to be acquired and released in different scopes and allowing multiple locks to be acquired and released in any order.
+- More convenient API methods. getHoldCount(), getWaitingThreads(Condition condition), isHeldByCurrentThread(), isLocked()
+- Usage. synchronized: It acquiring and releasing lock is done implicitly. ReentrantLock: It acquires and releases lock is done by using lock() and unlock() methods.
 
 ### Volatile variables vs atomic variables vs immutable objects?
 
+Volatile variables
 
+- Volatile keyword is used to modify the value of a variable by different threads. It is also used to make classes thread safe. It means that multiple threads can use a method and instance of the classes at the same time without any problem. The volatile keyword can be used either with primitive type or objects.
+- The volatile keyword does not cache the value of the variable and always read the variable from the main memory. The volatile keyword cannot be used with classes or methods. However, it is used with variables. It also guarantees visibility and ordering. It prevents the compiler from the reordering of code.
+
+Atomic variables
+
+- The `java.util.concurrent.atomic` package defines classes that support atomic operations on single variable. All classes have `get` and `set` methods that work like reads and writes on volatile variables. A `set` has a happens-before relationship with any subsequent `get` on the same variable. The atomic `compareAndSet` method also has these **memory consistency** feature, as do the simple **atomic arithmetic** methods that apply to integer atomic variables.
+- `addAndGet(int delta)`, `decrementAndGet()`, `get()`, `set(int newValue)`
+
+immutable objects
+
+- Don’t provide “setter” methods. Methods that modify fields or objects referred to by fields.
+- Make all fields `final` and `private`.
+- Don’t allow subclass to override methods. The simplest way to do this is to declare the class as `final`. A more sophisticated approach is to make the constructor private and construct instances in factory methods in this class.
+- If the instance fields include references to mutable objects, don’t allow those objects to be change. Don’t provide methods that modify the mutable objects. Don’t share references to the mutable objects.
 
 ### *Concurrency Others*
 
