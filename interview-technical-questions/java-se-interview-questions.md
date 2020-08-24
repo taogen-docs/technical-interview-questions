@@ -68,8 +68,6 @@
       - [x] [What is static keyword meaning?](#What is static keyword meaning?)
       - [x] [What is abstract keyword meaning?](#What is abstract keyword meaning?)
       - [x] [What are access modifiers in Java?](#What are access modifiers in Java?) (public, protected, private)
-      - (transient, volatile, synchronized)
-      - (instanceof)
     - The java.lang.Object
       - [x] [What is equals() and hashcode() method?](#What is equals() and hashcode() method?)
       - [x] [equals() vs ==?](#equals() vs ==?)
@@ -86,7 +84,7 @@
   - <a name="annotations-c" href="#annotations-t">Annotations</a>
   - <a name="reflection-c" href="#reflection-t">Reflection and Proxy</a>
     - [x] [What is reflection?](#What is reflection?)
-    - [ ] [Proxy Applicability?](#Proxy Applicability?)
+    - [x] [Proxy Applicability?](#Proxy Applicability?)
   - <a name="enum-c" href="#enum-t">Enumeration Types and Wrapper Types</a>
     - [ ] What are wrapper classes? Why do we need it?
     - [ ] What are boxing, unboxing, and autoboxing? What are wrapper classes caches?
@@ -95,23 +93,21 @@
   - <a name="io-c" href="#io-t">Input and Output</a>
     - [x] [What are I/O Streams? What are IO stream types?](#What are I/O Streams? What are IO stream types?)
     - [x] [BIO vs NIO vs AIO?](#BIO vs NIO vs AIO?)
-    - [ ] [What is serialization?](#What is serialization?)
+    - [x] [What is serialization?](#What is serialization?)
+    - [x] [What is transient keyword meaning?](#What is transient keyword meaning?)
   - <a name="collections-c" href="#collections-t">Collections and Streams</a>
-    - [x] [Talk about Collection API?](#Talk about Collection API?)
-    - [x] [HashMap vs Hashtable?](#HashMap vs Hashtable?)
-    - [x] [Why HashMap allows null key but Hashtable does not?](#Why HashMap allows null key but Hashtable does not?)
-    - [x] [Array vs ArrayList?](#Array vs ArrayList?)
-    - [x] [How HashMap works?](#How HashMap works?) (HashMap implementation?)
-    - Contrast List: Array vs ArrayList vs LinkedList vs Vector vs CopyOnWriteArrayList
-    - Stack and Queue: Queue vs Deque vs BlockingDeque vs BlockingQueue 
-      - Stack vs ArrayDeque vs ConcurrentLinkedDeque vs LinkedBlockingDeque
-    - Set and Map
-    - Collection Applicability
-      - (How to choice data structure for different usage scenario?)
-    - Implementation Principles
+    - Container API
+      - [x] [Talk about Collection API?](#Talk about Collection API?)
+      - [x] [HashMap vs Hashtable?](#HashMap vs Hashtable?)
+      - [x] [Why HashMap allows null key but Hashtable does not?](#Why HashMap allows null key but Hashtable does not?)
+      - [x] [Array vs ArrayList?](#Array vs ArrayList?)
+    - Container Implementation Principles
+      - [How HashMap works?](#How HashMap works?) (HashMap implementation?)
       - How Concurrent Collection Classes Work?
+    - Container Applicability
+      - (How to choice data structure for different usage scenario?)
     - Iterator
-      - (Fail fast and fail safe iterators)
+      - [Fail fast and fail safe iterators?](#Fail fast and fail safe iterators?)
   - <a name="concurrency-c" href="#concurrency-t">Concurrency</a>
     - Processes and Threads
       - [x] [Process vs Thread?](#Process vs Thread?)
@@ -123,7 +119,7 @@
       - [x] [sleep() vs wait()?](#sleep() vs wait()?)
     - Synchronization and Thread-Safe
       - [x] [How thread-safe works?](#How thread-safe works?)
-      - [ ] [How synchronized works or exclusive lock works?](#How synchronized works or exclusive lock works?)
+      - [ ] How synchronized works or exclusive lock works?
     - Liveness Problems
       - [x] [Deadlock vs starvation vs livelock?](#Deadlock vs starvation vs livelock?) 
       - [x] [How to avoid deadlock?](#How to avoid deadlock?)
@@ -1006,6 +1002,12 @@ SerialVersionUID
 - ```
   private static final long serialversionUID = 1L;
   ```
+  
+  
+
+### What is transient keyword meaning?
+
+`transient` is a Java keyword which marks a member variable not to be serialized when it is persisted to streams of bytes. When an object is transferred through the network, the object needs to be 'serialized'. Serialization converts the object state to serial bytes. Those bytes are sent over the network and the object is recreated from those bytes. Member variables marked by the java `transient` keyword are not transferred.
 
 <br>
 
@@ -1143,6 +1145,14 @@ Array stores primitive type data and objects, ArrayList only store objects.
 
 Array methods number is less than ArrayList. Array is built-in, it has no class file.
 
+| Array                                                      | **ArrayList**                                                |
+| ---------------------------------------------------------- | ------------------------------------------------------------ |
+| Cannot contain values of different data types              | Can contain values of different data types.                  |
+| Size must be defined at the time of declaration            | Size can be dynamically changed                              |
+| Need to specify the index in order to add data             | No need to specify the index                                 |
+| Arrays are not type parameterized                          | Arraylists are type                                          |
+| Arrays can contain primitive data types as well as objects | Arraylists can contain only objects, no primitive data types are allowed |
+
 ### How HashMap works?
 
 HashMap is store key-value entry data structure. It is based hash function to locate the key-value entry in map.
@@ -1153,6 +1163,18 @@ A HashMap is a LinkedList array. To get entry or put a entry:
 - Then, find really entry by comparing the specified key with every keys in the LinkedList.
 
 Since Java 1.8, the HashMap has some improvement. When elements number of the LinkedList over 8, the LinkedList will convert to Red-Black Tree, and the time cost of to find really entry that have the same key's hashCode is from O(n) to O(logn) 
+
+### Fail fast and fail safe iterators?
+
+First of all, there is no term as fail-safe given in many places as Java SE specifications does not use this term. I am using fail safe to segregate between Fail fast and Non fail-fast iterators.
+
+**Concurrent Modification:** Concurrent Modification in programming means to modify an object concurrently when another task is already running over it. For example, in Java to modify a collection when another thread is iterating over it. Some Iterator implementations (including those of all the general purpose collection implementations provided by the JRE) may choose to throw *ConcurrentModificationException* if this behavior is detected.
+
+Fail fast vs non fail fast
+
+- Fail-Fast. Iterators in java are used to iterate over the Collection objects. Fail-Fast iterators immediately throw *ConcurrentModificationException* if there is **structural modification** of the collection. Structural modification means adding, removing or updating any element from collection while a thread is iterating over that collection. Iterator on ArrayList, HashMap classes are some examples of fail-fast Iterator.
+
+- Fail-Safe (Non fail-fast) iterators don’t throw any exceptions if a collection is structurally modified while iterating over it. This is because, they operate on the clone of the collection, not on the original collection and that’s why they are called fail-safe iterators. Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator.
 
 <br>
 
