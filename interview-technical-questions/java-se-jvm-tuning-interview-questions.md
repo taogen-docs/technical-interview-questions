@@ -3,27 +3,40 @@
 ### Content
 
 - JVM Basics
-  - > Memory Model, Class Load Mechanism, GC Mechanism
+  - > Class Load Mechanism, 双亲委派模型
+    >
+    > Memory Model,
+    >
+    > GC Mechanism
   
   - Introductions
     
   - Code Generation
     
     - JIT compiler
-      - [What is JIT compiler in Java?](#What is JIT compiler in Java?)
+      - [x] [What is JIT compiler in Java?](#What is JIT compiler in Java?)
     - Class Loaders
-      - [What is a classloader?](#What is a classloader?)
+      - [x] [What is a classloader?](#What is a classloader?)
+      - [ ] What is the process of class loading?
     
   - Memory Management
     - Run-time Memory Model
-      - [What is JVM run-time memory model in JVM Specification?](#What is JVM run-time memory model in JVM Specification?)
-      - [Heap memory model for generational garbage collection(GC)?](#Heap memory model for generational garbage collection(GC)?   )   
-      - [What are the differences between Heap and Stack Memory?](#What are the differences between Heap and Stack Memory?)
+      - [x] [What is JVM run-time memory model in JVM Specification?](#What is JVM run-time memory model in JVM Specification?)
+      - [x] [Heap memory model for generational garbage collection(GC)?](#Heap memory model for generational garbage collection(GC)?   )   
+      - [x] [What are the differences between Heap and Stack Memory?](#What are the differences between Heap and Stack Memory?)
+    - Garbage Collection
+      - [x] [What are garbage collect algorithms?](#What are garbage collect algorithms?)
+      - [x] [What is generation garbage collection?](#What is generation garbage collection?)
+      - [x] [What are garbage collectors?](#What are garbage collectors?)
+      - [x] [How to select a garbage collector?](#How to select a garbage collector?)
+      - [x] [Minor GC vs Major GC vs Full GC?](#Minor GC vs Major GC vs Full GC?)
     
   - Threads and Synchronization
 - JVM Tuning
   
   - (How to location OOM, How to location infinite dead loop)
+  - Tools
+    - jmap vs jstack vs jconsole?
 
 ## Code Generation
 
@@ -110,3 +123,246 @@ Native Memory
 | *Memory Management* | Follows LIFO manner to free memory.                          | Memory management is based on the generation associated with each object. |
 |     *Lifetime*      | Exists until the end of execution of the thread.             | Heap memory lives from the start till the end of application execution. |
 |       *Usage*       | Stack memory only contains local primitive and reference variables to objects in heap space. | Whenever an object is created, it’s always stored in the Heap space. |
+
+### *Garbage Collection*
+
+### What are garbage collect algorithms?
+
+GC algorithms
+
+- reference counting
+- mark and sweep
+- stop and copy
+
+**Reference counting**
+
+Reference counting is a garbage collection algorithm where the runtime keeps track of how many live objects point to a particular object at a given time.
+
+When the reference count for an object decreases to zero, the object has no referrers left, the object is available for garbage collection.
+
+Advantages of reference counting algorithm
+
+- It is obvious simplicity, is that any unreferenced object may be reclaimed immediately when its reference count drops to zero.
+
+Disadvantages of reference counting algorithm
+
+- The obvious flaw that cyclic constructs can never be garbage collected. Consequently cause a memory leak.
+- Keeping the reference counts up to date can be expensive, especially in a parallel environment where synchronization is required.
+
+**Mark and sweep**
+
+The mark and sweep algorithm is the basis of all the garbage collectors in all commercial JVMs today. Mark and sweep can be done with or without copying or moving objects.
+
+```
+Mark:
+	Add each object in the `root set` to a `queue`
+    	For each object X in the `queue`
+			Mark X reachable
+			Add all objects of `heap` referenced from X to the queue
+Sweep:
+	For each object X on the `heap`
+		If the X not marked, garbage collect it
+```
+
+Root set: it means the initial input set for this kind of search algorithm, that is the set of live objects from which the trace will start.
+
+The following figure shows after mark:
+
+![](java-se-jvm-mark-and-sweep-2.png)
+
+**Stop and copy**
+
+Stop and copy can be seen as a special case of tracing GC, and is intelligent in its way, but is impractical for large heap sizes in real applications.
+
+Stop and copy garbage collection partitioning the heap into two region of equal size. Only one region is in use at a time. Stop and copy garbage collection goes through all live objects in one of the heap regions, starting at the root set, following the root set pointers to other objects and so on. The marked live objects are moved to the other heap region. After garbage collection, the heap regions are switched so that other half of the heap becomes the active region before the next collection cycle.
+
+Advantages of stop and copy algorithm:
+
+- fragmentation can’t become an issue.
+
+Disadvantages of stop and copy algorithm:
+
+- All live objects must be copied each time a garbage collection is performed, introducing a serious overhead in GC time as a function of the amount of live data.
+- Only using half of heap at a time is a waste of memory.
+
+The following figure shows the process of stop and copy:
+
+![](java-se-jvm-stop-and-copy.png)
+
+### What is generation garbage collection?
+
+Generation garbage collection is based the mark and sweep GC algorithm.
+
+In object-oriented languages, most objects are temporary or short-lived. However, performance improvement for handling short-lived objects on the heap can be had if the heap is split into two or more parts called generations.
+
+In generational garbage collection, new objects are allocated in “young” generations of the heap, that typically are orders of magnitude smaller than the “old” generation, the main part of the heap. Garbage collection is then split into young and old collections, a young collection merely sweeping the young spaces of the heap, removing dead objects and promoting surviving objects by moving them to an older generation.
+
+Collecting a smaller young space is orders of magnitude faster than collecting the larger old space. Even though young collections need to happen far more frequently, this is more efficient because many objects die young and never need to be promoted. ideally, total throughput is increased and some potential fragmentation is removed.
+
+
+
+### What are garbage collectors?
+
+JVM has four types of *GC* implementations:
+
+- Serial Garbage Collector
+- Parallel Garbage Collector
+- CMS Garbage Collector
+- G1 Garbage Collector
+
+**Serial Garbage Collector**
+
+This is the simplest GC implementation, as it basically works with a single thread. As a result, **this \*GC\* implementation freezes all application threads when it runs**. Hence, it is not a good idea to use it in multi-threaded applications like server environments.
+
+The Serial GC is the garbage collector of choice for most applications that do not have small pause time requirements and run on client-style machines. To enable *Serial Garbage Collector*, we can use the following argument:
+
+```
+-XX:+UseSerialGC
+```
+
+Serial Garbage Collector GC log format: `DefNew`
+
+```
+7.732: [GC 7.732: [DefNew: 419456K->47174K(471872K), 0.1321800 secs] 419456K->47174K(1520448K), 0.1322500 secs] [Times: user=0.10 sys=0.03, real=0.14 secs]
+```
+
+**Parallel Garbage Collector**
+
+It's the default *GC* of the *JVM* and sometimes called Throughput Collectors. Unlike *Serial Garbage Collector*, this **uses multiple threads for managing heap space**. But it also freezes other application threads while performing *GC*.
+
+If we use this *GC*, we can specify maximum garbage collection *threads and pause time, throughput, and footprint* (heap size).
+
+The numbers of garbage collector threads can be controlled with the command-line option *-XX:ParallelGCThreads=<N>*.
+
+The maximum pause time goal (gap [in milliseconds] between two *GC*)is specified with the command-line option *-XX:MaxGCPauseMillis=<N>*.
+
+The maximum throughput target (measured regarding the time spent doing garbage collection versus the time spent outside of garbage collection) is specified by the command-line option *-XX:GCTimeRatio=<N>.*
+
+The maximum heap footprint (the amount of heap memory that a program requires while running) is specified using the option *-Xmx<N>.*
+
+To enable *Parallel Garbage Collector*, we can use the following argument:
+
+```
+-XX:+UseParallelGC
+```
+
+Parallel Garbage Collector GC log format: `PSYoungGen`
+
+```
+30.250: [GC [PSYoungGen: 441062K->65524K(458752K)] 441062K->76129K(1507328K), 0.1870880 secs] [Times: user=0.33 sys=0.03, real=0.19 secs]
+```
+
+**CMS Garbage Collector**
+
+**The \*Concurrent Mark Sweep (CMS)\* implementation uses multiple garbage collector threads for garbage collection.** It's designed for applications that prefer shorter garbage collection pauses, and that can afford to share processor resources with the garbage collector while the application is running.
+
+Simply put, applications using this type of GC respond slower on average but do not stop responding to perform garbage collection.
+
+> This collector also has a mode knows as an incremental mode which is being deprecated in Java SE 8 and may be removed in a future major release. As of Java 9, the CMS garbage collector has been deprecated. Therefore, JVM prints a warning message if we try to use it. Moreover, Java 14 completely dropped the CMS support.
+
+To enable the *CMS Garbage Collector*, we can use the following flag:
+
+```
+-XX:+UseParNewGC
+```
+
+CMS Garbage Collector GC log format: `ParNew`
+
+```
+5.630: [GC 5.630: ['ParNew: 37915K->3941K(38336K), 0.0123210 secs] 78169K->45163K(1568640K), 0.0124030 secs] [Times: user=0.02 sys=0.00, real=0.01 secs]
+```
+
+
+
+**G1 Garbage Collector**
+
+*G1 (Garbage First) Garbage Collector* is designed for applications running on multi-processor machines with large memory space. It's available since *JDK7 Update 4* and in later releases.
+
+*G1* collector will replace the *CMS* collector since it's more performance efficient.
+
+Unlike other collectors, *G1* collector partitions the heap into a set of equal-sized heap regions, each a contiguous range of virtual memory. When performing garbage collections, *G1* shows a concurrent global marking phase (i.e. phase 1 known as *Marking)* to determine the liveness of objects throughout the heap.
+
+After the mark phase is completed, *G1* knows which regions are mostly empty. It collects in these areas first, which usually yields a significant amount of free space (i.e. phase 2 known as *Sweeping).* It is why this method of garbage collection is called Garbage-First.
+
+To enable the *G1 Garbage Collector*, we can use the following argument:
+
+```
+-XX:+UseG1GC
+```
+
+G1 Garbage Collector GC log format: `G1 Evacuation Pause`
+
+```
+0.970: [GC pause (G1 Evacuation Pause) (young), 0.0096325 secs]
+   [Parallel Time: 4.0 ms, GC Workers: 8]
+      [GC Worker Start (ms): Min: 969.6, Avg: 969.7, Max: 969.7, Diff: 0.1]
+      [Ext Root Scanning (ms): Min: 0.1, Avg: 0.3, Max: 1.5, Diff: 1.4, Sum: 2.8]
+      [Update RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Processed Buffers: Min: 0, Avg: 0.0, Max: 0, Diff: 0, Sum: 0]
+      [Scan RS (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.1]
+      [Code Root Scanning (ms): Min: 0.0, Avg: 0.3, Max: 0.8, Diff: 0.8, Sum: 2.6]
+      [Object Copy (ms): Min: 2.5, Avg: 3.2, Max: 3.5, Diff: 1.1, Sum: 25.6]
+      [Termination (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+         [Termination Attempts: Min: 2, Avg: 35.5, Max: 48, Diff: 46, Sum: 284]
+      [GC Worker Other (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.3]
+      [GC Worker Total (ms): Min: 3.9, Avg: 3.9, Max: 4.0, Diff: 0.1, Sum: 31.4]
+      [GC Worker End (ms): Min: 973.6, Avg: 973.6, Max: 973.6, Diff: 0.0]
+   [Code Root Fixup: 0.1 ms]
+   [Code Root Purge: 0.0 ms]
+   [String Dedup Fixup: 0.5 ms, GC Workers: 8]
+      [Queue Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.0, Diff: 0.0, Sum: 0.0]
+      [Table Fixup (ms): Min: 0.0, Avg: 0.0, Max: 0.4, Diff: 0.4, Sum: 0.4]
+   [Clear CT: 0.1 ms]
+   [Other: 5.0 ms]
+      [Choose CSet: 0.0 ms]
+      [Ref Proc: 4.7 ms]
+      [Ref Enq: 0.0 ms]
+      [Redirty Cards: 0.1 ms]
+      [Humongous Register: 0.0 ms]
+      [Humongous Reclaim: 0.0 ms]
+      [Free CSet: 0.1 ms]
+   [Eden: 70.0M(70.0M)->0.0B(61.0M) Survivors: 0.0B->9216.0K Heap: 70.0M(188.0M)->11.7M(188.0M)]
+ [Times: user=0.02 sys=0.00, real=0.01 secs] 
+```
+
+### How to select a garbage collector?
+
+Unless your application has rather strict pause time requirements, first run your application and **allow the VM to select a collector**. If necessary, adjust the heap size to improve performance. If the performance still does not meet your goals, then use the following guidelines as a starting point for selecting a collector.
+
+- If the application has **a small data set** (up to approximately 100 MB), then
+select the serial collector with the option `-XX:+UseSerialGC`.
+- If the application will be run on **a single processor and there are no pause time requirements**, then let the VM select the collector, or select the serial collector with the option `-XX:+UseSerialGC`.
+- If (a) **peak application performance** is the first priority and (b) there are **no pause time requirements** or pauses of 1 second or longer are acceptable, then let the VM select the collector, or select the parallel collector with `-XX:+UseParallelGC`.
+- If **response time is more important** than overall throughput and garbage collection pauses must be kept shorter than approximately 1 second, then select the concurrent collector with `-XX:+UseConcMarkSweepGC` or `-XX:+UseG1GC`.
+
+These guidelines provide only a starting point for selecting a collector because performance is dependent on the size of the heap, the amount of live data maintained by the application, and the number and speed of available processors. Pause times are particularly sensitive to these factors, so the threshold of 1 second mentioned previously is only approximate: the parallel collector will experience pause times longer than 1 second on many data size and hardware combinations; conversely, the concurrent collector may not be able to keep pauses shorter than 1 second on some combinations.
+
+If the recommended collector does not achieve the desired performance, first attempt to adjust the heap and generation sizes to meet the desired goals. If performance is still inadequate, then try a different collector: use the concurrent collector to reduce pause times and use the parallel collector to increase overall throughput on multiprocessor hardware.
+
+### Minor GC vs Major GC vs Full GC?
+
+**Minor GC**
+
+Collecting garbage from Young generation space (consisting of Eden and Survivor spaces) is called a **Minor GC**. 
+
+Minor GC is triggered when JVM is unable to allocate space for a new Object, e.g. the Eden is getting full. So the higher the allocation rate, the more frequently Minor GC is executed.
+
+**Major GC**
+
+Major GC is cleaning the Tenured space.
+
+Major GC triggered when old generation (or tenured space) does not have enough available space.
+
+**Full GC**
+
+Full GC is cleaning the entire Heap – both Young and Tenured spaces.
+
+Full GC is triggered:
+
+- When the old generation space no longer has available space for promoted objects. It actually performs a full  garbage collection when it determines there is not enough available space for object promotions from the next minor garbage collection. 
+- when the permanent generation space does not have enough available space to store additional VM or class metadata
+
+## References
+
+- [JVM Garbage Collectors](https://www.baeldung.com/jvm-garbage-collectors)
+- [Minor GC vs Major GC vs Full GC](https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc)
