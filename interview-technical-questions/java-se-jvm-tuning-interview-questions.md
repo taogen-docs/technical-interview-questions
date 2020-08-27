@@ -3,12 +3,6 @@
 ### Content
 
 - JVM Basics
-  - > Class Load Mechanism, 双亲委派模型
-    >
-    > Memory Model,
-    >
-    > GC Mechanism
-  
   - Introductions
     
   - Code Generation
@@ -17,7 +11,8 @@
       - [x] [What is JIT compiler in Java?](#What is JIT compiler in Java?)
     - Class Loaders
       - [x] [What is a classloader?](#What is a classloader?)
-      - [ ] What is the process of class loading?
+      - [x] [What is the process of class loading?](#What is the process of class loading?)
+      - [ ] [What is parent delegation model in Java?](#What is parent delegation model in Java?)（双亲委派模型）
     
   - Memory Management
     - Run-time Memory Model
@@ -32,11 +27,15 @@
       - [x] [Minor GC vs Major GC vs Full GC?](#Minor GC vs Major GC vs Full GC?)
     
   - Threads and Synchronization
+
 - JVM Tuning
   
-  - (How to location OOM, How to location infinite dead loop)
-  - Tools
-    - jmap vs jstack vs jconsole?
+  - [x] [Common JVM options?](#Common JVM options?)
+  
+- JVM Troubleshoting
+
+  - [x] [Common JVM troubleshotting tools?](#Common JVM troubleshotting tools?)
+  - [x] [How to location OOM?](#How to location OOM?)
 
 ## Code Generation
 
@@ -55,6 +54,38 @@ The **Java ClassLoader** is a subset of JVM (Java Virtual Machine) that is respo
 1. Bootstrap ClassLoader
 2. Extension ClassLoader
 3. System/Application ClassLoader
+
+### What is the process of class loading?
+
+The Java Virtual Machine dynamically loads, links and initializes classes and interfaces. Loading is the process of finding the binary representation of a class or interface type with a particular name and *creating* a class or interface from that binary representation. Linking is the process of taking a class or interface and combining it into the run-time state of the Java Virtual Machine so that it can be executed. Initialization of a class or interface consists of executing the class or interface initialization method `<clinit>`.
+
+### What is parent delegation model in Java?
+
+The delegation model requires that any request for a class loader to load a given class is first delegated to its parent class loader before the requested class loader tries to load the class itself. The parent class loader, in turn, goes through the same process of asking its parent. This chain of delegation continues through to the bootstrap class loader (also known as the primordial or system class loader). If a class loader's parent can load a given class, it returns that class. Otherwise, the class loader attempts to load the class itself.
+
+The JVM has three class loaders, each possessing a different scope from which it can load classes. As you descend the hierarchy, the scope of available class repositories widens, and typically the repositories are less trusted:
+
+```
+Bootstrap
+|
+Extensions
+|
+Application
+```
+
+At the top of the hierarchy is the bootstrap class loader. This class loader is responsible for loading only the classes that are from the core Java™ API. These classes are the most trusted and are used to bootstrap the JVM.
+
+The extensions class loader can load classes that are standard extensions packages in the extensions directory.
+
+The application class loader can load classes from the local file system, and will load files from the CLASSPATH. The application class loader is the parent of any custom class loader or hierarchy of custom class loaders.
+
+Because class loading is always delegated first to the parent of the class loading hierarchy, the most trusted repository (the core API) is checked first, followed by the standard extensions, then the local files that are on the class path. Finally, classes that are located in any repository that your own class loader can access, are accessible. This system prevents code from less-trusted sources from replacing trusted core API classes by assuming the same name as part of the core API.
+
+The parent-delegation model solving problems:
+
+- Every class only load once.
+- Every class loaded by one of ClassLoaders that choosing from top to bottom.
+- Avoid load unsafe class. e.g. the `java.lang.Object` is only load from JRE library.
 
 ## Memory Management
 
@@ -362,7 +393,210 @@ Full GC is triggered:
 - When the old generation space no longer has available space for promoted objects. It actually performs a full  garbage collection when it determines there is not enough available space for object promotions from the next minor garbage collection. 
 - when the permanent generation space does not have enough available space to store additional VM or class metadata
 
+## JVM Tuning
+
+### Common JVM options?
+
+Option Types
+
+- Standard Options: These are the most commonly used options that are supported by all implementations of the JVM.
+- Non-Standard Options: These options are general purpose options that are specific to the Java HotSpot Virtual Machine.
+
+**GC logging options**
+
+```
+-XX:+PrintGCDetails 
+-XX:+PrintGCDateStamps 
+-XX:+PrintCommandLineFlags 
+```
+
+GC Log File
+
+```
+-XX:+UseGCLogFileRotation  
+-XX:NumberOfGCLogFiles=10
+-XX:GCLogFileSize=50M 
+-Xloggc:/home/user/log/gc.log
+```
+
+```
+-Xloggc:/home/GCEASY/gc-%t.log
+```
+
+> `%t` suffixes timestamp to the GC log file in the format:  `YYYY-MM-DD_HH-MM-SS`. So, the generated GC log file name will start to look like: `gc-2019-01-29_20-41-47.log`.
+
+**JVM Runtime Options**
+
+- Client or Server Runtime
+
+  ```
+  -server
+  -client
+  ```
+
+- 32-bit or 64-bit jvm
+
+  ```
+  // JVM automatically chooses 32-bit environmental
+  -d<OS_bit>
+  ```
+
+- Garbage collector options
+
+  ```
+  // Serial Garbage Collector
+  -XX:+UseSerialGC
+  // Parallel Garbage Collector (default)
+  -XX:+UseParallelGC
+  // G1 Garbage Collector
+  -XX:+UseG1GC
+  // CMS Garbage Collector
+  (-XX:+UseParNewGC)
+  ```
+
+**Memory Footprint options**
+
+- heap size
+
+  ```
+  // Sets the initial size (in bytes) of the heap. 
+  -Xms<n>[g|m|k]
+  // Specifies the maximum size (in bytes) of the memory allocation pool in bytes.
+  -Xmx<n>[g|m|k]
+  ```
+
+  ```
+  -XX:InitialHeapSize=size
+  -XX:MaxHeapSize=<size>
+  ```
+
+  ```
+  // sets the maximum percentage of heap free after GC to avoid shrinking
+  -XX:MaxHeapFreeRatio
+  // sets the minimum percentage of heap free after GC to avoid expansion
+  -XX:MinHeapFreeRatio
+  ```
+
+- young generation size
+
+  ```
+  // initial size young generation
+  -XX:NewSize=<n>[g|m|k]
+  // maximum size young generation
+  -XX:MaxNewSize=<n>[g|m|k]
+  ```
+
+  ```
+  // initial and maximum size young generation
+  -Xmn<n>[g|m|k]
+  ```
+
+- Metaspace size
+
+  ```
+  // Java >= 8
+  -XX:MetaspaceSize=<n>[g|m|k]
+  -XX:MaxMetaspaceSize=<n>[g|m|k]
+  // Java < 8
+  -XX:PermSize=<perm gen size>[g|m|k] 
+  -XX:MaxPermSize=<perm gen size>[g|m|k]
+  ```
+
+- Survivor
+
+  ```
+  // Ratio of eden/survivor space size 
+  -XX:SurvivorRatio=<ratio>
+  ```
+
+- Stack size
+
+  ```
+  -Xss<n>[g|m|k]
+  ```
+
+  ```
+  -XX:ThreadStackSize=<n>[g|m|k]
+  ```
+
+**Tuning for Response time/latency Options**
+
+```
+-XX:+PrintGCApplicationStoppedTime
+-XX:+PrintGCApplicationConcurrentTime
+-XX:+PrintSafepointStatistics
+```
+
+**Handling OutOfMemory Erorr**
+
+- To trigger heap dump on out of memory
+
+  ```
+  -XX:+HeapDumpOnOutOfMemoryError
+  -XX:HeapDumpPath=<file_path>
+  -XX:HeapDumpPath=<file_path>`date`.hprof
+  // limits the proportion of the VM's time that is spent in GC before an OutOfMemory error is thrown
+  -XX:+UseGCOverheadLimit
+  ```
+
+- To restart the server immediately after out of memory occur
+
+  ```
+  -XX:OnOutOfMemoryError="shutdown -r"
+  ```
+
+**Others Options**
+
+- `-XX:+UseStringDeduplication`: Java 8u20 has introduced this JVM parameter for reducing the unnecessary use of memory by creating too many instances of the same String; this optimizes the heap memory by reducing duplicate String values to a single global char[] array
+- `-XX:+UseLWPSynchronization`: sets LWP (Light Weight Process) – based synchronization policy instead of thread-based synchronization
+- `-XX:LargePageSizeInBytes`: sets the large page size used for the Java heap; it takes the argument in GB/MB/KB; with larger page sizes we can make better use of virtual memory hardware resources; however, this may cause larger space sizes for the PermGen, which in turn can force to reduce the size of Java heap space
+- `-XX:+UseLargePages`: use large page memory if it is supported by the system; please note that OpenJDK 7 tends to crash if using this JVM parameter
+- `-XX:+UseStringCache`: enables caching of commonly allocated strings available in the String pool
+- `-XX:+UseCompressedStrings`: use a byte[] type for String objects which can be represented in pure ASCII format
+- `-XX:+OptimizeStringConcat`: it optimizes String concatenation operations where possible
+
+## JVM Troubleshotting
+
+### Common JVM troubleshotting tools?
+
+Visual JVM Monitoring Tools
+
+- jvisualvm
+- jconsole
+- jmc
+
+JVM command line utilities
+
+- jps: obtain jvm Process ID
+- jstack: obtain Java and native stack information
+- jmap: obtain memory map information, including a heap histogram
+- jstat: obtain information about performance and resource consumption
+- jcmd: to send diagnostic command requests to the JVM)
+
+JVM profiling tools
+
+- JProfiler: live profiling, offline profiling, view HPROF snapshot.
+- Eclipse Memory Analyzer(MAT): To analyze heap dumps.
+
+### How to location OOM?
+
+Steps
+
+- Using visual JVM monitor (JVisualVM, JConsole) to find the reason of OutOfMemory or StackOverflow Error.
+- Using `jmap` to get the heap dump HPROF binary file.
+- Using JVM profiling tools (JProfiler, MAT) to analyzing the HPROF file, and to check the biggest objects, to find the error code.
+
 ## References
+
+JVM Basics
 
 - [JVM Garbage Collectors](https://www.baeldung.com/jvm-garbage-collectors)
 - [Minor GC vs Major GC vs Full GC](https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc)
+
+JVM Tuning
+
+- [10 Important JVM Options for Production JAVA Application System](https://geekflare.com/important-jvm-options/)
+- [Guide to the Most Important JVM Parameters](https://www.baeldung.com/jvm-parameters)
+- [Java VM Options You Should Always Use in Production](https://blog.sokolenko.me/2014/11/javavm-options-production.html)
+
+JVM Troubleshotting
