@@ -1246,7 +1246,7 @@ Executors
 - Timed waiting. A thread that is waiting for another thread to perform an action for up to a specified waiting time.
 - Terminated. A thread that has exited.
 
-![Thread status](java-se-thread-status.jpg)
+![Thread status](images/java-se-thread-status.jpg)
 
 ### sleep() vs wait()?
 

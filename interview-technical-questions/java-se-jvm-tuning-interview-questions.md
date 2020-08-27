@@ -199,7 +199,7 @@ Root set: it means the initial input set for this kind of search algorithm, that
 
 The following figure shows after mark:
 
-![](java-se-jvm-mark-and-sweep-2.png)
+![](images/java-se-jvm-mark-and-sweep-2.png)
 
 **Stop and copy**
 
@@ -218,7 +218,7 @@ Disadvantages of stop and copy algorithm:
 
 The following figure shows the process of stop and copy:
 
-![](java-se-jvm-stop-and-copy.png)
+![](images/java-se-jvm-stop-and-copy.png)
 
 ### What is generation garbage collection?
 
