@@ -36,6 +36,7 @@
 
   - [x] [Common JVM troubleshotting tools?](#Common JVM troubleshotting tools?)
   - [x] [How to location OOM?](#How to location OOM?)
+  - [x] [Memory leak code?](#Memory leak code?)
 
 ## Code Generation
 
@@ -585,6 +586,27 @@ Steps
 - Using visual JVM monitor (JVisualVM, JConsole) to find the reason of OutOfMemory or StackOverflow Error.
 - Using `jmap` to get the heap dump HPROF binary file.
 - Using JVM profiling tools (JProfiler, MAT) to analyzing the HPROF file, and to check the biggest objects, to find the error code.
+
+### Memory leak code?
+
+```java
+public class MemLeak {
+    public final String key;
+    public MemLeak(String key) {
+        this.key = key;
+    }
+
+    public static void main(String args[]) throws InterruptedException {
+            Map map = System.getProperties();
+            for(;;) {
+                map.put(new MemLeak("hello" + new Date()), new Date());
+                Thread.sleep(1);
+            }
+    }
+}
+```
+
+
 
 ## References
 
