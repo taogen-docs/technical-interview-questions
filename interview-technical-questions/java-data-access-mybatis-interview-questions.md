@@ -7,31 +7,29 @@
   - [x] [MyBatis' Advantages and Disadvantages?](#MyBatis' Advantages and Disadvantages)
   - [x] [MyBatis' Applicability?](#MyBatis' Applicability)
   - [x] [MyBatis vs Hibernate?](#MyBatis vs Hibernate)
-- Building SqlSessionFactory from XML or Java
 - Mapped SQL Statements by XML or Annotations
   - [x] [What differences between #{} and ${}?](#What differences between #{} and ${})
   - [x] [How to map columns to object's fields?](#How to map columns to object's fields?)
-  - [ ] [How to Write MyBatis Paging SQL?](#How to Write MyBatis Paging SQL) (TODO)
   - [x] [How to get auto-generate primary key when insert an entity?](#How to get auto-generate primary key when insert an entity?)
   - [x] [How to Pass Multiple Parameters in a Mapper Interface?](#How to Pass Multiple Parameters in a Mapper Interface?)
   - [x] [How to Write One-to-One, One-to-Many Query?](#How to Write One-to-One, One-to-Many Query?)
-  - [Mapper Implementation Ways?](#Mapper Implementation Ways)
-- Dynamic SQL
+  - [x] [Requirements of writing mapper interface and mapper xml?](#Requirements of writing mapper interface and mapper xml?)
   - [x] [What is Dynamic SQL?](#What is Dynamic SQL?)
-- Implementations
-  - [How Mapper Interface Bind XML Mapping File?](#[How Mapper Interface Bind XML Mapping File?) (**TODO**)
-  - [How Maper Interface Bind SQL Annotations?](#How Maper Interface Bind SQL Annotations?) (**TODO**)
-  - [How MyBatis Convert ResultSet to Entity Objects?](#How MyBatis Convert ResultSet to Entity Objects?) (**TODO**)
-  - [How Dynamic SQL works?](#How Dynamic SQL works?)
+  - [x] [How to Call Stored Procedure?](#How to Call Stored Procedure?)
+  - [ ] [How to Write MyBatis Paging SQL?](#How to Write MyBatis Paging SQL) (**TODO**)
+  - [ ] [Mapper Implementation Ways?](#Mapper Implementation Ways)
 - MyBatis APIs (SqlSessionFactory, SqlSession, SQL Builder, Scope and Lifecycle)
-- Stored Procedure Support
+  - Building SqlSessionFactory from XML or Java
 - Advanced Topics
-  - [How MyBatis Lazy Load works?](#How MyBatis Lazy Load works?)
-  - [What is MyBatis One-Level Cache and Second-Level Cache?](#What is MyBatis One-Level Cache and Second-Level Cache?)
-- Plugins
+  - [x] [What is Lazy Load?](#What is Lazy Load?)
+  - [x] [How MyBatis Lazy Load works?](#How MyBatis Lazy Load works?)
+  - [x] [What is MyBatis One-Level Cache and Second-Level Cache?](#What is MyBatis One-Level Cache and Second-Level Cache?)
   - [What are Paging Plugins?](#What are Paging Plugins? ) 
   - [How MyBatis Plugin works?](#How MyBatis Plugin works?)
   - [How to Write a MyBatis Plugin?](#How to Write a MyBatis Plugin?)
+- Implementation Principles
+  - [x] [How Mapper Interface Bind XML Mapping File?](#[How Mapper Interface Bind XML Mapping File?) (**TODO**)
+  - [How Maper Interface Bind SQL Annotations?](#How Maper Interface Bind SQL Annotations?) (**TODO**)
 
 ## Introduction to MyBatis
 
@@ -316,46 +314,12 @@ One-to-many by Nested Results with `<collection select="">` of `<resultMap>` (Ne
 </select>
 ```
 
+### Requirements of writing mapper interface and mapper xml?
 
-
-### How Mapper Interface Bind XML Mapping File?
-
-> Fully-qualified name: A class's fully-qualified name is the package name followed class name, separated by a period (.).
-
-Configuration in `mybatis-config.xml` and entity-mapping xml
-
-- The mapper interface class' fully-qualified name is the same with namespace property value in entity-mapping xml.
-- The mapper interface class' method names are the same as `<insert id="">`, `<select id="">` and so on elements' id property values in entity-mapping xml. 
-- The mapper interface class' method parameters can pass to SQL statement in entity-mapping xml.
-- The entity-mapping XMLs are configure in `mybatis-config.xml`.
-
-Programming Implementations
-
-- ```java
-  SqlSession sqlSession = sqlSessionFactory.openSession();
-  MyMapper mapper = sqlSession.getMapper(MyMapper.class);
-  mapper.save(T entity);
-  sqlSession.commit();
-  sqlSession.close();
-  ```
-
-- Every mapper interface methods map to CRUD SQL statement elements in entity-mapping xml. Every CURD SQL statement element is parsed to a `MappedStatement` object.
-
-- MyBatis using JDK dynamic proxy to create objects of Mapper Interfaces. When you call mapper proxy object methods, the method call will dispatch to the `MappedStatement` object to execute its SQL statement.
-
-### How to Write MyBatis Paging SQL?
-
-### How MyBatis Convert ResultSet to Entity Objects?
-
-### How Maper Interface Bind SQL Annotations?
-
-### Mapper Implementation Ways?
-
-
-
-## MyBatis APIs
-
-## Dynamic SQL
+- Mapper interface fully-qualified name equals mapper xml namespace `<mapper namespace="xxx">`.
+- Mapper interface method names equal mapper xml SQL statements `id` properties value.
+- Mapper interface method parameter types equal mapper xml SQL statements `parameterType` properties value.
+- Mapper interface method return type equal mapper xml SQL statements `resultType` or `resultMap`.
 
 ### What is Dynamic SQL?
 
@@ -402,23 +366,151 @@ Example of `trim` and `if`
 </update>
 ```
 
+### How to Call Stored Procedure?
+
+1. Call stored procedure by mapper xml
+
+`xxxMapper.xml`
+
+```xml
+<select id="callById" parameterType="Employee" resultMap="BaseResultMap" statementType="CALLABLE">
+    {call get_emp_by_id(#{id,jdbcType=INTEGER,mode=IN})}
+</select>
+```
+
+`xxxMapper.java`
+
+```java
+T callById(T entity);
+```
+
+2. Call stored procedure by mapper annotation
+
+`xxxMapper.java`
+
+```java
+@Select("{call get_emp_by_id(#{id,jdbcType=INTEGER,mode=IN})}")
+@Results(id = "entityResultCallById", value = {
+    @Result(property = "id", column = "id", id = true),
+    @Result(property = "name", column = "name")
+})
+T callById(T entity);
+```
 
 
-## Stored Procedure Support
+
+### How to Write MyBatis Paging SQL?
+
+### Mapper Implementation Ways?
+
+
+
+## MyBatis APIs
+
+
 
 ## Advanced Topics
 
+
+
+### What is Lazy Load?
+
+Lazy load is lazily to load the nested select relational one-to-one or one-to-many data.
+
+Lazy load configuration in `mybatis-config.xml`
+
+```xml
+<settings>
+    <setting name="lazyLoadingEnabled" value="true"/>
+</settings>
+```
+
+Lazy load configuration in `<association>` or `<collection>` of `xxxMapper.xml`
+
+```xml
+<resultMap id="OneToOneResultMap_NestedSelect" type="Employee">
+    ...
+    <association property="department" column="dept_id" javaType="Department"
+                 select="selectAssociationDepartment" fetchType="lazy"/>
+</resultMap>
+```
+
+
+
 ### How MyBatis Lazy Load works?
+
+MyBatis uses CGLIB to create entity proxy objects, when you call entity.getXXX() and return null, before getXXX() method return to client, the mybatis will send a query to database, get the relational object, and call entity.setXXX(), finally return the value to client. 
+
+
 
 ### What is MyBatis One-Level Cache and Second-Level Cache?
 
-## Plugins
+Cache type
+
+- local session caching. 
+  - It's default enabled. 
+  - This cache scope is sqlSession. 
+  - After call sqlSession flush() or close() methods, the cache will be clear.
+- global second level caching.
+  - It's default disabled. You can enable it in `<cache>` element of `mybatis-config.xml`.
+  - This cache scope is Mapper(Namespace).
+  - You can use use default cache or using a custom cache to override cache behavior, or use third party caching such as Ehcache.
+  - All results from select statements in the mapped statement file will be cached.
+  - All insert, update and delete statements in the mapped statement file will flush the cache.
+  - The cache will use a Least Recently Used (LRU) algorithm for eviction.
+
+To enable global second level cache in `mybatis-config.xml`:
+
+```xml
+<cache
+  eviction="FIFO"
+  flushInterval="60000"
+  size="512"
+  readOnly="true"/>
+```
+
+
 
 ### What are Paging Plugins? 
 
+
+
 ### How MyBatis Plugin works?
 
+
+
 ### How to Write a MyBatis Plugin?
+
+
+
+## Implementation Principles
+
+
+
+### How Mapper Interface Bind XML Mapping File?
+
+> Fully-qualified name: A class's fully-qualified name is the package name followed class name, separated by a period (.).
+
+Configuration in `mybatis-config.xml` and entity-mapping xml
+
+- The mapper interface class' fully-qualified name is the same with namespace property value in entity-mapping xml.
+- The mapper interface class' method names are the same as `<insert id="">`, `<select id="">` and so on elements' id property values in entity-mapping xml. 
+- The mapper interface class' method parameters can pass to SQL statement in entity-mapping xml.
+- The entity-mapping XMLs are configure in `mybatis-config.xml`.
+
+Programming Implementations
+
+- ```java
+  SqlSession sqlSession = sqlSessionFactory.openSession();
+  MyMapper mapper = sqlSession.getMapper(MyMapper.class);
+  mapper.save(T entity);
+  sqlSession.commit();
+  sqlSession.close();
+  ```
+
+- Every mapper interface methods map to CRUD SQL statement elements in entity-mapping xml. Every CURD SQL statement element is parsed to a `MappedStatement` object.
+
+- MyBatis using JDK dynamic proxy to create instances of Mapper Interfaces. When you call mapper proxy object methods, it will create the `preparedStatement` object by the `MappedStatement` object and execute the SQL statement of `MappedStatement`.
 
 ## References
 
