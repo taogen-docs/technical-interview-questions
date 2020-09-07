@@ -3,14 +3,14 @@
 **Content**
 
 - Java SE 
-  - Java SE Interview Questions
-  - JVM Tuning Interview Questions
+  - [x] Java SE Interview Questions
+  - [x] JVM Tuning Interview Questions
 - Java Data Access
   - JDBC Interview Questions
-  - MyBatis Interview Questions
+  - [x] MyBatis Interview Questions
 - Java Web
   - Java Servlet Interview Questions
-  - Spring Framework Interview Questions
+  - [x] Spring Framework Interview Questions
   - Spring Boot Interview Questions
 - Data Storage
   - Redis Interview Questions
