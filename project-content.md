@@ -10,9 +10,9 @@
 ## Interview Question List
 
 - Interview Code Questions
-  - Java SE Code Questions
-  - Data Structure and Algorithms Code Questions
-  - SQL Code Questions
+  - [ ] Java SE Code Questions
+  - [ ] Data Structure and Algorithms Code Questions
+  - [ ] SQL Code Questions
 - Interview Technical Questions
   - Java SE
     - [x] Java SE Interview Questions
@@ -21,7 +21,7 @@
     - [x] JDBC Interview Questions
     - [x] MyBatis Interview Questions
   - Java Web
-    - [ ] Java Servlet Interview Questions
+    - [x] Java Servlet and JSP Interview Questions
     - [x] Spring Framework Interview Questions
     - [ ] Spring Boot Interview Questions
   - Data Storage
@@ -44,8 +44,22 @@
 
 ## Resources From
 
-- Search 阿里，蚂蚁金服，腾讯，百度，京东，网易，美团，字节跳动，新浪，华为，小米，拼多多，滴滴，ThoughtWorks 等 Java 面试经验/面经。
-- Search Google，Amazon，Facebook 面试经验/面经
-- Search Top technical interview questions
-- Resources Websites: Google，V2EX，牛客（讨论区），掘金，微信公众号（搜狗微信），知乎，一亩三分地，Medium。
-- Books，Documents
+### Search
+
+- Search "xxx interview questions" or "Top technical interview questions" on Google.
+- Search foreign companies interview questions, such as "Google，Amazon，Facebook 面试经验/面经"
+- Search China companies interview questions,  such as "阿里，蚂蚁金服，腾讯，百度，京东，网易，美团，字节跳动，新浪，华为，小米，拼多多，滴滴，ThoughtWorks 等 Java 面试经验/面经"。
+
+### Websites
+
+- Google，V2EX，牛客（讨论区），掘金，微信公众号（搜狗微信），知乎，一亩三分地，Medium
+
+### Books
+
+### Repositories 
+
+### Documents
+
+
+
+--END--
