@@ -2,8 +2,43 @@
 
 ### content
 
+- Interview Question List
+- Resources From
+
+## Main
+
+## Interview Question List
+
 - Interview Code Questions
+  - Java SE Code Questions
+  - Data Structure and Algorithms Code Questions
+  - SQL Code Questions
 - Interview Technical Questions
+  - Java SE
+    - [x] Java SE Interview Questions
+    - [x] JVM Tuning Interview Questions
+  - Java Data Access
+    - [x] JDBC Interview Questions
+    - [x] MyBatis Interview Questions
+  - Java Web
+    - [ ] Java Servlet Interview Questions
+    - [x] Spring Framework Interview Questions
+    - [ ] Spring Boot Interview Questions
+  - Data Storage
+    - [ ] Redis Interview Questions
+    - [ ] MySQL interview Questions
+    - [ ] MySQL Optimization Interview Questions
+  - CS Fundamentals
+    - Data Structures and Algorithms Interview Questions
+    - Operating Systems Interview Questions
+    - Computer Network Interview Questions
+    - [ ] Linux Interview Questions
+    - Information Security Interview Questions
+  - Software Design
+    - Design Patterns Interview Questions
+    - Objected-Oriented Interview Questions
+    - System Design Interview Questions
+- Interview Technical Questions - Others
 - Interview Personal Questions
 - Interview Work/Project Experience Questions
 
