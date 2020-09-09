@@ -23,7 +23,7 @@
   - Java Web
     - [x] Java Servlet and JSP Interview Questions
     - [x] Spring Framework Interview Questions
-    - [ ] Spring Boot Interview Questions
+    - [x] Spring Boot Interview Questions
   - Data Storage
     - [ ] Redis Interview Questions
     - [ ] MySQL interview Questions
@@ -32,6 +32,7 @@
     - Data Structures and Algorithms Interview Questions
     - Operating Systems Interview Questions
     - Computer Network Interview Questions
+    - Database Management System Questions
     - [ ] Linux Interview Questions
     - Information Security Interview Questions
   - Software Design
