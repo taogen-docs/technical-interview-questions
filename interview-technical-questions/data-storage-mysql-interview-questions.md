@@ -6,32 +6,48 @@
   - [x] [Q: What is MySQL?](#Q: What is MySQL?)
   - [x] [Q: What are the technical features of MySQL?](#Q: What are the technical features of MySQL?)
   - [x] [Q: Why MySQL is used?](#Q: Why MySQL is used?)
-  - [x] [Q: What are the advantages of MySQL when compared with Oracle?](#Q: What are the advantages of MySQL when compared with Oracle?) 
+  - [x] [Q: What are the advantages of MySQL when compared with Oracle?](#Q: What are the advantages of MySQL when compared with Oracle?)
+  - [x] [Q: What are the disadvantages of MySQL?](#Q: What are the disadvantages of MySQL?)
   - [x] [Q: In which language MySQL has been written?](#Q: In which language MySQL has been written?)
 - [MySQL Basics](#MySQL Basics)
-  - [x] [Q: What are the different tables present in MySQL?](#Q: What are the different tables present in MySQL?)
-  - [x] [Q: Are table names in MySQL case sensitive?](#Q: Are table names in MySQL case sensitive?)
-  - [x] [Q: What is the default port for MySQL Server?](#Q: What is the default port for MySQL Server?)
-  - [x] [Q: What is the difference between primary key and candidate key?](#Q: What is the difference between primary key and candidate key?)
-  - [x] [Q: How do you login to MySql using Unix shell?](#Q: How do you login to MySql using Unix shell?)
-  - [x] [Q: How to get current MySQL version?](#Q: How to get current MySQL version?)
-  - [ ] Q: How does indexing works in MySQL?
+  - How to get Information of MySQL
+    - [x] [Q: How to get current MySQL version?](#Q: How to get current MySQL version?)
+    - [x] [Q: How to get the current date in MySQL?](#Q: How to get the current date in MySQL?)
+  - DBMS Basics
+    - [x] [Q: What is the difference between primary key and candidate key?](#Q: What is the difference between primary key and candidate key?)
+  - MySQL Basics
+    - [x] [Q: What are the different tables present in MySQL?](#Q: What are the different tables present in MySQL?)
+    - [x] [Q: Are table names in MySQL case sensitive?](#Q: Are table names in MySQL case sensitive?)
+    - [x] [Q: What is the default port for MySQL Server?](#Q: What is the default port for MySQL Server?)
+    - [x] [Q: How do you login to MySql using Unix shell?](#Q: How do you login to MySql using Unix shell?)
+    - [x] [Q: How does indexing works in MySQL?](#Q: How does indexing works in MySQL?)
+    - [x] [Q: How many columns can you create for an index?](#Q: How many columns can you create for an index?)
+    - [x] [Q: What is the save point in MySQL?](#Q: What is the save point in MySQL?)
+    - [x] [Q: What is MySQL data directory?](#Q: What is MySQL data directory?)
+    - [x] [Q: How do you determine the location of MySQL data directory?](#Q: How do you determine the location of MySQL data directory?)
 - [General MySQL Use](#General MySQL Use)
   - [SQL Statement](#SQL Statement)
-    - [x] [Q: What happens when the column is set to AUTO INCREMENT and if you reach maximum value in the table?](#Q: What happens when the column is set to AUTO INCREMENT and if you reach maximum value in the table?)
-    - [x] [Q: How can you see all indexes defined for a table?](#Q: How can you see all indexes defined for a table?)
-    - [x] [Q: What is the difference between the LIKE and REGEXP operators?](#Q: What is the difference between the LIKE and REGEXP operators?)
-    - [x] [Q: How MySQL Optimizes DISTINCT?](#Q: How MySQL Optimizes DISTINCT?)
-    - [x] [Q: How to display top 50 rows?](#Q: How to display top 50 rows?)
-    - [x] [Q: What are the objects can be created using CREATE statement?](#Q: What are the objects can be created using CREATE statement?)
-    - [x] [Q: How to add columns in MySQL?](#Q: How to add columns in MySQL?)
-    - [x] [Q: How to import a CSV file in MySQL?](#Q: How to import a CSV file in MySQL?)
-    - [x] [Q: How to check database size in MySQL?](#Q: How to check database size in MySQL?)
+    - [x] [Q: What are DDL, DML, and DCL?](#Q: What are DDL, DML, and DCL?)
+    - [DDL](#DDL)
+      - [x] [Q: What happens when the column is set to AUTO INCREMENT and if you reach maximum value in the table?](#Q: What happens when the column is set to AUTO INCREMENT and if you reach maximum value in the table?)
+      - [x] [Q: How can you see all indexes defined for a table?](#Q: How can you see all indexes defined for a table?)
+      - [x] [Q: What are the objects can be created using CREATE statement?](#Q: What are the objects can be created using CREATE statement?)
+      - [x] [Q: How to add columns in MySQL?](#Q: How to add columns in MySQL?)
+      - [x] [Q: How to import a CSV file in MySQL?](#Q: How to import a CSV file in MySQL?)
+      - [x] [Q: How to check database size in MySQL?](#Q: How to check database size in MySQL?)
+      - [x] [Q: What is the difference between TRUNCATE and DELETE in MySQL?](#Q: What is the difference between TRUNCATE and DELETE in MySQL?)
+    - [DML](#DML)
+      - [x] [Q: What is the usage of the "i-am-a-dummy" flag in MySQL?](#Q: What is the usage of the "i-am-a-dummy" flag in MySQL?)
+    - [DQL](#DQL)
+      - [x] [Q: What is the difference between the LIKE and REGEXP operators?](#Q: What is the difference between the LIKE and REGEXP operators?)
+      - [x] [Q: How MySQL Optimizes DISTINCT?](#Q: How MySQL Optimizes DISTINCT?)
+      - [x] [Q: How to display top 50 rows?](#Q: How to display top 50 rows?)
+      - [x] [Q: How to find the second highest salary in MySQL?](#Q: How to find the second highest salary in MySQL?)
   - [Character Sets, Collations, Unicode](#Character Sets, Collations, Unicode)
   - [Language Structure](#Language Structure)
     - [x] [Q: What are the column comparisons operators?](#Q: What are the column comparisons operators? ) 
   - [Data Types](#Data Types)
-    - [ ] [Q: What are Data Types in MySQL?](#Q: What are Data Types in MySQL?)
+    - [x] [Q: What are Data Types in MySQL?](#Q: What are Data Types in MySQL?)
     - [x] [Q: What are string types?](#Q: What are string types?)
     - [x] [Q: How to represent ENUMs and SETs internally?](#Q: How to represent ENUMs and SETs internally?)
     - [x] [Q: What is the usage of ENUMs in MySQL?](#Q: What is the usage of ENUMs in MySQL?)
@@ -44,11 +60,13 @@
       - [x] [Q: Differentiate CHAR_LENGTH and LENGTH?](#Q: Differentiate CHAR_LENGTH and LENGTH?)
       - [x] [Q: Difference between CHAR and VARCHAR?](#Q: Difference between CHAR and VARCHAR?)
       - [x] [Q: What is the difference between BLOB AND TEXT?](#Q: What is the difference between BLOB AND TEXT?)
+      - [x] [Q: What is the difference between UNIX timestamps and MySQL timestamps?](#Q: What is the difference between UNIX timestamps and MySQL timestamps?)
   - [Functions and Operations](#Functions and Operations)
     - [x] [Q: What are all the Common SQL Function?](#Q: What are all the Common SQL Function?)
-    - [x] [Q: Define REGEXP?](#Q: Define REGEXP? ) 
+    - [x] [Q: What is REGEXP?](#Q: What is REGEXP? ) 
     - [x] [Q: What is the different between NOW() and CURRENT_DATE()?](#Q: What is the different between NOW() and CURRENT_DATE()?)
   - [Stored Programs](#Stored Programs)
+    - [x] [Q: What is a trigger in MySQL?](#Q: What is a trigger in MySQL?)
     - [x] [Q: How many TRIGGERS are allowed in MySql table?](#Q: How many TRIGGERS are allowed in MySql table? )
     - [x] [Q: How to create a Stored Procedure in MySQL?](#Q: How to create a Stored Procedure in MySQL?)
     - [x] [Q: How to execute a stored procedure in MySQL?](#Q: How to execute a stored procedure in MySQL?)
@@ -61,6 +79,7 @@
     - [x] [Q: What is MyISAM Storage Engine?](#Q: What is MyISAM Storage Engine?)
     - [ ] [Q: What is MEMORY Storage Engine?](#Q: What is MEMORY Storage Engine?)
     - [x] [Q: What are Heap tables?](#Q: What are Heap tables?)
+    - [x] [Q: What is the difference between the heap table and the temporary table?](#Q: What is the difference between the heap table and the temporary table?)
     - [x] [Q: How do you control the max size of a HEAP table?](#Q: How do you control the max size of a HEAP table?)
   - [InnoDB Cluster](#InnoDB Cluster)
   - [Partitioning](#Partitioning)
@@ -136,6 +155,14 @@ Other Answer 1
 - MySQL is portable
 - GUI with command prompt.
 - Administration is supported using MySQL Query Browser
+
+### Q: What are the disadvantages of MySQL?
+
+1. MySQL is not so efficient for large scale databases.
+2. It does not support COMMIT and STORED PROCEDURES functions version less than 5.0.
+3. Transactions are not handled very efficiently.
+4. The functionality of MySQL is highly dependent on other addons.
+5. Development is not community-driven.
 
 ### Q: In which language MySQL has been written?
 
@@ -222,13 +249,55 @@ Output
 mysql  Ver 8.0.19 for Win64 on x86_64 (MySQL Community Server - GPL)
 ```
 
+### Q: How to get the current date in MySQL?
+
+To get current date, use the following syntax:
+
+```sql
+SELECT CURRENT_DATE();
+```
+
+
+
 ### Q: How does indexing works in MySQL?
 
-TODO
+Indexing is a process to find an unordered list into an ordered list. It helps in maximizing the query's efficiency while searching on tables in MySQL. The working of MySQL indexing is similar to the book index.
+
+Suppose we have a book and want to get information about, say, searching. Without indexing, it is required to go through all pages one by one, until the specific topic was not found. On the other hand, an index contains a list of keywords to find the topic mentioned on pages. Then, we can flip to those pages directly without going through all pages.
+
+### Q: How many columns can you create for an index?
+
+You can a create maximum of 16 indexed columns for a standard table.
+
+### Q: What is the save point in MySQL?
+
+A defined point in any transaction is known as savepoint.
+
+SAVEPOINT is a statement in MySQL, which is used to set a named transaction savepoint with the name of the identifier.
+
+### Q: What is MySQL data directory?
+
+MySQL data directory is a place where MySQL stores its data. Each subdirectory under this data dictionary represents a MySQL database. By default, the information managed my MySQL server mysqld is stored in the data directory.
+
+### Q: How do you determine the location of MySQL data directory?
+
+The default location of MySQL data directory in windows is C:\mysql\data or C:\Program Files\MySQL\MySQL Server 5.0 \data.
 
 ## General MySQL Use
 
 ### SQL Statement
+
+### Q: What are DDL, DML, and DCL?
+
+Majorly SQL commands can be divided into three categories, i.e., DDL, DML & DCL. 
+
+Data Definition Language (DDL) deals with all the database schemas, and it defines how the data should reside in the database. Commands like CreateTABLE and ALTER TABLE are part of DDL.
+
+Data Manipulative Language (DML) deals with operations and manipulations on the data. The commands in DML are Insert, Select, etc.
+
+Data Control Languages (DCL) are related to the Grant and permissions. In short, the authorization to access any part of the database is defined by these.
+
+#### DDL
 
 ### Q: What happens when the column is set to AUTO INCREMENT and if you reach maximum value in the table?
 
@@ -241,37 +310,6 @@ Indexes are defined for the table by:
 ```sql
 SHOW INDEX FROM <tablename>;
 ```
-
-
-
-### Q: What is the difference between the LIKE and REGEXP operators?
-
-LIKE operator is used to express with %, whereas REGEXP use  ^. 
-
-```sql
-SELECT * FROM employee WHERE emp_name LIKE "%b";
-SELECT * FROM employee WHERE emp_name REGEXP "^b";
-```
-
-### Q: How MySQL Optimizes DISTINCT?
-
-DISTINCT is converted to a GROUP BY on all columns and it will be combined with ORDER BY clause.
-
-```sql
-SELECT DISTINCT t1.a FROM t1,t2 where t1.a=t2.a;
-```
-
-
-
-### Q: How to display top 50 rows?
-
-In MySql, top 50 rows are displayed by using this following query:
-
-```sql
-SELECT * FROM LIMIT 0,50;
-```
-
-
 
 ### Q: What are the objects can be created using CREATE statement?
 
@@ -332,6 +370,83 @@ WHERE table_schema = 'testdb'
 ORDER BY (data_length + index_length) DESC;
 ```
 
+### Q: What is the difference between TRUNCATE and DELETE in MySQL?
+
+| TRUNCATE                                                     | DELETE                                |
+| ------------------------------------------------------------ | ------------------------------------- |
+| It is only use to delete all rows of a relation (table) in one go | It deletes rows                       |
+| RUNCATE is a DDL command                                     | DELETE is a DML command               |
+| TRUNCATE cannot be used with indexed views                   | DELETE can be used with indexed views |
+| It is comparatively faster than delete command as it deletes all the rows | It is slower than TRUNCATE            |
+| We can’t restore the tuples of the table by using the “ROLLBACK” command | can using ROLLBACK                    |
+
+
+
+#### DML
+
+### Q: What is the usage of the "i-am-a-dummy" flag in MySQL?
+
+In MySQL, the "i-am-a-dummy" flag makes the MySQL engine to deny the UPDATE and DELETE commands unless the WHERE clause is present.
+
+#### DQL
+
+### Q: What is the difference between the LIKE and REGEXP operators?
+
+LIKE operator is used to express with %, whereas REGEXP use  ^. 
+
+```sql
+SELECT * FROM employee WHERE emp_name LIKE "%b";
+SELECT * FROM employee WHERE emp_name REGEXP "^b";
+```
+
+### Q: How MySQL Optimizes DISTINCT?
+
+DISTINCT is converted to a GROUP BY on all columns and it will be combined with ORDER BY clause.
+
+```sql
+SELECT DISTINCT t1.a FROM t1,t2 where t1.a=t2.a;
+```
+
+### Q: How to display top 50 rows?
+
+In MySql, top 50 rows are displayed by using this following query:
+
+```sql
+SELECT * FROM LIMIT 0,50;
+```
+
+### Q: How to find the second highest salary in MySQL?
+
+MySQL uses the LIMIT keyword, which can be used to limit the result set. It will allow us to get the first few rows, last few rows, or range of rows. It can also be used to find the second, third, or nth highest salary. It ensures that you have use order by clause to sort the result set first and then print the output that provides accurate results. The following query is used to get the second highest salary in MySQL:
+
+```sql
+SELECT salary
+FROM (SELECT salary FROM employees ORDER BY salary DESC LIMIT 2) AS Emp ORDER BY salary LIMIT 1;
+```
+
+There are some other ways to find the second highest salary in MySQL, which are given below:
+
+This statement uses subquery and IN clause to get the second highest salary:
+
+```sql
+SELECT MAX(salary)
+FROM employees
+WHERE salary NOT IN ( SELECT Max(salary) FROM employees);
+```
+
+This query uses subquery and < operator to return the second highest salary:
+
+```sql
+SELECT MAX(salary) From employees
+WHERE salary < ( SELECT Max(salary) FROM employees);
+```
+
+Find nth highest salary from a table in a MySQL query?
+
+```sql
+select distinct(salary) from employee order by salary desc limit n-1,1
+```
+
 
 
 ### Character Sets, Collations, Unicode
@@ -345,6 +460,54 @@ The = , <>, <=, <, >=, >,<<,>>, <=>, AND, OR, or LIKE operators are used in colu
 ### Data Types
 
 ### Q: What are Data Types in MySQL?
+
+Numeric Data Types
+
+- **bit** - A bit-value type. M indicates the number of bits per value, from 1 to 64. The default is 1 if M is omitted. Insert by int value convert from M bits binary value, binary value b'', or one bit by true or false. Get by boolean value(when it's M=1 or bit(1)) or int value(when M > 1). For example, when column is BIT(2), You can insert int value 3(represent 11), or insert b'11'.
+* **bool**, boolean - These types are synonyms for TINYINT(1). A value of zero is considered false. Nonzero values are considered true.
+* **tinyint** - 1 byte, A very small integer. The signed range is -128 to 127. The unsigned range is 0 to 255.
+* **smallint** - 2 bytes, A small integer. The signed range is -32768 to 32767. The unsigned range is 0 to 65535.
+* **mediumint** - 3 bytes, A medium-sized integer. The signed range is -8388608 to 8388607. The unsigned range is 0 to 16777215.
+* **integer** (int) - 4 bytes, A normal-size integer. The signed range is -2147483648 to 2147483647. The unsigned range is 0 to 4294967295.
+* **bigint** - 8 bytes, A large integer. The signed range is -9223372036854775808 to 9223372036854775807. The unsigned range is 0 to 18446744073709551615.
+* **decimal(M, D)** (dec, fixed, numeric) - A packed “exact” fixed-point number. M is the total number of digits (the precision) and D is the number of digits after the decimal point (the scale). The decimal point and (for negative numbers) the - sign are not counted in M.
+* **float** - A small (single-precision) floating-point number. Permissible values are -3.402823466E+38 to -1.175494351E-38, 0, and 1.175494351E-38 to 3.402823466E+38. These are the theoretical limits, based on the IEEE standard. The actual range might be slightly smaller depending on your hardware or operating system.
+* **double** precision (double) - A normal-size (double-precision) floating-point number. Permissible values are -1.7976931348623157E+308 to -2.2250738585072014E-308, 0, and 2.2250738585072014E-308 to 1.7976931348623157E+308.
+* **real** - default a synonym for DOUBLE. If the REAL_AS_FLOAT SQL mode is enabled, REAL is a synonym for FLOAT rather than DOUBLE.
+
+String Data Types
+
+- Character Strings
+  * **CHAR** - A fixed-length string that is always right-padded with spaces to the specified length when stored. M represents the column length in characters. The range of M is 0 to 255(2^8-1). If M is omitted, the length is 1.
+  * VARCHAR - A variable-length string. M represents the maximum column length in characters. The range of M is 0 to 65,535(2^16-1).
+  * **TINYTEXT** - A TEXT column with a maximum length of 255 (28 − 1) characters.
+  * **TEXT** - A TEXT column with a maximum length of 65,535 (2^16 − 1) characters. The effective maximum length is less if the value contains multibyte characters. Each TINYTEXT value is stored using a 1-byte length prefix that indicates the number of bytes in the value.
+  * **MEDIUMTEXT** - A TEXT column with a maximum length of 16,777,215 (2^24 − 1) characters.
+  * **LONGTEXT** - A TEXT column with a maximum length of 4,294,967,295 or 4GB (2^32 − 1) characters.
+- Binary Strings
+  * **BINARY** - Max bytes 255, The BINARY type is similar to the CHAR type, but stores binary byte strings rather than nonbinary character strings. An optional length M represents the column length in bytes. If omitted, M defaults to 1.
+  * **VARBINARY** - The VARBINARY type is similar to the VARCHAR type, but stores binary byte strings rather than nonbinary character strings. M represents the maximum column length in bytes.
+  * **TINYBLOB**
+  * **BLOB(M)** - A BLOB column with a maximum length of 65,535 (2^16 − 1) bytes. Each BLOB value is stored using a 2-byte length prefix that indicates the number of bytes in the value. An optional length M can be given for this type.
+  * MEDIUMBLOB
+  * **LONGBLOB**
+- Other Strings
+  * **ENUM** - An enumeration. A string object that can have only one value, chosen from the list of values 'value1', 'value2', ..., NULL or the special '' error value. ENUM values are represented internally as integers.
+  * SET - A set. A string object that can have zero or more values, each of which must be chosen from the list of values 'value1', 'value2', ... SET values are represented internally as integers.
+
+Date Time Data Types
+
+- **DATE** - A date. The supported range is '1000-01-01' to '9999-12-31'. MySQL displays DATE values in 'YYYY-MM-DD' format, but permits assignment of values to DATE columns using either strings or numbers.
+* **DATETIME** - A date and time combination. The supported range is '1000-01-01 00:00:00.000000' to '9999-12-31 23:59:59.999999'. MySQL displays DATETIME values in 'YYYY-MM-DD hh:mm:ss[.fraction]' format, but permits assignment of values to DATETIME columns using either strings or numbers.
+* **TIMESTAMP** - A timestamp. The range is '1970-01-01 00:00:01.000000' UTC to '2038-01-19 03:14:07.999999' UTC.
+* **TIME** - A time. The range is '-838:59:59.000000' to '838:59:59.000000'. MySQL displays TIME values in 'hh:mm:ss[.fraction]' format, but permits assignment of values to TIME columns using either strings or numbers.
+* **YEAR** - A year in 4-digit format. MySQL displays YEAR values in YYYY format, but permits assignment of values to YEAR columns using either strings or numbers. Values display as 1901 to 2155, or 0000.
+
+JSON Data Types
+
+Array Data Types
+
+XML Data Types
 
 ### Q: What are string types?
 
@@ -402,9 +565,9 @@ Following are Non-Standard string types:
 
 Following are differences for FLOAT and DOUBLE:
 
-• Floating point numbers are stored in FLOAT with eight place accuracy and it has four bytes.
+- Floating point numbers are stored in FLOAT with eight place accuracy and it has four bytes.
 
-• Floating point numbers are stored in DOUBLE with accuracy of 18 places and it has eight bytes.
+- Floating point numbers are stored in DOUBLE with accuracy of 18 places and it has eight bytes.
 
 ### Q: Differentiate CHAR_LENGTH and LENGTH?
 
@@ -418,6 +581,14 @@ Following are the differences between CHAR and VARCHAR:
 - CHAR column length is fixed to the length that is declared while creating table. The length value ranges from 1 and 255
 - When CHAR values are stored then they are right padded using spaces to specific length. Trailing spaces are removed when CHAR values are retrieved.
 
+Other Answer
+
+- CHAR and VARCHAR have differed in storage and retrieval.
+- CHAR column length is fixed, while VARCHAR length is variable.
+- The maximum no. of character CHAR data types can hold is 255 characters, while VARCHAR can hold up to 4000 characters.
+- CHAR is 50% faster than VARCHAR.
+- CHAR uses static memory allocation, while VARCHAR uses dynamic memory allocation.
+
 ### Q: What is the difference between BLOB AND TEXT?
 
 A BLOB is a binary large object that can hold a variable amount of data. There are four types of BLOB –
@@ -429,7 +600,7 @@ A BLOB is a binary large object that can hold a variable amount of data. There a
 
 They all differ only in the maximum length of the values they can hold.
 
-A TEXT is a case-insensitive BLOB. The four TEXT types
+TEXT is a case-insensitive BLOB. TEXT values are non-binary strings (character string). They have a character set, and values are stored and compared based on the collation of the character set. The four TEXT types
 
 - TINYTEXT
 - TEXT
@@ -439,6 +610,10 @@ A TEXT is a case-insensitive BLOB. The four TEXT types
 They all correspond to the four BLOB types and have the same maximum lengths and storage requirements.
 
 The only difference between BLOB and TEXT types is that sorting and comparison is performed in case-**sensitive** for BLOB values and case-**insensitive** for TEXT values.
+
+### Q: What is the difference between UNIX timestamps and MySQL timestamps?
+
+Actually, both Unix timestamp and MySQL timestamp are stored as 32-bit integers, but MySQL timestamp is represented in the readable format of YYYY-MM-DD HH:MM:SS format.
 
 ### Functions and Operations
 
@@ -462,7 +637,7 @@ SUBTIMES(A, B) – Determines the difference between two times.
 
 FROMDAYS(INT) – Converts an integer number of days into a date value.
 
-### Q: Define REGEXP? 
+### Q: What is REGEXP? 
 
 REGEXP is a pattern match in which  matches pattern anywhere in the search value.
 
@@ -473,6 +648,10 @@ NOW () command is used to show current year,month,date with hours,minutes and se
 CURRENT_DATE() shows current year,month and date only.
 
 ### Stored Programs
+
+### Q: What is a trigger in MySQL?
+
+A trigger is a set of codes that executes in response to some events.
 
 ### Q: How many TRIGGERS are allowed in MySql table? 
 
@@ -579,6 +758,8 @@ ISAM is abbreviated as Indexed Sequential Access Method. It was developed by IBM
 
 ### Q: What is MEMORY Storage Engine?
 
+The **MEMORY storage engine** (formerly known as HEAP ) creates special-purpose tables with contents that are **stored** in **memory**. Because the **data** is vulnerable to crashes, hardware issues, or power outages, only use these tables as temporary work areas or read-only caches for **data** pulled from other tables.
+
 ### Q: What are Heap tables?
 
 HEAP tables are present in memory and they are used for high speed storage on temporary
@@ -589,6 +770,26 @@ basis.
 - Only comparison operators can be used =, <,>, = >,=<
 - AUTO_INCREMENT is not supported by HEAP tables
 - Indexes should be NOT NULL
+
+### Q: What is the difference between the heap table and the temporary table?
+
+**Heap tables:**
+
+Heap tables are found in memory that is used for high-speed storage temporarily. They do not allow BLOB or TEXT fields.
+
+Heap tables do not support AUTO_INCREMENT.
+
+Indexes should be NOT NULL.
+
+**Temporary tables:**
+
+The temporary tables are used to keep the transient data. Sometimes it is beneficial in cases to hold temporary data. The temporary table is deleted after the current client session terminates.
+
+**Main differences:**
+
+The heap tables are shared among clients, while temporary tables are not shared.
+
+Heap tables are just another storage engine, while for temporary tables, you need a special privilege (create temporary table).
 
 ### Q: How do you control the max size of a HEAP table?
 
