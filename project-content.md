@@ -25,18 +25,18 @@
     - [x] Spring Framework Interview Questions
     - [x] Spring Boot Interview Questions
   - Data Storage
-    - [ ] Redis Interview Questions
-    - [ ] MySQL interview Questions
-    - [ ] MySQL Optimization Interview Questions
+    - [x] Redis Interview Questions
+    - [x] MySQL interview Questions
+    - [x] MySQL Optimization Interview Questions
   - CS Fundamentals
-    - Data Structures and Algorithms Interview Questions
-    - Operating Systems Interview Questions
-    - Computer Network Interview Questions
-    - Database Management System Questions
+    - [ ] Data Structures and Algorithms Interview Questions
+    - [ ] Operating Systems Interview Questions
+    - [ ] Computer Network Interview Questions
+    - [ ] Database Management System Questions
     - [ ] Linux Interview Questions
-    - Information Security Interview Questions
+    - [ ] Information Security Interview Questions
   - Software Design
-    - Design Patterns Interview Questions
+    - [ ] Design Patterns Interview Questions
     - Objected-Oriented Interview Questions
     - System Design Interview Questions
 - Interview Technical Questions - Others
