@@ -13,20 +13,21 @@
     - [x] [Q: What is file redirection?](#Q: What is file redirection?)
     - [x] [Q: How to set file permissions and ownership?](#Q: How to set file permissions and ownership?)
     - [x] [Q: How to set default permissions by set umask?](#Q: How to set default permissions by set umask?)
-    - [ ] [Q: What are file create, rename, remove, move commands?](#Q: What are file create, rename, remove, move commands?)
+    - [x] [Q: What are file create, rename, remove, move commands?](#Q: What are file create, rename, remove, move commands?)
   - [Working with Text Files](#Working with Text Files)
-    - [ ] [Q: What are common text file editors?](#Q: What are common text file editors?)
-    - [ ] [Q: How to search files?](#Q: How to search files?)
-    - [ ] [Q: How to search in files?](#Q: How to search in files?)
+    - [x] [Q: What are common text file editors?](#Q: What are common text file editors?)
+    - [x] [Q: How to search files?](#Q: How to search files?)
+    - [x] [Q: How to search in files?](#Q: How to search in files?)
   - [Managing Processes](#Managing Processes)
-    - [ ] [Q: How to display all processes?](#Q: How to display all processes?)
-    - [ ] [Q: How to get the listen port of a process?](#Q: How to get the listen port of a process?)
-    - [ ] [Q: How to kill processes?](#Q: How to kill processes?)
-    - [ ] [Q: How to set process priority?](#Q: How to set process priority?) (NICE)
-    - [ ] [Q: Running processes in foreground and background?](#Q: Running processes in foreground and background?)
+    - [x] [Q: How to display all processes?](#Q: How to display all processes?)
+    - [x] [Q: What is the difference between ps and top command?](#Q: What is the difference between ps and top command?)
+    - [x] [Q: How to get the listen port of a process?](#Q: How to get the listen port of a process?)
+    - [x] [Q: How to kill processes?](#Q: How to kill processes?)
+    - [x] [Q: How to set process priority?](#Q: How to set process priority?) (NICE)
+    - [x] [Q: Bring processes into the foreground and background?](#Q: Bring processes into the foreground and background?)
 - [III. Programming with Shell Script](#III. Programming with Shell Script)
   - [Shell Scripts Basics](#Shell Scripts Basics)
-    - [ ] [Q: What is the first line in a shell script?](#Q: What is the first line in a shell script?)
+    - [x] [Q: What is the first line in a shell script?](#Q: What is the first line in a shell script?)
   - [Variables](#Variables)
   - [Input and Output](#Input and Output)
   - [Control Flow](#Control Flow)
@@ -35,28 +36,30 @@
   - [Managing Software](#Managing Software)
   - [Managing User Accounts](#Managing User Accounts)
     - [User Accounts](#User Accounts)
-      - [ ] [Q: How to create a system user?](#Q: How to create a system user?)
-      - [ ] [Q: How to get basic information of system users?](#Q: How to get basic information of system users?)
-      - [ ] [Q: How to modify system users?](#Q: How to modify system users?)
-      - [ ] [Q: How to delete system users?](#Q: How to delete system users?)
+      - [x] [Q: How to create a system user?](#Q: How to create a system user?)
+      - [x] [Q: How to get basic information of system users?](#Q: How to get basic information of system users?)
+      - [x] [Q: How to modify system users?](#Q: How to modify system users?)
+      - [x] [Q: How to delete system users?](#Q: How to delete system users?)
     - [User Groups](#User Groups)
-      - [ ] [Q: How to get basic information of system groups?](#Q: How to get basic information of system groups?)
-      - [ ] [Q: How to create a system group?](#Q: How to create a system group?)
-      - [ ] [Q: How to modify system groups?](#Q: How to modify system groups?)
+      - [x] [Q: How to get basic information of system groups?](#Q: How to get basic information of system groups?)
+      - [x] [Q: How to create a system group?](#Q: How to create a system group?)
+      - [x] [Q: How to modify system groups?](#Q: How to modify system groups?)
   - [Managing Disk and Filesystems](#Managing Disk and Filesystems)
 - [V. Linux Server Administrator](#V. Linux Server Administrator)
   - [Networking](#Networking)
   - [Services](#Services)
-    - [ ] [Q: What is initialization system (init)?](#Q: What is initialization system (init)?)
-    - [ ] [Q: What is systemd?](#Q: What is systemd?)
-    - [ ] [Q: How to write unit configuration files of systemd?](#Q: How to write unit configuration files of systemd?)
-    - [ ] [Q: What are basic commands of systemd?](#Q: What are basic commands of systemd?)
+    - [x] [Q: What is initialization system (init) in Linux?](#Q: What is initialization system (init) in Linux?)
+    - [x] [Q: What is systemd?](#Q: What is systemd?)
+    - [x] [Q: How to write unit configuration files of systemd?](#Q: How to write unit configuration files of systemd?)
+    - [x] [Q: What are basic commands of systemd?](#Q: What are basic commands of systemd?)
   - [Configuring Servers](#Configuring Servers) (Web, FTP, NFS etc)
   - [Troubleshooting Linux](#Troubleshooting Linux)
 - [VI. Linux Security](#VI. Linux Security)
-  - [Firewall](#Firewall)
-    - [ ] [Q: What is firewall?](#Q: What is firewall?)
-    - [ ] [Q: How to use ufw to set firewall?](#Q: How to use ufw to set firewall?)
+  - [Securing Linux on a Network](#Securing Linux on a Network)
+    - Auditing Network Services
+    - [Working with Firewalls](#Working with Firewalls)
+      - [x] [Q: What is firewall?](#Q: What is firewall?)
+      - [ ] [Q: How to use ufw to set firewall?](#Q: How to use ufw to set firewall?)
 - [References](#References)
 
 ## Main
@@ -364,33 +367,177 @@ To permanently change umask value, add a umask command to the `.bashrc` file in 
 
 ### Q: What are file create, rename, remove, move commands?
 
+```
+$ mkdir <dir_name>
+$ touch <file_name>
+$ mv <filename> <new_filename>
+$ mv <filepath> <target_path>
+$ remove <filename> 
+$ remove -rf <dir_path>
+```
+
 
 
 ## Working with Text Files
 
 ### Q: What are common text file editors?
 
+- vi
+- vim
+- nano
+
 ### Q: How to search files?
 
+Searching for files with locate:
+
+```
+$ updatedb
+$ locate <file_name>
+```
+
+Searching for files with find:
+
+```
+$ find <dir_path> -type <file_type> -name <filename> -size <file_size>
+```
+
 ### Q: How to search in files?
+
+Searching in files with grep:
+
+```shell
+$ grep <search_word> <filepath>
+# to select non-matching lines
+$ grep -v <search_word> <filepath>
+```
+
+Searching from output of a command
+
+```
+$ ip addr show | grep inet
+```
 
 ## Managing Processes
 
 ### Q: How to display all processes?
 
+ps(process status)
+
+```
+$ ps -ef
+$ ps aux
+```
+
+top
+
+```
+$ top
+```
+
+
+
+### Q: What is the difference between ps and top command?
+
+| ps                                                           | top                                                          |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Reading Process(**ps**) Information                          | Resource Monitoring like **top** resources using cpu, memory usage and more. |
+| `ps` used to see which processes you (or any other user) are running currently. | `top` enables you to see your processes ordered by the amount of processor power they use. |
+| `ps` is designed for non-interactive use                     | `top` is mostly used interactively (try reading man page or pressing "h" while `top` is running) |
+
+
+
 ### Q: How to get the listen port of a process?
+
+**Get Listen port of a process by PID or processName**
+
+lsof
+
+```
+$ lsof -i -P -n | grep <PID>
+```
+
+netstat
+
+```
+$ netstat -tulpn | grep <PID>
+$ netstat -tulpn | grep <process_name>
+```
+
+**Check is port occupied**
+
+```
+$ lsof -i:<port>
+```
+
+
 
 ### Q: How to kill processes?
 
+```
+$ kill <PID> # default signal SIGTERM(15) to terminate cleanly
+
+$ kill -9 <PID> # signal SIGKILL(9) to kill immediately
+
+$ killall <process_name>
+```
+
+
+
 ### Q: How to set process priority?
 
-### Q: Running processes in foreground and background?
+process priority(NICE)
+
+View NICE of processes:
+
+```
+$ top
+```
+
+Set priority: 
+
+```
+$ renice <nice_value> -p <PID>
+```
+
+
+
+### Q: Bring processes into the foreground and background?
+
+Lists all jobs
+
+```
+$ jobs
+```
+
+Bring specified job into the foreground:
+
+```
+$ fg <job_ID>
+```
+
+Bring specified job into the background:
+
+```
+$ bg <job_ID>
+```
+
+Running a job in the background
+
+```
+$ <execute_command> &
+```
+
+
 
 ## III. Programming with Shell Script
 
 ## Shell Scripts Basics
 
 ### Q: What is the first line in a shell script?
+
+```
+#!/bin/bash
+```
 
 ## Variables
 
@@ -410,19 +557,107 @@ To permanently change umask value, add a umask command to the `.bashrc` file in 
 
 ### Q: How to create a system user?
 
+Create a user
+
+```
+$ useradd <username>
+```
+
+Set user's password
+
+```
+$ passwd <username>
+```
+
+Set user's groups
+
+```
+$ useradd -g <group_name> <username>
+$ useradd -G <group1> <group2> ... <username>
+```
+
 ### Q: How to get basic information of system users?
+
+```
+cat /etc/passwd | grep <username>
+```
+
+Output
+
+```
+sara:x:1002:1007:Sara Green:/home/sara:/bin/tcsh
+```
+
+Output's Description
+
+```
+<username>:<password>:<userId>:<groupId>:<userInfo>:<homeDirectory>:<shellType>
+```
+
+
 
 ### Q: How to modify system users?
 
+```
+$ usermod <option> <value> <username>
+```
+
+
+
 ### Q: How to delete system users?
+
+```shell
+$ userdel <username>
+# -r option forces the removal of the user account, even if the user is still logged in.
+$ userdel -r <username>
+```
+
+
 
 ### User Groups
 
 ### Q: How to get basic information of system groups?
 
+```
+cat /etc/group
+```
+
+Output:
+
+```
+sales:x:1302:joe,bill,sally,sara
+```
+
+Output's description:
+
+```
+<group_name>:x:<group_id>:<group_users>
+```
+
+
+
 ### Q: How to create a system group?
 
+```
+$ groupadd <group_name>
+$ groupadd -g <group_id> <group_name>
+```
+
+
+
 ### Q: How to modify system groups?
+
+```
+$ groupmod <option> <value> <group_name>
+```
+
+For example:
+
+```
+$ groupmod -n jacks jokers
+```
+
+
 
 ## Managing Disk and Filesystems
 
@@ -432,13 +667,74 @@ To permanently change umask value, add a umask command to the `.bashrc` file in 
 
 ## Services
 
-### Q: What is initialization system (init)?
+### Q: What is initialization system (init) in Linux?
+
+Using initialization systems (init) to manage each daemon process as a service.
+
+init systems abilities: 
+
+- identify runlevels
+- establish dependencies
+- set default runlevel
+- manage service(start, stop, pause, restart, reload)
 
 ### Q: What is systemd?
 
+systemd: the latest versions of Fedora and RHEL use the systemd init system.
+
+service unit types: service, target, ... 
+
+System unit configuration files directories: /lib/systemd/system, /etc/systemd/system
+
+List service:
+
+```
+$ systemctl list-units | grep .service
+$ systemctl list-unit-files --type=service
+```
+
+
+
 ### Q: How to write unit configuration files of systemd?
 
+Basic Unit configuration file of systemd: 
+
+```
+Description=xxx
+After=xxx
+ExecStart=xxx
+WantedBy=xxx
+```
+
+
+
 ### Q: What are basic commands of systemd?
+
+List all services
+
+```
+$ systemctl list-unit-files --type=service | grep -v disabled
+```
+
+Show service's status
+
+```
+$ systemctl status <service_name>
+```
+
+start/stop/restart/reload service
+
+```
+$ systemctl <start/stop/restart/reload> <service_name>
+```
+
+enable or disable auto start on system reboot
+
+```
+$ systemctl <enable/disable> <service_name>
+```
+
+
 
 ## Configuring Server
 
@@ -446,11 +742,54 @@ To permanently change umask value, add a umask command to the `.bashrc` file in 
 
 ## VI. Linux Security
 
-## Firewall
+## Securing Linux on a Network
+
+### Working with Firewalls
 
 ### Q: What is firewall?
 
+On Linux system, the firewall is a host-based, network-layer, software firewall managed by the iptables utility.
+
 ### Q: How to use ufw to set firewall?
+
+Initial settings for ufw
+
+```shell
+# Enable UFW service automatically on boot
+systemctl enable ufw
+ufw reset
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+# starting UFW firewall
+ufw enable
+```
+
+Allow ports
+
+```
+$ ufw allow 80/tcp
+```
+
+Allow IPs
+
+```
+$ ufw allow from 64.63.62.61
+```
+
+Deny ports
+
+```
+$ ufw deny 3306
+```
+
+Deny IPs
+
+```
+$ ufw deny from 23.24.25.0/24
+```
 
 
 
