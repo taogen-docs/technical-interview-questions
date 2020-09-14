@@ -2,7 +2,7 @@
 
 ### Content
 
-- I. Fundamental Data Structures Problems
+- Fundamental Data Structures Problems
   - Array
     - [ ] Q: How do you find the missing number in a given integer array of 1 to 100?
     - [ ] Q: How do you find the duplicate number on a given integer array?
@@ -29,10 +29,10 @@
     - [ ] Q: How do you count a number of leaf nodes in a given binary tree?
     - [ ] Q: How do you perform a binary search in a given array?
   - Graph
-- II. Common Algorithms implementation
+- Common Algorithms Problems
   - Sort
   - Search
-- III. Advanced Data Structures Problmes
+- Advanced Data Structures Problems
   - Binary Search Tree, AVL Tree
   - B-Tree, Red–black Tree
   - Heap
@@ -54,7 +54,7 @@
     - [ ] How do you check if two strings are a rotation of each other?
     - [ ] How do you check if a given string is a palindrome? 
   - Matrix
-- IV. Algorithm Design Problems
+- Algorithm Design Problems
   - Dynamic programming
   - Divide and Conquer
   - Greedy
@@ -62,89 +62,78 @@
   - DFS/BFS
   - Randomized
   - Branch and Bound
-- V. Others Algorithm Problems
+- Others Algorithm Problems
   - [ ] Q: How do you swap two numbers without using the third variable?
   - [ ] Q: How do you check if two rectangles overlap with each other?
   - [ ] Q: How do you design a vending machine?
-- VI. Data Structure Implementations
-  - Array
-  - Linked List
-  - Stack and Queue
-  - Tree
-    - [ ] Q: Binary tree implementation?
-    - [ ] Q: Binary search tree implementation? 
-    - [ ] Q: preorder traversal in a given binary tree?
-    - [ ] Q: preorder without recursion?
-    - [ ] Q: inorder traversal in a given binary tree?
-    - [ ] Q: inorder traversal without recursion?
-    - [ ] Q: postorder traversal algorithm?
-    - [ ] Q: postorder traversal without recursion?
-  - Graph
-- VII. Algorithms Implementations
-  - Sort
-    - [ ] Q: Bubble sort algorithm implementation?
-    - [ ] Q: insertion sort algorithm implementation?
-    - [ ] Q: selection sort algorithm implementation?
-    - [ ] Q: Iterative quicksort algorithm implementation?
-    - [ ] Q: merge sort algorithm implementation?
-    - [ ] Q: bucket sort algorithm implementation?
-    - [ ] Q: counting sort algorithm implementation?
-    - [ ] Q: radix sort algorithm implementation? 
-  - Search
-    - [ ] Q: Binary Search Implementation?
+
 - References
 
 ## Main
 
-## I. Fundamental Data Structures
 
-## Array
 
-## Linked List
+## Fundamental Data Structures Problems
 
-## Stack and Queue
+### Array
 
-## Tree (Binary Tree)
+### Linked List
 
-## Graph
+### Stack and Queue
 
-## II. Common Algorithms
+### Tree (Binary Tree)
 
-## III. Advanced Data Structures
+### Graph
 
-## Binary Search Tree, AVL Tree
 
-## B-Tree, Red–black Tree
 
-## Heap
+## Common Algorithms Problems
 
-## Trie
+### Sort
 
-## Dictionary
+### Search
 
-## Hashing (Hash Table)
 
-## Priority Queue
 
-## String
+## Advanced Data Structures Problems
 
-## Matrix
+### Binary Search Tree, AVL Tree
 
-## IV. Algorithm Design
+### B-Tree, Red–black Tree
 
-## Dynamic programming
+### Heap
 
-## Divide and Conquer
+### Trie
 
-## Greedy
+### Dictionary
 
-## Backtracking
+### Hashing (Hash Table)
 
-## DFS/BFS
+### Priority Queue
 
-## Randomized
+### String
 
-## Branch and Bound
+### Matrix
+
+
+
+## Algorithm Design Problems
+
+### Dynamic programming
+
+### Divide and Conquer
+
+### Greedy
+
+### Backtracking
+
+### DFS/BFS
+
+### Randomized
+
+### Branch and Bound
+
+## Others Algorithm Problems
 
 ## References
 
