@@ -76,6 +76,7 @@
     - [x] [Method overriding vs method overloading?](#Method overriding vs method overloading?)
   - <a name="interface-c" href="#interface-t">Interface, Lambada, and Inner Classes</a>
     - [x] [Why use nested classes?](#Why use nested classes?)
+    - [x] [Q: Static Inner Class vs Inner Class?](#Q: Static Inner Class vs Inner Class?)
   - <a name="exceptions-c" href="#exceptions-t">Exceptions, Assertions, and Logging</a>
     - [x] [Common Exception class names?](#Common Exception class names?)
     - [ ] How to handle exception? Right ways of handling exception.
@@ -102,12 +103,12 @@
       - [x] [Why HashMap allows null key but Hashtable does not?](#Why HashMap allows null key but Hashtable does not?)
       - [x] [Array vs ArrayList?](#Array vs ArrayList?)
     - Container Implementation Principles
-      - [How HashMap works?](#How HashMap works?) (HashMap implementation?)
+      - [x] [How HashMap works?](#How HashMap works?) (HashMap implementation?)
       - How Concurrent Collection Classes Work?
     - Container Applicability
       - (How to choice data structure for different usage scenario?)
     - Iterator
-      - [Fail fast and fail safe iterators?](#Fail fast and fail safe iterators?)
+      - [x] [Fail fast and fail safe iterators?](#Fail fast and fail safe iterators?)
   - <a name="concurrency-c" href="#concurrency-t">Concurrency</a>
     - Processes and Threads
       - [x] [Process vs Thread?](#Process vs Thread?)
@@ -782,6 +783,38 @@ Compelling reasons for using nested classes include the following:
 - **It is a way of logically grouping classes that are only used in one place**: If a class is useful to only one other class, then it is logical to embed it in that class and keep the two together. Nesting such "helper classes" makes their package more streamlined.
 - **It increases encapsulation**: Consider two top-level classes, A and B, where B needs access to members of A that would otherwise be declared `private`. By hiding class B within class A, A's members can be declared private and B can access them. In addition, B itself can be hidden from the outside world.
 - **It can lead to more readable and maintainable code**: Nesting small classes within top-level classes places the code closer to where it is used.
+
+### Q: Static Nested Class vs Inner Class?
+
+Inner Class
+
+- Can access to outer class both instance and static methods and fields
+
+- Associated with instance of enclosing class so to instantiate it first needs an instance of outer class (note new keyword place): 
+
+  ```
+  Outerclass.InnerClass innerObject = outerObject.new Innerclass();
+  ```
+
+- Cannot define any static members itself
+
+- Cannot have Class or Interface declaration
+
+Static Nested Class
+
+- Only can access outer class instance static methods or fields.
+
+- Not associated with any instance of enclosing class So to instantiate it:
+
+  ```
+  OuterClass.StaticNestedClass nestedObject = new OuterClass.StaticNestedClass();
+  ```
+
+Similarities
+
+- Both Inner classes can access even private fields and methods of outer class
+- Also the Outer class have access to private fields and methods of inner classes
+- Both classes can have private, protected or public access modifier
 
 <br>
 
