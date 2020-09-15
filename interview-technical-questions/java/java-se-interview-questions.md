@@ -40,6 +40,8 @@
     - [x] [How Java cross platforms(Write once, run anywhere)?](#How Java cross platforms(Write once, run anywhere)?)
     - [x] [Why Java is not 100% Object-oriented?](#Why Java is not 100% Object-oriented?)
   - <a name="java-history-c" href="#java-history-t">Java History</a>
+    - [x] [Q: Java Version History?](#Q: Java Version History?)
+    - [x] [Q: Java Version Major Changes?](#Q: Java Version Major Changes?)
 - II. Basics
   - <a name="variables-and-types-c" href="#variables-and-types-t">Variables and Types</a>
     - [x] [What are the basic data types in Java? What are their value ranges?](#What are the basic data types in Java? What are their value ranges?)
@@ -145,17 +147,24 @@
 
 ### Explain JDK, JRE and JVM?
 
-| **JDK**                                                      | **JRE**                                                      | **JVM**                                                      |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| It stands for Java Development Kit.                          | It stands for Java Runtime Environment.                      | It stands for Java Virtual Machine.                          |
-| It is the tool necessary to compile, document and package Java programs. | JRE refers to a runtime environment in which Java bytecode can be executed. | It is an abstract machine. It is a specification that provides a run-time environment in which Java bytecode can be executed. |
-| It contains JRE + development tools.                         | It’s an implementation of the JVM which physically exists.   | JVM follows three notations: Specification, **Implementation,** and **Runtime Instance**. |
+|               | **JDK**                                                      | **JRE**                                                      | **JVM**                                                      |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| What is it    | It stands for Java Development Kit.                          | It stands for Java Runtime Environment.                      | It stands for Java Virtual Machine.                          |
+| Details       | It is the tool necessary to compile, document and package Java programs. | JRE refers to a runtime environment in which Java bytecode can be executed. | It is an abstract machine. It is a specification that provides a run-time environment in which Java bytecode can be executed. |
+| Relationships | It contains JRE + development tools.                         | It’s an implementation of the JVM which physically exists.   | JVM follows three notations: Specification, **Implementation,** and **Runtime Instance**. |
 
-JDK: it provide development kit (such as javac, java, javap, jconsole), document, and java runtime environment (JRE).
+JDK:
 
-JRE: It provide java bytecode runtime environment. It contains lib and bin.
+- development kit (such as javac, java, javap, jconsole)
+- document
+- java runtime environment (JRE).
 
-If you only need to run a java application, you can just install JRE.
+JRE:
+
+- JVM Implementation
+- Standard libraries
+
+**If you only need to run a java application, you can just install JRE.**
 
 <br>
 
@@ -167,6 +176,10 @@ If you only need to run a java application, you can just install JRE.
 
 Java is called platform independent because of its byte codes which can run on any system irrespective of its underlying operating system.
 
+Same byte codes can run on any JVM, Different JVM can run on different operating system irrespective.
+
+Byte codes + JVM + OS = Cross Platforms
+
 ### Why Java is not 100% Object-oriented?
 
 Eight primitive data types such as boolean, byte, int which are not objects.
@@ -175,6 +188,288 @@ Eight primitive data types such as boolean, byte, int which are not objects.
 
 <h2><a name="java-history-t" href="#java-history-c">Java History</a></h2>
 <br>
+
+### Q: Java Version History?
+
+|         Version          |  Release date  | End of Free Public Updates[[1\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-auto9-1)[[6\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-6) | Extended Support Until |
+| :----------------------: | :------------: | :----------------------------------------------------------: | :--------------------: |
+|         JDK Beta         |      1995      |                              ?                               |           ?            |
+|         JDK 1.0          |  January 1996  |                              ?                               |           ?            |
+|         JDK 1.1          | February 1997  |                              ?                               |           ?            |
+|         J2SE 1.2         | December 1998  |                              ?                               |           ?            |
+|         J2SE 1.3         |    May 2000    |                              ?                               |           ?            |
+|         J2SE 1.4         | February 2002  |                         October 2008                         |     February 2013      |
+|         J2SE 5.0         | September 2004 |                        November 2009                         |       April 2015       |
+|        Java SE 6         | December 2006  |                          April 2013                          |     December 2018      |
+|        Java SE 7         |   July 2011    |                          April 2015                          |       July 2022        |
+|     Java SE 8 (LTS)      |   March 2014   | **January 2019 for Oracle (commercial)** December 2020 for Oracle (personal use) At least May 2026 for AdoptOpenJDK At least May 2026[[7\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-Corretto2020-7) for Amazon Corretto |     December 2030      |
+|        Java SE 9         | September 2017 |                    March 2018 for OpenJDK                    |          N/A           |
+|        Java SE 10        |   March 2018   |                  September 2018 for OpenJDK                  |          N/A           |
+|     Java SE 11 (LTS)     | September 2018 | At least September 2027[[7\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-Corretto2020-7) for Amazon Corretto October 2024 for AdoptOpenJDK |     September 2026     |
+|        Java SE 12        |   March 2019   |                  September 2019 for OpenJDK                  |          N/A           |
+|        Java SE 13        | September 2019 |                    March 2020 for OpenJDK                    |          N/A           |
+| **Java SE 14** (current) |   March 2020   |                  September 2020 for OpenJDK                  |          N/A           |
+|        Java SE 15        | September 2020 |                    March 2021 for OpenJDK                    |          N/A           |
+|        Java SE 16        |   March 2021   |                  September 2021 for OpenJDK                  |          N/A           |
+|     Java SE 17 (LTS)     | September 2021 |                             TBA                              |          TBA           |
+
+### Q: Java Version Major Changes?
+
+JDK 1.0
+
+- The first version was released on January 23, 1996.[[10\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-pr10-10)[[11\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-JavaHistory-11) The first stable version, JDK 1.0.2, is called Java 1.
+
+JDK 1.1
+
+- an extensive retooling of the [AWT](https://en.wikipedia.org/wiki/Abstract_Window_Toolkit) event model
+- [inner classes](https://en.wikipedia.org/wiki/Inner_class) added to the language
+- [JavaBeans](https://en.wikipedia.org/wiki/JavaBeans)
+- [JDBC](https://en.wikipedia.org/wiki/Java_Database_Connectivity)
+- [RMI](https://en.wikipedia.org/wiki/Java_remote_method_invocation)
+- [reflection](https://en.wikipedia.org/wiki/Reflection_(computer_science)) which supported Introspection only, no modification at runtime was possible. (The ability to modify objects reflectively was added in J2SE 1.2, by introducing the [AccessibleObject](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/reflect/AccessibleObject.html) class and its subclasses such as the [Field](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/reflect/Field.html) class.)
+- [JIT (Just In Time) compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation) on Microsoft Windows platforms, produced for JavaSoft by Symantec
+- **[Internationalization](https://en.wikipedia.org/wiki/Internationalization_and_localization) and [Unicode](https://en.wikipedia.org/wiki/Unicode) support originating from [Taligent](https://en.wikipedia.org/wiki/Taligent)[[13\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-taligentau-13)**
+
+J2SE 1.2
+
+Codename **Playground**
+
+- `strictfp` keyword
+- the [Swing](https://en.wikipedia.org/wiki/Swing_(Java)) graphical API was integrated into the core classes
+- Sun's JVM was equipped with a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation) for the first time
+- [Java plug-in](https://en.wikipedia.org/wiki/Java_plug-in)
+- [Java IDL](https://en.wikipedia.org/wiki/Java_IDL), an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) implementation for [CORBA](https://en.wikipedia.org/wiki/Common_Object_Request_Broker_Architecture) interoperability
+- [Collections](https://en.wikipedia.org/wiki/Java_collections_framework) framework
+
+J2SE 1.3
+
+Codename **Kestrel**
+
+- [HotSpot](https://en.wikipedia.org/wiki/HotSpot) JVM included (the HotSpot JVM was first released in April 1999 for the J2SE 1.2 JVM)
+- [RMI](https://en.wikipedia.org/wiki/Java_remote_method_invocation) was modified to support optional compatibility with [CORBA](https://en.wikipedia.org/wiki/CORBA)
+- [Java Naming and Directory Interface](https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface) (JNDI) included in core libraries (previously available as an extension)
+- [Java Platform Debugger Architecture](https://en.wikipedia.org/wiki/Java_Platform_Debugger_Architecture) (JPDA)
+- JavaSound
+- Synthetic proxy classes
+
+J2SE 1.4
+
+Codename **Merlin**
+
+- Language changes
+  - `assert` keyword (specified in [JSR 41](https://web.archive.org/web/20080616233205/http://www.jcp.org/en/jsr/detail?id=41))
+- Library improvements
+  - [Regular expressions](https://en.wikipedia.org/wiki/Regular_expressions) modeled after [Perl](https://en.wikipedia.org/wiki/Perl) regular expressions
+  - [Exception chaining](https://en.wikipedia.org/wiki/Exception_chaining) allows an exception to encapsulate original lower-level exception
+  - Internet Protocol version 6 ([IPv6](https://en.wikipedia.org/wiki/IPv6)) support
+  - [Non-blocking I/O (Java)](https://en.wikipedia.org/wiki/Non-blocking_IO) (named NIO) (specified in [JSR 51](http://www.jcp.org/en/jsr/detail?id=51))
+  - Logging API (specified in [JSR 47](http://www.jcp.org/en/jsr/detail?id=47))
+  - Image I/O API for reading and writing images in formats like [JPEG](https://en.wikipedia.org/wiki/JPEG) and [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics)
+  - Integrated [XML](https://en.wikipedia.org/wiki/XML) parser and [XSLT](https://en.wikipedia.org/wiki/XSLT) processor ([JAXP](https://en.wikipedia.org/wiki/JAXP)) (specified in [JSR 5](http://www.jcp.org/en/jsr/detail?id=5) and [JSR 63](http://www.jcp.org/en/jsr/detail?id=63))
+  - Integrated security and cryptography extensions ([JCE](https://en.wikipedia.org/wiki/Java_Cryptography_Extension), [JSSE](https://en.wikipedia.org/wiki/JSSE), [JAAS](https://en.wikipedia.org/wiki/Java_Authentication_and_Authorization_Service))
+  - [Java Web Start](https://en.wikipedia.org/wiki/Java_Web_Start) included (Java Web Start was first released in March 2001 for J2SE 1.3) (specified in [JSR 56](http://www.jcp.org/en/jsr/detail?id=56))
+  - Preferences API (`java.util.prefs`)
+
+J2SE 5.0
+
+Codename **Tiger**
+
+Tiger added a number of significant new language features:[[21\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-pr15-21)[[22\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-ch15-22)
+
+- [Generics](https://en.wikipedia.org/wiki/Generics_in_Java): provides compile-time (static) [type safety](https://en.wikipedia.org/wiki/Type_safety) for collections and eliminates the need for most [typecasts (type conversion)](https://en.wikipedia.org/wiki/Type_conversion) (specified by [JSR 14](http://www.jcp.org/en/jsr/detail?id=14))
+- [Metadata](https://en.wikipedia.org/wiki/Metadata_(computing)): also called [annotations](https://en.wikipedia.org/wiki/Java_annotation); allows language constructs such as classes and methods to be tagged with additional data, which can then be processed by metadata-aware utilities (specified by [JSR 175](http://www.jcp.org/en/jsr/detail?id=175))
+- [Autoboxing](https://en.wikipedia.org/wiki/Autoboxing)/unboxing: automatic conversions between [primitive types](https://en.wikipedia.org/wiki/Primitive_type) (such as `int`) and [primitive wrapper classes](https://en.wikipedia.org/wiki/Primitive_wrapper_class) (such as `Integer`) (specified by [JSR 201](http://www.jcp.org/en/jsr/detail?id=201))
+- [Enumerations](https://en.wikipedia.org/wiki/Enumeration_(programming)): the `enum` keyword creates a [typesafe](https://en.wikipedia.org/wiki/Type_safety), ordered list of values (such as `Day.MONDAY`, `Day.TUESDAY`, etc.); previously this could only be achieved by non-typesafe constant integers or manually constructed classes (typesafe enum pattern) (specified by [JSR 201](http://www.jcp.org/en/jsr/detail?id=201))
+- [Varargs](https://en.wikipedia.org/wiki/Java_syntax#Varargs): the last parameter of a method can now be declared using a type name followed by three dots (e.g. `void drawtext(String... lines)`); in the calling code any number of parameters of that type can be used and they are then placed in an array to be passed to the method, or alternatively the calling code can pass an array of that type
+- Enhanced `for each` loop: the `for` loop syntax is extended with special syntax for iterating over each member of either an array or any `Iterable`, such as the standard `Collection` classes (specified by [JSR 201](http://www.jcp.org/en/jsr/detail?id=201))
+- Improved semantics of execution for multi-threaded Java programs; the new [Java memory model](https://en.wikipedia.org/wiki/Java_memory_model) addresses issues of complexity, effectiveness, and performance of previous specifications[[23\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-jsr-133-23)
+- [Static imports](https://en.wikipedia.org/wiki/Static_import)
+
+There were also the following improvements to the standard libraries:
+
+- Automatic [stub](https://en.wikipedia.org/wiki/Method_stub) generation for [RMI](https://en.wikipedia.org/wiki/Java_remote_method_invocation) objects
+- [Swing](https://en.wikipedia.org/wiki/Swing_(Java)): New [skinnable](https://en.wikipedia.org/wiki/Skin_(computing)) [look and feel](https://en.wikipedia.org/wiki/Look_and_feel#In_widget_toolkits), called [synth](https://en.wikipedia.org/wiki/Synth_Look_and_Feel)
+- The [concurrency utilities](https://java.sun.com/j2se/1.5.0/docs/guide/concurrency/overview.html) in package [`java.util.concurrent`](https://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/package-summary.html)[[24\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-24)
+- Scanner class for parsing data from various input streams and buffers
+
+Java SE 6
+
+Codename **Mustang**
+
+- Support for older Win9x versions dropped; unofficially, Java 6 Update 7 was the last release of Java shown to work on these versions of Windows.[*[citation needed](https://en.wikipedia.org/wiki/Wikipedia:Citation_needed)*] This is believed[*[by whom?](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Words_to_watch#Unsupported_attributions)*] to be due to the major changes in Update 10.
+- Scripting Language Support ([JSR 223](https://en.wikipedia.org/wiki/JSR_223)): Generic API for tight integration with scripting languages, and built-in [Mozilla](https://en.wikipedia.org/wiki/Mozilla) [JavaScript](https://en.wikipedia.org/wiki/JavaScript) [Rhino](https://en.wikipedia.org/wiki/Rhino_(JavaScript_engine)) integration.
+- Dramatic performance improvements for the core platform,[[50\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-lobby-50)[[51\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-weblog-51) and [Swing](https://en.wikipedia.org/wiki/Swing_(Java)).
+- Improved Web Service support through [JAX-WS](https://en.wikipedia.org/wiki/JAX-WS) ([JSR 224](https://en.wikipedia.org/wiki/JSR_224)).
+- [JDBC](https://en.wikipedia.org/wiki/Java_Database_Connectivity) 4.0 support ([JSR 221](https://en.wikipedia.org/wiki/JSR_221)).
+- Java Compiler API ([JSR 199](https://en.wikipedia.org/wiki/JSR_199)): an API allowing a Java program to select and invoke a Java Compiler programmatically.
+- Upgrade of [JAXB](https://en.wikipedia.org/wiki/JAXB) to version 2.0: Including integration of a [StAX](https://en.wikipedia.org/wiki/StAX) parser.
+- Support for pluggable [annotations](https://en.wikipedia.org/wiki/Java_annotation) ([JSR 269](https://en.wikipedia.org/w/index.php?title=JSR_269&action=edit&redlink=1)).[[52\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-52)
+- Many [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface) improvements, such as integration of [SwingWorker](https://en.wikipedia.org/wiki/SwingWorker) in the API, table sorting and filtering, and true Swing [double-buffering](https://en.wikipedia.org/wiki/Multiple_buffering) (eliminating the gray-area effect).
+- [JVM](https://en.wikipedia.org/wiki/Java_virtual_machine) improvements include: [synchronization](https://en.wikipedia.org/wiki/Data_synchronization) and [compiler](https://en.wikipedia.org/wiki/Compiler) performance optimizations, new algorithms and upgrades to existing [garbage collection algorithms](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)), and application start-up performance.
+
+Java SE 7
+
+codename **Dolphin**
+
+- [JVM](https://en.wikipedia.org/wiki/Java_Virtual_Machine) support for [dynamic languages](https://en.wikipedia.org/wiki/Dynamic_programming_language), with the new `invokedynamic` bytecode under JSR-292,[[141\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-JSR292-141) following the prototyping work currently done on the [Multi Language Virtual Machine](https://en.wikipedia.org/wiki/Da_Vinci_Machine)
+- Compressed 64-bit pointers[[142\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-142) (available in Java 6 with `-XX:+UseCompressedOops`)[[143\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-143)
+- These small language changes (grouped under a project named Coin):[[144\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-144)
+  - Strings in [switch](https://en.wikipedia.org/wiki/Switch_statement)[[145\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-145)
+  - Automatic resource management in try-statement[[146\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-146)
+  - Improved [type inference](https://en.wikipedia.org/wiki/Type_inference) for generic instance creation, aka *the diamond operator <>*[[147\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-147)
+  - Simplified varargs method declaration[[148\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-148)
+  - Binary integer literals[[149\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-149)
+  - Allowing underscores in numeric literals[[150\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-150)
+  - Catching multiple exception types and rethrowing exceptions with improved type checking
+- Concurrency utilities under JSR 166[[152\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-152)
+- New file [I/O](https://en.wikipedia.org/wiki/I/O) library (defined by JSR 203) adding support for multiple file systems, file metadata and symbolic links. The new packages are `java.nio.file`, `java.nio.file.attribute` and `java.nio.file.spi`[[153\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-153)[[154\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-154)
+- [Timsort](https://en.wikipedia.org/wiki/Timsort) is used to sort collections and arrays of objects instead of [merge sort](https://en.wikipedia.org/wiki/Merge_sort)
+- Library-level support for [elliptic curve cryptography](https://en.wikipedia.org/wiki/Elliptic_curve_cryptography) algorithms
+- An [XRender](https://en.wikipedia.org/wiki/XRender) pipeline for Java 2D, which improves handling of features specific to modern [GPUs](https://en.wikipedia.org/wiki/Graphics_processing_unit)
+- New platform APIs for the graphics features originally implemented in version 6u10 as unsupported APIs[[155\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-155)
+- Enhanced library-level support for new network protocols, including [SCTP](https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol) and [Sockets Direct Protocol](https://en.wikipedia.org/wiki/Sockets_Direct_Protocol)
+- [Upstream](https://en.wikipedia.org/wiki/Upstream_(software_development)) updates to [XML](https://en.wikipedia.org/wiki/XML) and [Unicode](https://en.wikipedia.org/wiki/Unicode)
+- Java deployment rule sets[[156\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-156)
+
+Java SE 8
+
+Work on features was organized in terms of [JDK Enhancement Proposals (JEPs)](https://en.wikipedia.org/wiki/JDK_Enhancement_Proposal).[[226\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-226)
+
+- JSR 335, JEP 126: Language-level support for [lambda expressions](https://en.wikipedia.org/wiki/Lambda_(programming)) (officially, lambda expressions; unofficially, [closures](https://en.wikipedia.org/wiki/Closure_(computer_programming))) under Project Lambda[[227\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-227) and default methods (virtual [extension methods](https://en.wikipedia.org/wiki/Extension_method))[[228\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-goetz_interface_evolution-228)[[229\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-229)[[230\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-230) which allow the addition of methods to interfaces without breaking existing implementations. 
+  - There was an ongoing debate in the Java community on whether to add support for lambda expressions.[[231\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-231)[[232\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-232) Sun later declared that lambda expressions would be included in Java and asked for community input to refine the feature.[[233\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-233) Supporting lambda expressions also enables [functional](https://en.wikipedia.org/wiki/Functional_programming)-style operations on streams of elements, such as [MapReduce](https://en.wikipedia.org/wiki/MapReduce)-inspired transformations on collections. Default methods allow an author of an API to add new methods to an interface without breaking the old code using it. Although it was not their primary intent,[[228\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-goetz_interface_evolution-228) default methods also allow multiple inheritance of behavior (but not state).
+
+- JSR 223, JEP 174: Project [Nashorn](https://en.wikipedia.org/wiki/Nashorn_(JavaScript_engine)), a JavaScript runtime which allows developers to embed JavaScript code within applications
+- JSR 308, JEP 104: Annotation on Java types[[234\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-234)
+- Unsigned integer arithmetic[[235\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-235)
+- JSR 337, JEP 120: Repeating annotations[[236\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-236)
+- JSR 310, JEP 150: Date and time API[[237\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-237)
+- JEP 178: Statically-linked JNI libraries[[238\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-238)
+- JEP 153: Launch [JavaFX](https://en.wikipedia.org/wiki/JavaFX) applications (direct launching of JavaFX application JARs)[[239\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-239)
+- JEP 122: Remove the [permanent generation](https://en.wikipedia.org/wiki/Java_virtual_machine#Generational_heap)
+
+Java SE 9
+
+- JSR 376: Modularization of the JDK under Project Jigsaw ([Java Platform Module System](https://en.wikipedia.org/wiki/Java_Platform_Module_System))[[158\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-Jigsaw-158)
+
+- JEP 222: [JShell](https://en.wikipedia.org/wiki/JShell): The Java Shell (a Java [REPL](https://en.wikipedia.org/wiki/REPL))[[295\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-295)
+
+- JEP 295: [Ahead-of-time compilation](https://en.wikipedia.org/wiki/Graal_(compiler)#Ahead-of-Time_Compilation)[[296\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-296)
+
+- JEP 268: [XML catalogs](https://en.wikipedia.org/wiki/XML_catalog)[[297\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-297)
+
+- JEP 266: More concurrency updates.[[298\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-298) It includes a Java implementation of [Reactive Streams](https://en.wikipedia.org/wiki/Reactive_Streams),[[299\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-299) including a new `Flow` class[[300\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-300) that included the interfaces previously provided by Reactive Streams[[301\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-infoq-301)
+
+- JEP 193: Variable handles:[[302\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-302) define a standard means to invoke the equivalents of various `java.util.concurrent.atomic` and `sun.misc.Unsafe` operations
+
+- JEP 282: jlink: The Java Linker:[[303\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-303) create a tool that can assemble and optimize a set of modules and their dependencies into a custom run-time image. It effectively allows to produce a fully usable executable including the JVM to run it
+
+- [JavaDB](https://en.wikipedia.org/wiki/JavaDB) was removed from JDK[[304\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-304)
+
+- JEP 263: [HiDPI](https://en.wikipedia.org/wiki/HiDPI) graphics: automatic scaling and sizing[[305\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-305)
+
+- JEP 254: Compact Strings[[306\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-306)
+
+- JEP 213: Milling Project Coin
+
+  [[307\]](https://en.wikipedia.org/wiki/Java_version_history#cite_note-307)
+
+  - Allow @SafeVarargs on private instance methods
+  - Allow effectively-final variables to be used as resources in the try-with-resources statement
+  - Allow diamond with anonymous classes if the argument type of the inferred type is denotable
+  - Complete the removal, begun in Java SE 8, of underscore from the set of legal identifier names
+  - Support for private methods in interfaces
+
+Java SE 10
+
+- [JEP-286: Local-Variable Type Inference](https://openjdk.java.net/jeps/286)
+- [JEP-296: Consolidate the JDK Forest into a Single Repository](https://openjdk.java.net/jeps/296)
+- [JEP-304: Garbage-Collector Interface](https://openjdk.java.net/jeps/304)
+- [JEP-307: Parallel Full GC for G1](https://openjdk.java.net/jeps/307)
+- [JEP-310: Application Class-Data Sharing](https://openjdk.java.net/jeps/310)
+- [JEP-312: Thread-Local Handshakes](https://openjdk.java.net/jeps/312)
+- [JEP-313: Remove the Native-Header Generation Tool (javah)](https://openjdk.java.net/jeps/313)
+- [JEP-314: Additional Unicode Language-Tag Extensions](https://openjdk.java.net/jeps/314)
+- [JEP-316: Heap Allocation on Alternative Memory Devices](https://openjdk.java.net/jeps/316)
+- [JEP-317: Experimental Java-Based JIT Compiler](https://openjdk.java.net/jeps/317)
+- [JEP-319: Root Certificates](https://openjdk.java.net/jeps/319)
+- [JEP-322: Time-Based Release Versioning](https://openjdk.java.net/jeps/322)
+
+Java SE 11
+
+- [JEP-181: Nest-Based Access Control](https://openjdk.java.net/jeps/181)
+- [JEP-309: Dynamic Class-File Constants](https://openjdk.java.net/jeps/309)
+- [JEP-315: Improve Aarch64 Intrinsics](https://openjdk.java.net/jeps/315)
+- [JEP-318: Epsilon: A No-Op Garbage Collector](https://openjdk.java.net/jeps/318)
+- [JEP-320: Remove the Java EE and CORBA Modules](https://openjdk.java.net/jeps/320)
+- [JEP-321: HTTP Client (Standard)](https://openjdk.java.net/jeps/321)
+- [JEP-323: Local-Variable Syntax for Lambda Parameters](https://openjdk.java.net/jeps/323)
+- [JEP-324: Key Agreement with Curve25519 and Curve448](https://openjdk.java.net/jeps/324)
+- [JEP-327: Unicode 10](https://openjdk.java.net/jeps/327)
+- [JEP-328: Flight Recorder](https://openjdk.java.net/jeps/328)
+- [JEP-329: ChaCha20 and Poly1305 Cryptographic Algorithms](https://openjdk.java.net/jeps/329)
+- [JEP-330: Launch Single-File Source-Code Programs](https://openjdk.java.net/jeps/330)
+- [JEP-331: Low-Overhead Heap Profiling](https://openjdk.java.net/jeps/331)
+- [JEP-332: Transport Layer Security (TLS) 1.3](https://openjdk.java.net/jeps/332)
+- [JEP-333: ZGC: A Scalable Low-Latency Garbage Collector (Experimental)](https://openjdk.java.net/jeps/333)
+- [JEP-335: Deprecate the Nashorn JavaScript Engine](https://openjdk.java.net/jeps/335)
+- [JEP-336: Deprecate the Pack200 Tools and API](https://openjdk.java.net/jeps/336)
+
+Java SE 12
+
+- [JEP-189: Shenandoah: A Low-Pause-Time Garbage Collector (Experimental)](https://openjdk.java.net/jeps/189)
+- [JEP-230: Microbenchmark Suite](https://openjdk.java.net/jeps/230)
+- [JEP-325: Switch Expressions (Preview)](https://openjdk.java.net/jeps/325)
+- [JEP-334: JVM Constants API](https://openjdk.java.net/jeps/334)
+- [JEP-340: One AArch64 Port, Not Two](https://openjdk.java.net/jeps/340)
+- [JEP-341: Default CDS Archives](https://openjdk.java.net/jeps/341)
+- [JEP-344: Abortable Mixed Collections for G1](https://openjdk.java.net/jeps/344)
+- [JEP-346: Promptly Return Unused Committed Memory from G1](https://openjdk.java.net/jeps/346)
+
+Java SE 13
+
+- [JEP-350: Dynamic CDS Archives](https://openjdk.java.net/jeps/350)
+- [JEP-351: ZGC: Uncommit Unused Memory](https://openjdk.java.net/jeps/351)
+- [JEP-353: Reimplement the Legacy Socket API](https://openjdk.java.net/jeps/353)
+- [JEP-354: Switch Expressions (Preview)](https://openjdk.java.net/jeps/354)
+- [JEP-355: Text Blocks (Preview)](https://openjdk.java.net/jeps/355)
+
+Java SE 14
+
+- [JEP-305: Pattern Matching for instanceof (Preview)](https://openjdk.java.net/jeps/305)
+- [JEP-343: Packaging Tool (Incubator)](https://openjdk.java.net/jeps/343)
+- [JEP-345: NUMA-Aware Memory Allocation for G1](https://openjdk.java.net/jeps/345)
+- [JEP-349: JFR Event Streaming](https://openjdk.java.net/jeps/349)
+- [JEP-352: Non-Volatile Mapped Byte Buffers](https://openjdk.java.net/jeps/352)
+- [JEP-358: Helpful NullPointerExceptions](https://openjdk.java.net/jeps/358)
+- [JEP-359: Records (Preview)](https://openjdk.java.net/jeps/359)
+- [JEP-361: Switch Expressions (Standard)](https://openjdk.java.net/jeps/361)
+- [JEP-362: Deprecate the Solaris and SPARC Ports](https://openjdk.java.net/jeps/362)
+- [JEP-363: Remove the Concurrent Mark Sweep (CMS) Garbage Collector](https://openjdk.java.net/jeps/363)
+- [JEP-364: ZGC on macOS](https://openjdk.java.net/jeps/364)
+- [JEP-365: ZGC on Windows](https://openjdk.java.net/jeps/365)
+- [JEP-366: Deprecate the ParallelScavenge + SerialOld GC Combination](https://openjdk.java.net/jeps/366)
+- [JEP-367: Remove the Pack200 Tools and API](https://openjdk.java.net/jeps/367)
+- [JEP-368: Text Blocks (Second Preview)](https://openjdk.java.net/jeps/368)
+- [JEP-370: Foreign-Memory Access API (Incubator)](https://openjdk.java.net/jeps/370)
+
+Java SE 15
+
+- [JEP-339: Edwards-Curve Digital Signature Algorithm (EdDSA)](https://openjdk.java.net/jeps/339)
+- [JEP-360: Sealed Classes (Preview)](https://openjdk.java.net/jeps/360)
+- [JEP-371: Hidden Classes](https://openjdk.java.net/jeps/371)
+- [JEP-372: Remove the Nashorn JavaScript Engine](https://openjdk.java.net/jeps/372)
+- [JEP-373: Reimplement the Legacy DatagramSocket API](https://openjdk.java.net/jeps/373)
+- [JEP-374: Disable and Deprecate Biased Locking](https://openjdk.java.net/jeps/374)
+- [JEP-375: Pattern Matching for instanceof (Second Preview)](https://openjdk.java.net/jeps/375)
+- [JEP-377: ZGC: A Scalable Low-Latency Garbage Collector](https://openjdk.java.net/jeps/377)
+- [JEP-378: Text Blocks](https://openjdk.java.net/jeps/378)
+- [JEP-379: Shenandoah: A Low-Pause-Time Garbage Collector](https://openjdk.java.net/jeps/379)
+- [JEP-381: Remove the Solaris and SPARC Ports](https://openjdk.java.net/jeps/381)
+- [JEP-383: Foreign-Memory Access API (Second Incubator)](https://openjdk.java.net/jeps/383)
+- [JEP-384: Records (Second Preview)](https://openjdk.java.net/jeps/384)
+- [JEP-385: Deprecate RMI Activation for Removal](https://openjdk.java.net/jeps/385)
+
+
 
 ## II. Basics
 
@@ -1425,6 +1720,10 @@ The well known example for ThreadLocal is SimpleDateFormat which is not thread-s
 [1] [100+ Java Interview Questions You Must Prepare In 2020](https://www.edureka.co/blog/interview-questions/java-interview-questions/#Jdk-Jre-and-Jvm)
 
 [2] [Java面试题及答案整理（2020最新版）- 模块一~模块五](https://zhuanlan.zhihu.com/p/64147696?utm_source=com.ideashower.readitlater.pro&utm_medium=social&utm_oi=69586464538624)
+
+Java History
+
+- [Java version history - Wikipedia](https://en.wikipedia.org/wiki/Java_version_history)
 
 Character Encoding
 
