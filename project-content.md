@@ -12,8 +12,8 @@
 - Interview Code Questions
   - [x] [**Java SE Code Questions**](interview-code-questions/java-code-questions.md)
   - [ ] **Data Structure and Algorithms Code Questions**
-  - [ ] **Data Structures and Algorithms Implementations**
-  - [ ] **SQL Code Questions**
+  - [x] [**Data Structures and Algorithms Implementations**](interview-code-questions/data-structures-and-algorithms-implemetations.md)
+  - [x] [**SQL Code Questions**](interview-code-questions/sql-code-questions.md)
 - Interview Technical Questions
   - Java SE
     - [x] [**Java SE Interview Questions**](interview-technical-questions/java-se-interview-questions.md)
