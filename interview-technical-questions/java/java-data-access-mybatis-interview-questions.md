@@ -35,6 +35,12 @@
 
 ### What is MyBatis?
 
+> A persistence framework
+>
+> Using custom SQL
+>
+> Using XML or annotations to map ResultSet to entity object
+
 MyBatis is **a persistence framework** with **support** for custom SQL, stored procedures and advanced mappings. MyBatis **eliminates** almost all of the JDBC code and manual setting of parameters and retrieval of results. MyBatis can **use** simple XML or Annotations for configuration and map primitives, Map interfaces and Java POJOs (Plain Old Java Objects) to database records.
 
 ### MyBatis' Advantages and Disadvantages?
@@ -68,7 +74,7 @@ MyBatis's disadvantages:
 
 ${} and #{} are both string substitution.
 
-the `${column}` will be substituted directly and the `#{value}` will be "prepared". #{} can prevent SQL injection. For example:
+the `${column}` will be **substituted directly** and the `#{value}` will be "**prepared**". #{} can prevent SQL injection. For example:
 
 ```sql
 select * from user where ${column} = #{value}
@@ -80,6 +86,12 @@ select * from user where ${column} = #{value}
 2. Using `<resultMap>` in `EntityMapper.xml`.
 
 ### How to get auto-generate primary key when insert an entity?
+
+Set options to to get auto-generate primary key:
+
+```
+useGeneratedKeys = true, keyProperty = "id", keyColumn = "id"
+```
 
 xxxMapper.xml
 
@@ -112,11 +124,11 @@ Implemented Ways for One-to-One, One-to-Many Query
 
 - One-to-one
   - One-to-one by aliases and `resultType="entity_classname"` (Need Joins Table)
-  - One-to-one by Nested Results with `<association> `of `<resultMap>` (Need Joins Table)
-  - One-to-one by Nested select with `<association select="">` of `<resultMap>` (Needn't Joins Table, don't recommend)
+  - One-to-one by **nested results** with `<association> `of `<resultMap>` (Need Joins Table)
+  - One-to-one by **nested select** with `<association select="">` of `<resultMap>` (Needn't Joins Table, don't recommend)
 - One-to-many
-  - One-to-many by Nested Results with `<collection>` of `<resultMap>` (Need Joins Table)
-  - One-to-many by Nested Results with `<collection select="">` of `<resultMap>` (Need Joins Table, Don't Recommend)
+  - One-to-many by **nested results** with `<collection>` of `<resultMap>` (Need Joins Table)
+  - One-to-many by **nested select** with `<collection select="">` of `<resultMap>` (Needn't Joins Table, Don't Recommend)
 
 One-to-one by aliases and `resultType="entity_classname"` (Need Joins Table)
 
@@ -317,7 +329,7 @@ One-to-many by Nested Results with `<collection select="">` of `<resultMap>` (Ne
 ### Requirements of writing mapper interface and mapper xml?
 
 - Mapper interface fully-qualified name equals mapper xml namespace `<mapper namespace="xxx">`.
-- Mapper interface method names equal mapper xml SQL statements `id` properties value.
+- Mapper interface method names equal mapper xml SQL statements `id` property value.
 - Mapper interface method parameter types equal mapper xml SQL statements `parameterType` properties value.
 - Mapper interface method return type equal mapper xml SQL statements `resultType` or `resultMap`.
 
@@ -325,10 +337,12 @@ One-to-many by Nested Results with `<collection select="">` of `<resultMap>` (Ne
 
 Dynamic SQL can deal with:
 
-- to conditionally concatenate strings of SQL together.
+- to **conditionally concatenate strings** of SQL together.
 - making sure not to forget spaces or to omit a comma at the end of a list of columns. 
 
-The Dynamic SQL elements should be familiar to anyone who has used JSTL or any similar XML based text processors. In previous versions of MyBatis, there were a lot of elements to know and understand. MyBatis 3 greatly improves upon this, and now there are less than half of those elements to work with. MyBatis employs powerful OGNL based expressions to eliminate most of the other elements:
+The Dynamic SQL elements should be familiar to anyone who has used JSTL or any similar XML based text processors. In previous versions of MyBatis, there were a lot of elements to know and understand. MyBatis 3 greatly improves upon this, and now there are less than half of those elements to work with. MyBatis employs powerful OGNL based expressions to eliminate most of the other elements.
+
+The Dynamic SQL elements:
 
 - if
 - choose (when, otherwise)
@@ -367,6 +381,12 @@ Example of `trim` and `if`
 ```
 
 ### How to Call Stored Procedure?
+
+Format of calling Stored Procedure in MyBatis: 
+
+```
+{call <stored_procedure_name>(<params...>)}
+```
 
 1. Call stored procedure by mapper xml
 
@@ -455,7 +475,7 @@ Cache type
   - It's default disabled. You can enable it in `<cache>` element of `mybatis-config.xml`.
   - This cache scope is Mapper(Namespace).
   - You can use use default cache or using a custom cache to override cache behavior, or use third party caching such as Ehcache.
-  - All results from select statements in the mapped statement file will be cached.
+  - **All results from select statements in the mapped statement file will be cached.**
   - All insert, update and delete statements in the mapped statement file will flush the cache.
   - The cache will use a Least Recently Used (LRU) algorithm for eviction.
 
@@ -491,7 +511,7 @@ To enable global second level cache in `mybatis-config.xml`:
 
 > Fully-qualified name: A class's fully-qualified name is the package name followed class name, separated by a period (.).
 
-Configuration in `mybatis-config.xml` and entity-mapping xml
+Configuration in `mybatis-config.xml` and `entity-mapping.xml`
 
 - The mapper interface class' fully-qualified name is the same with namespace property value in entity-mapping xml.
 - The mapper interface class' method names are the same as `<insert id="">`, `<select id="">` and so on elements' id property values in entity-mapping xml. 
