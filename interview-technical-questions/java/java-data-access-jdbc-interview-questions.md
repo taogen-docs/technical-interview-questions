@@ -14,6 +14,7 @@
   - [Statement](#Statement)
     - [x] [Q: What are the JDBC statements?](#Q: What are the JDBC statements?)
     - [x] [Q: What are the differences between Statement and PreparedStatement interface?](#Q: What are the differences between Statement and PreparedStatement interface?)
+    - [x] [Q: What does pre-compiling a JDBC PreparedStatement do?](#Q: What does pre-compiling a JDBC PreparedStatement do?)
     - [x] [Q: How can we set null value in JDBC PreparedStatement?](#Q: How can we set null value in JDBC PreparedStatement?)
     - [x] [Q: What are the benefits of PreparedStatement over Statement?](#Q: What are the benefits of PreparedStatement over Statement?)
     - [x] [Q: What are the differences between execute, executeQuery, and executeUpdate?](#Q: What are the differences between execute, executeQuery, and executeUpdate?)
@@ -145,6 +146,12 @@ There is three type of JDBC statements given in the following table.
 | The Statement interface provides methods to execute queries with the database. The statement interface is a factory of ResultSet; i.e., it provides the factory method to get the object of ResultSet. | The PreparedStatement interface is a subinterface of Statement. It is used to execute the parameterized query. |
 | In the case of Statement, the query is compiled each time we run the program. | In the case of PreparedStatement, the query is compiled only once. |
 | The Statement is mainly used in the case when we need to run the static query at runtime. | PreparedStatement is used when we need to provide input parameters to the query at runtime. |
+
+### Q: What does pre-compiling a JDBC PreparedStatement do?
+
+If you want to execute a `Statement` object many times, it usually reduces execution time to use a `PreparedStatement` object instead.
+
+The main feature of a `PreparedStatement` object is that, unlike a `Statement` object, it is given a SQL statement when it is created. The advantage to this is that in most cases, this SQL statement is sent to the DBMS right away, where it is compiled. As a result, the `PreparedStatement` object contains not just a SQL statement, but a SQL statement that has been precompiled. **This means that when the `PreparedStatement` is executed, the DBMS can just run the `PreparedStatement` SQL statement without having to compile it first.**
 
 ### Q: How can we set null value in JDBC PreparedStatement?
 
