@@ -58,7 +58,13 @@ The **Java ClassLoader** is a subset of JVM (Java Virtual Machine) that is respo
 
 ### What is the process of class loading?
 
-The Java Virtual Machine dynamically loads, links and initializes classes and interfaces. Loading is the process of finding the binary representation of a class or interface type with a particular name and *creating* a class or interface from that binary representation. Linking is the process of taking a class or interface and combining it into the run-time state of the Java Virtual Machine so that it can be executed. Initialization of a class or interface consists of executing the class or interface initialization method `<clinit>`.
+The Java Virtual Machine dynamically loads, links and initializes classes and interfaces. 
+
+- Loading is the process of finding the binary representation of a class or interface type with a particular name and *creating* a class or interface from that binary representation. 
+
+- Linking is the process of taking a class or interface and combining it into the run-time state of the Java Virtual Machine so that it can be executed. 
+
+- Initialization of a class or interface consists of executing the class or interface initialization method `<clinit>`.
 
 ### What is parent delegation model in Java?
 
@@ -94,17 +100,17 @@ The parent-delegation model solving problems:
 
 ### What is JVM run-time memory model in JVM Specification?
 
-Per-Thread data area: 
+Per-Thread data areas: 
 
-- **Program Counter (PC) Register**: the `pc` register contains the address of the JVM instruction currently being executed. If the method is `native`, the value of the `pc` register is undefined.
-- **JVM Stacks**: A JVM stack stores frames. The JVM stack holds local variables and partial results, and plays a part in method invocation and return. Each frame in a stack stores the current method’s local variable array, operand stack, and constant pool reference. A JVM stack may have many frames because until any method of a thread is finished it may call many other methods, and frames of these methods also store in the same JVM stack.
-- **Native Method Stacks**: JVM may use native method stacks to support native methods. The native methods are written in a language other than the Java programming language. JVM implementations that cannot load native methods and that do not themselves rely on conventional stacks need not supply native method stack.
+- **Program Counter (PC) Register**: the `pc` register contains **the address of the JVM instruction currently being executed**. If the method is `native`, the value of the `pc` register is undefined.
+- **JVM Stacks**: A JVM stack stores frames. The JVM stack holds **local variables** and **partial results**, and plays a part in method invocation and return. Each frame in a stack stores the current method’s local variable array, operand stack, and constant pool reference. A JVM stack may have many frames because until any method of a thread is finished it may call many other methods, and frames of these methods also store in the same JVM stack.
+- **Native Method Stacks**: JVM may use native method stacks **to support native methods**. The native methods are written in a language other than the Java programming language. JVM implementations that cannot load native methods and that do not themselves rely on conventional stacks need not supply native method stack.
 
-Common area
+Shared areas:
 
-- **Heap**: The JVM has a heap that is shared among all JVM threads. The heap is the run-time data area from which memory for all class instances and arrays is allocated.
-- **Method Area**: It’s part of `heap`. The JVM has a method area that is shared among all JVM threads. The method area is analogous to the storage area for compiled code of conventional language or analogous to the “text” segment in an operating system process. It stores per-class structures such as the run-time constant poll, field and method data, and the code for methods and constructors, including the special methods used in class and instance initialization and interface initialization.
-- **Run-time Constant Pool**: It’s part of `method area`. A run-time constant pool is a per-class or per-interface run-time representation of the `constant_pool` table in a `class` file. It contains several kinds of constant, ranging from numeric literals known at compile-time to method and field references that must be resolved at run-time. The run-time constant pool serves a function similar to that of a symbol table for a conventional programming language, although it contains a wider range of data than a typical symbol table.
+- **Heap**: The JVM has a heap that is shared among all JVM threads. The heap is the run-time data area from which memory for all **class instances and arrays** is allocated.
+- **Method Area**: It’s part of `heap`. The JVM has a method area that is shared among all JVM threads. The method area is analogous to the storage area for **compiled code** of conventional language or analogous to the “text” segment in an operating system process. It stores **per-class structures** such as the **run-time constant pool, field and method data, and the code for methods and constructors**, including the special methods used in class and instance initialization and interface initialization.
+- **Run-time Constant Pool**: It’s part of `method area`. A run-time constant pool is a per-class or per-interface run-time representation of the `constant_pool` table in a `class` file. It contains several kinds of constant, ranging from **numeric literals** known at compile-time to method and **field references** that must be resolved at run-time. The run-time constant pool serves a function similar to that of a symbol table for a conventional programming language, although it contains a wider range of data than a typical symbol table.
 
 ### Heap memory model for generational garbage collection(GC)?   
 
@@ -122,7 +128,7 @@ Memory Structure of Java SE 8 HotSpot VM
     - Survivor
     - Virtual
   - Old Generation
-- Metaspace 
+- Metaspace (or Permanent Generation)
   - Compressed Class Space
 - CodeCache
 - Native Memory
@@ -137,7 +143,7 @@ Metaspace:
 
 CodeCache
 
-- Code Cache is used to store the compiled code generated by the Just-intime compilers.
+- Code Cache is used to store the compiled code generated by the Just-in-time compilers.
 - It is allocated out of native memory.
 - Managed by the Code Cache Sweeper.
 
