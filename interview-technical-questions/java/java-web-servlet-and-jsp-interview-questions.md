@@ -96,6 +96,10 @@
 
 ### Q: What is Servlet?
 
+> Java-based web component
+>
+> generating dynamic content
+
 Servlet is Java-based Web component. It managed by servlet container. It's used for generating dynamic content response to client.
 
 Servlet is platform-independent Java class, It can run in Web server that supported servlet container.
@@ -104,9 +108,9 @@ Servlet interacts with the Web client through the request/response paradigm impl
 
 ### Q: What is different between web server and application server?
 
-A **web server** responsibility is to handler HTTP requests from client browsers and respond with HTML response. A web server understands HTTP language and runs on HTTP protocol.
+A **web server** responsibility is **to handler HTTP requests** from client browsers and **respond with HTML response**. A web server understands HTTP language and runs on HTTP protocol.
 Apache Web Server is kind of a web server and then we have specific containers that can execute servlets and JSPs known as the servlet container, for example, Tomcat.
-**Application Servers** provide additional features such as Enterprise JavaBeans support, JMS Messaging support, Transaction Management, etc. So we can say that the Application server is a web server with additional functionalities to help developers with enterprise applications.
+**Application Servers** **provide additional features** such as Enterprise JavaBeans support, JMS Messaging support, Transaction Management, etc. So we can say that the Application server is a web server with additional functionalities to help developers with enterprise applications.
 
 ### Q: Which HTTP method is non-idempotent?
 
@@ -155,11 +159,14 @@ Servlet containers are also known as web container, for example, Tomcat. Some of
 
 Servlet Specs 3.0 was a major release and some of the important features are:
 
-1. Servlet Annotations
+1. **Servlet Annotations**: Prior to Servlet 3, all the servlet mapping and its init parameters were used to defined in web.xml, this was not convenient and more error prone when number of servlets are huge in an application.
 
-   : Prior to Servlet 3, all the servlet mapping and its init parameters were used to defined in web.xml, this was not convenient and more error prone when number of servlets are huge in an application.
+   Servlet 3 introduced the use of Java annotations to define a servlet, filter and listener servlets and init parameters. Some of the important Servlet API annotations are WebServlet, WebInitParam, WebFilter, and WebListener.
 
-   Servlet 3 introduced the use of Java annotations to define a servlet, filter and listener servlets and init parameters. Some of the important Servlet API annotations are WebServlet, WebInitParam, WebFilter, and WebListener. Read more about them at [Servlet 3 annotations](https://www.journaldev.com/1877/servlet-tutorial-java#servlet-3-annotations).
+   - Specify servlet path by `@WebServlet`
+   - Set initial parameters by `@WebInitParam`
+   - Others annotations:`@WebListener`, `@WebFilter`, `@MultipartConfig`
+   - Almost don't need `web.xml`
 
 2. **Web Fragments**: Prior to servlet specs 3.0, all the web application configurations are required to be present in the web.xml that makes it cluttered with a lot of elements and chances of error increases. So servlet 3 specs introduced web fragments where we can have multiple modules in a single web application, all these modules should have a web-fragment.xml file in META-INF directory. We can include all the elements of web.xml inside the web-fragment.xml too. This helps us in dividing our web application into separate modules that are included as a JAR file in the web application lib directory.
 
