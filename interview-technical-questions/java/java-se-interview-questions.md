@@ -44,7 +44,7 @@
     - [x] [Q: Java Version Major Changes?](#Q: Java Version Major Changes?)
 - II. Basics
   - <a name="variables-and-types-c" href="#variables-and-types-t">Variables and Types</a>
-    - [x] [What are the basic data types in Java? What are their value ranges?](#What are the basic data types in Java? What are their value ranges?)
+    - [x] [What are the primitive data types in Java? What are their value ranges?](#What are the primitive data types in Java? What are their value ranges?)
     - [x] [Why does computer float data type can't precisely represent decimal fraction?](#Why does computer float data type can't precisely represent decimal fraction?)
     - [x] [Why can't you use float data type to represent amount of money?](#Why can't you use float data type to represent amount of money?)
     - [x] [Character encoding and charsets?](#Character encoding and charsets?)
@@ -63,6 +63,9 @@
       - [x] [What are object-oriented programming major features?](#What are object-oriented programming major features?)
       - [x] [Principles of object-oriented design?](#Principles of object-oriented design?)
       - [x] [Relationships between classes: Generalization vs realization vs composition vs aggregation vs association vs dependency?](#Relationships between classes: Generalization vs realization vs composition vs aggregation vs association vs dependency?)
+    - Class and Object
+      - [ ] Q: Object Creation Ways?
+      - [ ] Q: the process of object creation?
     - Methods
       - [x] [Pass by value vs. pass by reference?](#Pass by value vs. pass by reference?)
     - Keywords
@@ -117,21 +120,38 @@
       - [x] [What is daemon thread?](#What is daemon thread?)
     - Thread Objects
       - [x] [Creating Thread classes ways?](#Creating Thread classes ways?)
-      - [x] [Creating Thread ways?](#Creating Thread ways?)
+      - [x] [Starting Thread ways?](#Starting Thread ways?)
       - [x] [What are Thread status?](#What are Thread status?)
       - [x] [sleep() vs wait()?](#sleep() vs wait()?)
+      - [ ] sleep(), join(), yield() of Thread class
+      - wait(), notify(), notifyAll() of Object class
+      - FutureTask and ForkJoinTask
     - Synchronization and Thread-Safe
       - [x] [How thread-safe works?](#How thread-safe works?)
       - [ ] How synchronized works or exclusive lock works?
     - Liveness Problems
       - [x] [Deadlock vs starvation vs livelock?](#Deadlock vs starvation vs livelock?) 
       - [x] [How to avoid deadlock?](#How to avoid deadlock?)
-    - High Concurrency
-      - [x] [synchronized vs ReentrantLock?](#synchronized vs ReentrantLock?)
-      - [x] [Volatile variables vs atomic variables vs immutable objects?](#Volatile variables vs atomic variables vs immutable objects?)
+      - [ ] Deadlock code examples
+      - [ ] Livelock code examples
+    - Guarded Blocks
+    - Advanced Concurrency Objects
+      - Lock
+        - [x] [synchronized vs ReentrantLock?](#synchronized vs ReentrantLock?)
+        - [ ] ReentrantLock Implementation Principles
+      - Executors and Thread Pools
+        - Thread Pool Types?
+      - Concurrent Collections
+      - Atomic Variables
+        - [x] [Volatile variables vs atomic variables vs immutable objects?](#Volatile variables vs atomic variables vs immutable objects?)
+      - ThreadLocal and ThreadLocalRandom
+        - [x] [What is ThreadLocal?](#What is ThreadLocal?)
+        - [x] [When should I use a ThreadLocal variable?](#When should I use a ThreadLocal variable?)
     - Concurrency Others
-      - [x] [What is ThreadLocal?](#What is ThreadLocal?)
-      - [x] [When should I use a ThreadLocal variable?](#When should I use a ThreadLocal variable?)
+      - java.util.concurrent.CountDownLatch
+      - java.util.concurrent.CyclicBarriers
+      - java.util.concurrent.Semaphore
+      - java.util.concurrent.Exchanger
   - <a name="network-c" href="#network-t">Network Programming</a>
   - <a name="java-security-c" href="#java-security-t">Java Security</a>
   - <a name="jmx-c" href="#jmx-t">JMX, JNDI, JAXP, RMI</a>
@@ -480,7 +500,7 @@ Java SE 15
 <h2><a name="variables-and-types-t" href="#variables-and-types-c">Variables and Types</a></h2>
 <br>
 
-### What are the basic data types in Java? What are their value ranges?
+### What are the primitive data types in Java? What are their value ranges?
 
 | Data Type | Bytes   | Scope         | Default Value               |
 | --------- | ------- | ------------- | --------------------------- |
@@ -1540,7 +1560,7 @@ Thread classes mean this class code can run in a new thread.
 - implements Runnable
 - implements Callable. (construct a FutureTask object with a callable object, futureTask submit to a thread pool object)
 
-### Creating Thread ways?
+### Starting Thread ways?
 
 - Call Thread object start() method.
 - Create thread pool object such as `ThreadPoolExecutor` object. Generally using the utility class `Executors` to create a thread pool e.g. `Executors.newSingleThreadExecutor()`.
