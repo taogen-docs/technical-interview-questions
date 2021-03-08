@@ -736,8 +736,8 @@ Representation:
 
 ```
 generalization
-A ——————▷ B
-A is a special B
+A ◁—————— B
+B is a special A
 ```
 
 Examples:
@@ -755,8 +755,8 @@ Representation:
 
 ```
 realization
-A ------▷ B
-A implements B
+A ◁------ B
+B implements A
 ```
 
 Examples
@@ -779,8 +779,8 @@ Representation:
 
 ```
 composition
-A ——————◆ B
-A is part of B, and A isn't independent.
+A ◆—————— B
+B is part of A, and B isn't independent.
 ```
 
 Examples: 
@@ -805,8 +805,8 @@ Representation:
 
 ```
 aggregation
-A ——————◇ B
-A is part of B, and A is independent.
+A ◇—————— B
+B is part of A, and B is independent.
 ```
 
 Examples:
@@ -834,8 +834,8 @@ Association is a relationship where all object have their own lifecycle and ther
 
 ```
 association
-A ——————> B
-A has B
+A <—————— B
+B has A, B associates A.
 
 A <——————> B
 or
@@ -860,8 +860,8 @@ Dependency is a relationship of "use".
 
 ```
 dependency
-A ------> B
-A use B
+A <------ B
+B use A, or B depends on A
 ```
 
 Examples:
