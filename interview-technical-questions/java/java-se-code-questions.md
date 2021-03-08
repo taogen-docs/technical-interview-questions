@@ -243,8 +243,52 @@ new String("xxx") + "xxx"  // it is a new String Object, store in heap.
 ```
 </details>
 
+Question: Clearing or set null to objects in java
 
+What is the following code running result?
 
+```java
+public class Test {
+    public static void main(String[] args) {
+        A a = new A();
+        B b = new B();
+        b.clearA(a);
+        a.log();
+    }
+}
+
+class A {
+    String name = "Tom";
+
+    public void log() {
+        System.out.println(name);
+        System.out.println("log function executing");
+    }
+}
+
+class B {
+    public void clearA(A a) {
+        System.out.println(a.name);
+        a.name = "Jerry";
+        a = null;
+    }
+}
+```
+
+Result
+
+<details>
+	<summary>Click to expand!</summary>
+
+```java
+Tom
+Jerry
+log function executing
+```
+
+</details>
+
+Reference: [clearing or set null to objects in java](https://stackoverflow.com/questions/18009909/clearing-or-set-null-to-objects-in-java)
 
 #### Wrapper class
 
