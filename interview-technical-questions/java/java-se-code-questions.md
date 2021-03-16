@@ -331,8 +331,24 @@ Reason:
 ```
 </details>
 
+Question: The following code print results.
 
+```
+Long a = 1L;
+System.out.println("a: " + new Integer(1).equals(a));
+Integer b = 1;
+System.out.println("b: " + new Integer(1).equals(b));
+```
 
+Result
+
+<details>
+	<summary>Click to expand!</summary>
+
+```
+a: false
+b: true
+```
 
 
 #### Inheritance
