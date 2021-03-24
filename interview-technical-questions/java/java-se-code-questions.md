@@ -178,8 +178,66 @@ Reason:
 ```
 </details>
 
+Question
+
+```java
+public class demo {
+
+    public static String test1(){
+        String str = "";
+        try{
+            str = "dog";
+            return str;
+        }finally {
+            str = "cat";
+        }
+    }
+
+    public static String test2(){
+        String str = "";
+        try{
+            str = "dog";
+            return str;
+        }finally {
+            str = "cat";
+            return str;
+        }
+    }
+
+    public static List<Integer> test3(){
+        List<Integer> list = new ArrayList<>();
+        try{
+            list.add(1);
+            return list;
+        }finally {
+            list.remove(0);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(test1()); 
+        System.out.println(test2()); 
+        System.out.println(test3().size()); 
+    }
+}
+```
 
 
+Result
+
+<details>
+	<summary>Click to expand!</summary>
+
+```
+dog
+cat
+0
+```
+
+1. The return statement is return address, update String variable reference not affect returned address, it just create a new String object.
+2. finally block return statement will override the try block return statement.
+3. Update the content of the array will update the address of array represents content.
+</details>
 
 ### V. Functions
 
