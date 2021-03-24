@@ -292,6 +292,14 @@ Reference: [clearing or set null to objects in java](https://stackoverflow.com/q
 
 #### Wrapper class
 
+>Note: 
+>
+>1. Autoboxing and unboxing mechanisms. When to autoboxing and unboxing. How to do it. `int intValue()`, `static Integer valueOf(int i)` source code.
+>2. Using "==" to compare. What do different situations compare, value or address. Wrapper object and wrapper object, wrapper object and primitive variable.
+>3. Using equals to compare. the equals() source code.
+>4. Wrapper class cache. Knowing it range of cache value. `valueOf()` source code.
+>5. [Autoboxing and Unboxing](https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html)
+
 Question: Integer == int
 
 ```java
@@ -350,6 +358,26 @@ a: false
 b: true
 ```
 
+Integer variable using equals() method to compare. you can see the source code.
+
+Integer source code
+
+```
+public boolean equals(Object obj) {
+    if (obj instanceof Integer) {
+        return value == ((Integer)obj).intValue();
+    }
+    return false;
+}
+```
+
+1. int literal assign to Integer variable (`Integer i = 1;`) will call `Integer.valueOf(int i)` that converting int literal to Integer object. Integer class has IntegerCache that cache some of value Integer objects.
+2. When using "==" to compare int variable and Integer variable`Integer a = 1; int b = 1; boolean result = a == b;`, It compares value, but the "==" or "+-*/%" operators don't apply to Integer objects. JVM convert Integer objects to int variables at runtime by `intValue()` methods.
+3. using "==" to compare two Integer variable, it will compare address. Because Integer class has some Integer objects cache, may two Integer variables reference the same object.
+
+[Autoboxing and Unboxing](https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html)
+
+</details>
 
 #### Inheritance
 
