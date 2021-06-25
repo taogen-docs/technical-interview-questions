@@ -119,6 +119,67 @@
 
 ## Algorithm Design Problems
 
+### Recursion
+
+Using recursion to print text like below
+
+```
+*
+**
+***
+****
+***
+**
+*
+```
+
+Solution 1:
+
+```java
+public static void main(String[] args) {
+    print(1, 4, 1);
+}
+
+public static void print(int curr, int n, int flag) {
+    if (curr == 0) {
+        return;
+    }
+    for (int i = 0; i < curr; i++) {
+        System.out.print("*");
+    }
+    System.out.println();
+    if (curr == n) {
+        flag = -1;
+    }
+    print(curr + flag, n, flag);
+}
+```
+
+Solution 2:
+
+```java
+public static void main(String[] args) {
+    print(1, 4);
+}
+
+public static void print(int curr, int n) {
+    if (curr > n) {
+        return;
+    }
+    for (int i = 0; i < curr; i++) {
+        System.out.print("*");
+    }
+    System.out.println();
+    print(curr + 1, n);
+    if (curr < n) {
+        for (int i = 0; i < curr; i++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
+}
+```
+
 ### Dynamic programming
 
 ### Divide and Conquer
