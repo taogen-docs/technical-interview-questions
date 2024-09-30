@@ -20,6 +20,7 @@ code questions collection.
 - Search "xxx interview questions" or "Top technical interview questions" on Google.
 - Search foreign companies interview questions, such as "Google，Amazon，Facebook 面试经验/面经"
 - Search China companies interview questions,  such as "阿里，蚂蚁金服，腾讯，百度，京东，网易，美团，字节跳动，新浪，华为，小米，拼多多，滴滴，ThoughtWorks 等 Java 面试经验/面经"。
+  - `(阿里 OR 蚂蚁金服 OR 腾讯 OR 百度 OR 京东 OR 网易 OR 美团 OR 字节跳动 OR 新浪 OR 华为 OR 小米 OR 拼多多 OR 滴滴 OR ThoughtWorks) Java (面试 OR 面试经验 OR 面经)`
 
 ### Websites
 
@@ -29,6 +30,7 @@ code questions collection.
 
 ### Repositories 
 
-[awesome-interview-questions](https://github.com/DopplerHQ/awesome-interview-questions)
+- [awesome-interview-questions](https://github.com/DopplerHQ/awesome-interview-questions)
+- [spring-interview-guide](https://github.com/in28minutes/spring-interview-guide)
 
 ### Documents
