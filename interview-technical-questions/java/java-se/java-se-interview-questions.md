@@ -1104,7 +1104,6 @@ Compelling reasons for using nested classes include the following:
 Inner Class
 
 - Can access to outer class both instance and static methods and fields
-
 - Associated with instance of enclosing class so to instantiate it first needs an instance of outer class (note new keyword place): 
 
   ```
@@ -1112,13 +1111,11 @@ Inner Class
   ```
 
 - Cannot define any static members itself
-
 - Cannot have Class or Interface declaration
 
 Static Nested Class
 
 - Only can access outer class instance static methods or fields.
-
 - Not associated with any instance of enclosing class So to instantiate it:
 
   ```
